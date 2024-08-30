@@ -28,7 +28,12 @@ make -j$(nproc)
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
 
-    if (!Database::initialize("users.db")) {
+    //    QString dbPath = QStringLiteral("../my_application/users.db"); // worked fine
+//        QString db_name = QStringLiteral(DB_PATH); // also worked fine
+
+    //    sqlitedb.setDatabaseName(dbPath);
+
+    if (!Database::initialize(DB_PATH)) {
         qDebug() << "Failed to initialize the database.";
         return -1;
     }

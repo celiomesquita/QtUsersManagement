@@ -19,8 +19,7 @@ bool authenticateUser(QSqlDatabase& db, const QString& username, const QString& 
             QString storedHash = query.value(0).toString();
             isAdmin = query.value(1).toBool();
 
-            // Hash the provided password and compare it with the stored hash
-            QString providedHash = QString::fromStdString(sha256(password.toStdString()));
+            QString providedHash = sha256(password.trimmed());
 
             if (providedHash == storedHash) {
                 authenticated = true;

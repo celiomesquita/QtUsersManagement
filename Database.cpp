@@ -6,6 +6,7 @@ QSqlDatabase Database::db;
 
 bool Database::initialize(const std::string& db_name) {
     db = QSqlDatabase::addDatabase("QSQLITE");
+    
     db.setDatabaseName(QString::fromStdString(db_name));
 
     if (!db.open()) {

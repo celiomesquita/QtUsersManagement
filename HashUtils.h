@@ -1,8 +1,8 @@
 #ifndef HASH_UTILS_H
 #define HASH_UTILS_H
 
-#include <string>
+#include <QString>
 
-std::string sha256(const std::string& str);
+QString sha256(const QString& input);
 
 #endif

@@ -171,7 +171,7 @@ void UserManagementDialog::onAddOrUpdateUser() {
         return;
     }
 
-    QString hashedPassword = QString::fromStdString(sha256(password.toStdString()));
+    QString hashedPassword = sha256(password.trimmed());
 
     if (!userIDBeingEdited.isEmpty()) {  // Edit existing user
         int userId = userIDBeingEdited.toInt();  // Convert ID back to integer

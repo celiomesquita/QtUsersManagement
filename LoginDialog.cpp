@@ -45,8 +45,7 @@ void LoginDialog::onLoginButtonClicked()
         return;
     }
 
-    // Hash the trimmed password using SHA-256 or similar
-    QString hashedPassword = QString::fromStdString(sha256(password.trimmed().toStdString()));
+    QString hashedPassword = sha256(password.trimmed());
 
     QSqlDatabase db = Database::getDatabase();
     if (!db.isOpen()) {

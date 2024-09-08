@@ -1,0 +1,426 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{indentfirst}
+
+\usepackage{caption}
+\captionsetup{skip=2pt}
+
+\usepackage{vhistory}
+\renewcommand \vhAuthorColWidth{1.0\hsize}
+\renewcommand \vhChangeColWidth{1.0\hsize}
+
+\usepackage{lmodern} 
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\setlist{leftmargin=*}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstset{
+	basicstyle=\ttfamily\footnotesize,
+	frame=single,
+	keywordstyle=\color{blue},
+	commentstyle=\color{green},
+	xleftmargin=3em,
+	xrightmargin=3em
+}
+
+% Definindo um estilo personalizado para RAII
+\lstdefinestyle{raii}{
+	language=C++,
+	keywordstyle=\color{blue}\bfseries,
+	stringstyle=\color{red},
+	commentstyle=\color{gray}\itshape,
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	backgroundcolor=\color{lightgray!10},
+	breaklines=true,           % Permite que as linhas sejam quebradas
+	breakatwhitespace=true,    % Quebra em espaços em branco
+	showstringspaces=false,    % Não mostra espaços em branco em strings
+	escapeinside={(*@}{@*)}    % Permite inserir comandos LaTeX dentro do código
+}
+
+\usepackage[os=win]{menukeys}
+\renewmenumacro{\keys}[+]{shadowedroundedkeys}
+\usepackage{framed}
+\usepackage{etoolbox}
+\AtBeginEnvironment{leftbar}{\sffamily}
+
+\usetikzlibrary{chains,arrows,shapes,positioning}
+\usepackage[obeyspaces]{url}
+\usepackage[colorlinks=true, linkcolor=blue, urlcolor=blue]{hyperref}
+
+\usepackage[margin=1in]{geometry}
+
+\newcommand{\sistema}{\textsf{SIRERC}}
+\newcommand{\cmake}{\textit{CMake}}
+\newcommand{\build}{\textit{build}}
+
+\newcommand{\qtcreator}{\textit{Qt Creator}}
+\newcommand{\qtdesigner}{\textit{Qt Designer}}
+\newcommand{\qt}{\textit{Qt}}
+
+\newcommand{\vscode}{\textit{VS Code}}
+\newcommand{\msvs}{\textit{Microsoft Visual Studio}}
+\newcommand{\visualstudio}{\textit{Visual Studio}}
+\newcommand{\msvc}{\textit{MSVC}}
+\newcommand{\gmsh}{\textit{gmsh}}
+\newcommand{\download}{\textit{download}}
+
+\newcommand{\windows}{\textit{Windows}}
+\newcommand{\linux}{\textit{Linux}}
+
+\newcommand{\gnu}{\textit{GNU General Public License}}
+
+\newcommand{\cautionbox}[1]{
+	\vskip 5mm
+	\begin{leftbar}
+		\textbf{#1}
+	\end{leftbar}
+	\vskip 5mm
+}
+
+
+\title{Guia do Desenvolvedor \sistema}
+
+\date{\url{https://github.com/sirercita/SIRERC_ProjetoPetrobras/docs/}}
+
+\begin{document}
+\maketitle
+
+\newpage
+\begin{versionhistory}
+  \vhEntry{0.1.0}{01/09/2024}{A. Celio P. Mesquita}{Melhores práticas e lições aprendidas}
+\end{versionhistory}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+\section{FERRAMENTAS UTILIZADAS}
+
+Cada desenvolvedor tem suas experiência e costumes que o tornam produtivo.
+Alguns utilizam o \textit{Microsoft Visual Studio} no ambiente \windows{}, outros preferem o \vscode{} (\linux{}, \windows{} ou \textit{Apple macOS}), e outros o \qtcreator{}, além de outras ferramentas semelhantes.
+
+Muitos utilizam o \qtdesigner{} para criar as interfaces e o \textit{Microsoft Visual studio Code} (\vscode{}) para desenvolver a lógica e os programas.
+
+A seguir apresentaremos algumas experiências usando o \vscode{} para desenvolvimento \qt{}.
+
+
+\subsection{\msvs{} e \vscode{}}
+
+O \vscode{} tem pouco a ver com o \msvs{}.
+O \vscode{} é um produto independente, de código aberto, não comercializado (pelo menos por enquanto).
+É um editor de código-fonte leve, mas poderoso, que é executado na área de trabalho e está disponível para \windows{}, \textit{macOS} e \linux{}. Fornece suporte interno para JavaScript, TypeScript e Node.js; e com um ecossistema avançado de extensões para outras linguagens e \textit{runtimes} (como C++, C\#, Java, Python, PHP, Go, .NET).
+
+O \vscode{} pode ser baixado daqui: \url{https://code.visualstudio.com/download}.
+
+O IDE do \msvs{} é uma plataforma disponível há muitos anos para \windows{} e \textit{macOS} (mas não para \linux{}), que você pode usar para editar, depurar e criar código e, em seguida, publicar um aplicativo. Além do editor e depurador padrão fornecidos pela maioria dos IDE, o \msvs{} inclui compiladores, ferramentas de conclusão de código, designers gráficos e muitos outros recursos para aprimorar o processo de desenvolvimento de software.
+
+Se você estiver em ambiente \windows{} ou \textit{macOS}, o \msvs{} pode ser baixado daqui: \url{https://visualstudio.microsoft.com/pt-br/downloads/}.
+ 
+\subsection{Extensões do \vscode{}}
+
+Uma das coisas que você descobrirá rapidamente com o \vscode{} é a quantidade impressionante de extensões disponíveis. Muitas vezes, quando você se pergunta: "O \vscode{} pode fazer .....?", a resposta será: "Não por padrão, mas com uma extensão, sim."
+
+A enorme quantidade de extensões disponíveis (todas gratuitas, embora alguns desenvolvedores peçam uma pequena contribuição) pode ser confusa às vezes, especialmente quando há várias que parecem servir ao mesmo propósito. No entanto, há um sistema de classificação.
+
+Na dúvida, experimente mais de uma extensão. Muitas delas servem a propósitos muito pequenos e bem definidos, para que você possa rapidamente descobrir se uma extensão específica é o que você precisa. Todas as extensões podem ser instaladas sem sair do \vscode{}.
+
+\subsection{O melhor de dois mundos}
+
+A principal razão para usar o \vscode{} é que ele faz algumas coisas melhor que o \qtcreator{}. Além disso, muitos desenvolvedores usam \textit{macOS}, e o \qtcreator{} nem sempre tem a mesma estabilidade lá em comparação com \linux{} e \windows{}. Não estamos sugerindo abandonar completamente o \qtcreator{}. Na verdade, muitos usam ambos em paralelo.
+
+Configuramos ambos para salvar automaticamente e recarregar arquivos, permitindo alternar entre eles sem problemas. Algumas tarefas são feitas no \qtcreator{}, enquanto outras no \vscode{}. Quando mudamos o foco, as alterações já estão salvas (ou precisamos clicar em "Sim para Todos" no diálogo de confirmação de recarga dos arquivos (\textit{reload})), proporcionando o melhor de ambos os mundos.
+
+Dito isso, quais são os prós e contras de usar o \vscode{} em relação ao \qtcreator{}?
+
+Primeiro, atualmente, o \vscode{} não tem conhecimento do \qt{} em si. Ele não conhece sinais e \textit{slots}, arquivos \textbf{.ui} ou \textbf{.ts}, \textit{QML} ou \qtdesigner{}. E só isso, é claro, é motivo suficiente para não mudar completamente para o \vscode{}. Qualquer coisa que seja muito específica do \qt{} é melhor feita no \qtcreator{}. É totalmente imaginável que alguém venha a escrever uma extensão \qt{} para o \vscode{}.
+
+Então, se o \vscode{} não conhece \qt{} ou \textit{QML}, por que usá-lo para desenvolvimento baseado em \qt{}? Bem, mesmo em projetos baseados em \qt{}, nem todas as tarefas na vida de um programador são específicas do \qt{}. Como exemplo, a funcionalidade de pesquisa e substituição global do \vscode{} é vastamente superior à do \qtcreator{}.
+
+As funções de acesso a banco de dados, leitura de arquivos e muitas outras, por exemplo, independem das bibliotecas do \qtcreator{}.
+
+Em projetos futuros, pode ser que venhamos a trabalhar com bases de código de clientes muito grandes, muitas vezes antigas, sem acesso aos desenvolvedores originais, portanto, encontrar nosso caminho por elas é fundamental para nosso trabalho. O \vscode{} permite que você pesquise símbolos de uma maneira muito precisa e também permite que você substitua com muito controle (por pasta, por arquivo, por alteração individual, com diferença completa com destaque de sintaxe para cada alteração potencial, etc.).
+
+Nada impede que alternemos do \qtcreator{} para o \vscode{} apenas para fazer uma pesquisa (e às vezes uma substituição) e depois voltando ao \textit{framework} ou plataforma original.
+
+\subsection{Gerenciamento dos projetos no \vscode{}}
+
+Uma pequena diferença na forma como os dois funcionam é que o \qtcreator{}, como a maioria dos IDE, é baseado em projetos. Você abre um (ou mais) projetos e ele carrega informações sobre todos os arquivos no projeto, conforme definido no arquivo de \build{} (arquivo \textbf{.pro} do \textit{QMake} ou \textit{CMakeLists.txt} do \cmake{}). A vantagem disso é, claro, que você não pode perder nada, já que tudo que é construído também é aberto e lido pelo \qtcreator{}.
+
+O \vscode{}, por outro lado, funciona baseado em pastas. Você abre uma pasta de cada vez (e pode combinar várias pastas em chamados "espaços de trabalho", que são abertas ao mesmo tempo), dando a você um controle mais granular. No entanto, é fácil perder arquivos que estão em uma pasta separada.
+
+Como mencionado anteriormente, as bases de código com as quais poderemos lidar em projetos futuros pode chegar a ser muito grandes, podendo ser mais conveniente abrir apenas um subconjunto delas, pois abrir várias centenas de arquivos pode desacelerar até mesmo os melhores IDE.
+
+\subsection{Complementação de código}
+
+A complementação de código inteligente é um recurso fundamental em IDE modernas, e tanto o \vscode{} quanto o \qtcreator{} se destacam nesse aspecto. O \vscode{}, com o \textit{Intellisense}, oferece sugestões precisas e contextuais, enquanto o \qtcreator{} também apresenta um sistema de complementação eficiente, especialmente para projetos \qt{}. A configuração do \textit{Intellisense} pode envolver alguns ajustes, mas a documentação detalhada da \textit{Microsoft} simplifica esse processo. A escolha entre as duas IDE nesse ponto se resume a preferências pessoais e às necessidades específicas do projeto.
+
+Por exemplo, ao digitar \lstinline|std::cout <<|, ambas as IDE sugerem automaticamente a continuação da linha com \lstinline|<< endl;|.
+
+
+\subsection{Integração com outras ferramentas}
+
+Outra vantagem do \vscode{} é seu amplo suporte para sistemas de controle de versão (o que hoje em dia, essencialmente significa \textbf{git}). O \qtcreator{} também possui suporte abrangente ao \textbf{git}. Em particular, não é muito integrado com o ato real de escrever código.
+
+Com o \vscode{}, posso obter pequenas anotações sobre quem mudou uma linha de código e quando, em uma cor discreta. Elas são fáceis de ignorar quando você não precisa delas, mas estão disponíveis imediatamente quando você precisa.
+
+\subsection{\cmake{}}
+
+Com a recente decisão de adotar o \cmake{} como a ferramenta padrão de \build{} para projetos baseados em \qt{}, é importante notar que o \cmake{} ainda não possui uma integração plena com o \qtcreator{}, que foi amplamente desenvolvido em torno do \textit{QMake}.
+
+Embora seja possível utilizar a estrutura básica e robusta do \qtcreator{} para novos projetos e configurá-lo para usar o \cmake{}, qualquer adição de novos arquivos ou classes exigirá que sejam inseridos manualmente no arquivo \textit{CMakeLists.txt}. Nesse aspecto, o \vscode{}, através da extensão \cmake{}, oferece um suporte significativamente mais abrangente.
+
+
+\subsection{Lições aprendidas no desenvolvimento do \sistema{}}
+
+Em resumo, recomendamos que os desenvolvedores \qt{} que priorizam a produtividade considerem experimentar o \vscode{}. Embora não se preveja que ele substitua o \qtcreator{} em um futuro próximo, certamente constitui uma ferramenta adicional que pode auxiliar na escrita de código de maneira mais eficiente e com maior qualidade.
+
+Com relação ao \sistema{}, bla, bla, bla, ...
+
+
+\section{DESENVOLVIMENTO EM LINUX PARA APLICAÇÃO EM WINDOWS}
+
+É possível desenvolver uma aplicação em um ambiente \linux{} usando o \textit{Visual Studio Code} (\vscode{}), gerando um executável e suas bibliotecas para \windows{}. Segue um guia geral de como fazer isso.
+
+Se você está desenvolvendo uma aplicação em C++ ou C\#, pode usar o \texttt{mingw-w64} ou \texttt{Mono} para compilar seu código para \windows{}.
+
+\subsection{Configurando o Ambiente de Desenvolvimento}
+
+\begin{itemize}
+	\item \textbf{Instale o \vscode{} no Linux:} 
+	\begin{itemize}
+		\item Instale o \vscode{} normalmente através do gerenciador de pacotes da sua distribuição ou diretamente do site oficial.
+	\end{itemize}
+	
+	\item \textbf{Extensões:} 
+	\begin{itemize}
+		\item Instale as extensões necessárias para a linguagem que você está usando (\texttt{C++}, no nosso caso).
+	\end{itemize}
+	
+	\item \textbf{Cross-Compilation Toolchains:}
+	\begin{itemize}
+		\item Para C/C++, você pode usar o \texttt{mingw-w64} no Linux para compilar o código C/C++ para Windows.
+		\item Instale o \texttt{mingw-w64} no Linux:
+		\begin{lstlisting}[language=bash]
+			sudo apt-get install mingw-w64
+		\end{lstlisting}
+		\item Configure o \vscode{} para usar \texttt{mingw-w64} como o compilador. Você pode ajustar o arquivo \texttt{tasks.json} para definir a tarefa de build usando o \texttt{mingw}.
+	\end{itemize}
+\end{itemize}
+
+
+Caso precise compilar para \windows{}, estando no \linux{}:
+
+\begin{lstlisting}[language=bash]
+	x86_64-w64-mingw32-g++ -o output.exe source.cpp
+\end{lstlisting}
+
+
+\subsection{Testando a Aplicação no Windows}
+
+
+	\begin{itemize}
+		\item Você pode usar uma máquina virtual rodando \windows{} (usando VirtualBox, VMware, etc.) para testar a aplicação.
+		\item Alternativamente, você pode usar o \textit{Wine} no \linux{} para rodar e testar a aplicação como se estivesse em um ambiente \windows{}:
+		\begin{lstlisting}
+			wine output.exe
+		\end{lstlisting}
+	\end{itemize}
+
+
+\subsection{Distribuição}
+
+Após a compilação e empacotamento, você pode distribuir o arquivo \texttt{.exe} ou instalador gerado para usuários de \windows{}.
+
+Embora o desenvolvimento possa ser feito no \linux{}, é sempre uma boa prática testar em um ambiente \windows{} real para garantir que tudo funcione corretamente. Se você estiver desenvolvendo uma aplicação complexa, considere usar ferramentas de CI/CD que suportem builds multiplataforma, como \textit{GitHub Actions} ou \textit{Travis CI}.
+
+
+\section{MELHORES PRÁTICAS COM QT}
+
+
+\subsection{Estrutura e Organização do Projeto}
+\begin{itemize}
+	\item \textbf{Modularização:} Divida o projeto em módulos claros e independentes. Cada módulo deve ter uma responsabilidade bem definida. Esta técnica foi amplamente utilizada no desenvolvimento dos módulos de controle de acesso, disponível em: \url{https://github.com/celiomesquita/QtUsersManagement}.
+	
+	\item \textbf{Convenção de Nomes:} Utilize convenções de nomes consistentes para classes, métodos, variáveis, e arquivos. Isso melhora a legibilidade e a manutenção do código. Os nomes precisam representar a sua finalidade. Ex: {\tt hashedPassword, storedPassword, getUsername(), onLoginButtonClicked(), etc.}
+	
+	\item \textbf{Estrutura de Pastas:} Organize os arquivos do projeto em pastas lógicas (e.g., \texttt{src/}, \texttt{include/}, \texttt{ui/}, \texttt{resources/}, \texttt{images/}). Isso facilita a navegação e a manutenção.
+\end{itemize}
+
+\subsection{Gerenciamento de Dependências}
+\begin{itemize}
+	\item \textbf{Uso do \cmake{}:} Se possível, utilize \cmake{} como sistema de \build{}, mesmo com projetos que utilizam \qtcreator{}. \cmake{} é mais flexível e amplamente suportado.
+	
+	\item \textbf{Versões de Bibliotecas:} Sempre especifique versões específicas de bibliotecas no {\tt CMakeLists.txt} ou {\tt QMake} para evitar inconsistências.
+\end{itemize}
+
+\subsection{Boas Práticas de Codificação}
+\begin{itemize}
+	\item \textbf{RAII (\textit{Resource Acquisition Is Initialization}):} Aproveite o conceito de RAII para gerenciar recursos, evitando vazamentos de memória e outros recursos.
+	
+	\item \textbf{Const-correctness:} Declare métodos como \texttt{const} sempre que possível para melhorar a segurança e a clareza do código.
+	
+	\item \textbf{Smart Pointers:} Use \texttt{QScopedPointer}, \texttt{QSharedPointer} ou \texttt{std::unique\_ptr}, \texttt{std::shared\_ptr} para gerenciar a memória dinamicamente, em vez de utilizar ponteiros crus.
+	
+	\item \textbf{Referências Constantes:} Sempre que possível, passe objetos grandes por referência constante (\texttt{const \&}) para evitar cópias desnecessárias.
+\end{itemize}
+
+RAII é um padrão de design em C++ que se baseia na ideia de associar a vida útil de um recurso (como memória, arquivos, conexões de rede, etc.) à vida útil de um objeto que o possui. Em outras palavras, um recurso é adquirido durante a construção de um objeto e é liberado automaticamente quando o objeto sai de escopo, ou seja, quando o seu destrutor é chamado.
+
+
+\begin{lstlisting}[style=raii]
+	// Include the necessary libraries
+	#include <QFile>
+	#include <QTextStream>
+	
+	void writeToFile(const QString &fileName) {
+		QFile file(fileName);
+		
+		// RAII in action: open the file in the constructor
+		if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+			return; // If it fails on openning, the file will be closed immediatly
+		}
+		
+		QTextStream out(&file);
+		out << "Hello, World!\n";
+		
+		// The QFile destructor will automatically close the file
+	}
+\end{lstlisting}
+
+
+\subsection{Desenvolvimento de UI}
+\begin{itemize}
+	\item \textbf{Qt Designer:} Utilize o \qtdesigner{} para criar interfaces gráficas. Isso promove uma clara separação entre lógica e apresentação.
+	
+	\item \textbf{QML para UIs Modernas:} Para interfaces de usuário modernas e dinâmicas, considere usar \textit{QML}. \textit{QML} permite maior flexibilidade e interatividade.
+	
+	\item \textbf{Responsividade:} Certifique-se de que a UI seja responsiva e se adapte a diferentes tamanhos de tela.
+\end{itemize}
+
+\subsection{Integração com Ferramentas de Desenvolvimento}
+\begin{itemize}
+	\item \textbf{\textit{Linting} e Formatação:} Configure \textit{linters} (checador de código) e formatadores automáticos, como \texttt{clang-format} ou \texttt{cppcheck}, para manter a qualidade do código.
+	
+	\item \textbf{Depuração:} Utilize as ferramentas de depuração integradas no \qtcreator{} ou o \textit{GDB} no \vscode{}. Familiarize-se com as opções de \textit{debug}, como inspeção de pilha, variáveis locais e pontos de interrupção (\textit{breakpoints}).
+	
+	\item \textbf{Perfis de Build:} Crie diferentes perfis de \build{} (\textit{Debug, Release, Testing}) e configure adequadamente as otimizações e símbolos de debug para cada um.
+\end{itemize}
+
+\subsection{Gestão de Configuração e Controle de Versão}
+\begin{itemize}
+	\item \textbf{.gitignore:} Configure corretamente o \texttt{.gitignore} para ignorar arquivos de \build{} e outros artefatos gerados.
+	
+	\item \textbf{Branches:} Utilize \textit{branches} de desenvolvimento para novas funcionalidades e correções de \textit{bugs}. Mantenha a \textit{branch} principal (e.g., \texttt{main} ou \texttt{master}) sempre em estado estável.
+	
+\end{itemize}
+
+\subsection{Testes e Qualidade}
+\begin{itemize}
+	\item \textbf{Testes Unitários:} Utilize \textit{frameworks} (estruturas) como o \texttt{Qt Test} para criar testes unitários. Mantenha uma alta cobertura de testes.
+	
+	\item \textbf{Testes de Integração:} Além dos testes unitários, crie testes de integração para validar a interação entre diferentes módulos do \sistema{}.
+	
+	\item \textbf{Continuous Integration (CI):} Configure pipelines de CI para compilar e testar automaticamente o código em cada \textit{commit}. Ferramentas como \textit{Jenkins}, \textit{GitHub Actions} ou \textit{GitLab CI} são úteis para isso.
+	
+\end{itemize}
+
+\subsection{Documentação}
+\begin{itemize}
+	\item \textbf{Doxygen:} Utilize \textit{Doxygen} para documentar o código. Comente classes, métodos, e funções de forma detalhada.
+	
+	\item \textbf{Documentação de API:} Mantenha uma documentação clara e acessível para a API do seu projeto, se for um projeto público ou destinado a ser reutilizado.
+\end{itemize}
+
+\subsection{Desempenho e Otimização}
+\begin{itemize}
+	\item \textbf{Profiling:} Use ferramentas de \textit{profiling} (capaz de analisar o desempenho de aplicações), como \texttt{Valgrind}, \texttt{Qt Creator Profiler}, ou \texttt{gprof}, para identificar gargalos de desempenho.
+	
+	\item \textbf{Lazy Initialization:} Implemente a inicialização preguiçosa (\texttt{lazy initialization}) onde aplicável, para reduzir o tempo de início da aplicação.
+\end{itemize}
+
+\subsection{Manutenção e Suporte a Longo Prazo}
+\begin{itemize}
+	\item \textbf{Compatibilidade:} Se o projeto for destinado a múltiplas plataformas, teste regularmente em todos os ambientes suportados.
+	
+	\item \textbf{Refatoração:} Refatore regularmente o código para melhorar a legibilidade e reduzir a dívida técnica.
+\end{itemize}
+
+\subsection{Lições aprendidas no desenvolvimento do \sistema{}}
+
+Como o desenvolvimento foi iniciado antes da geração deste documento, por meio de práticas consensuais de programação, será necessário coletar com os desenvolvedores as melhores práticas e as lições aprendidas (o que deu certo e o que não deu certo), a fim de estabelecer um manual a ser aplicado na fase restante do desenvolvimento e em projetos futuros.
+
+\section{MELHORES PRÁTICAS DE USO DO GITHUB}
+
+
+\subsection{Uso de Branches}
+\begin{itemize}
+	\item \textbf{Branch Principal (main/master):} Use o branch \texttt{main} (ou \texttt{master}) como a versão estável do projeto. Evite fazer commits diretos neste branch.
+	\item \textbf{Branches de Funcionalidade (feature branches):} Crie branches para desenvolver novas funcionalidades ou correções. Nomes como \texttt{feature/nova-funcionalidade} ou \texttt{bugfix/correcao-de-bug} ajudam a identificar o propósito do branch.
+	\item \textbf{Pull Requests:} Ao finalizar o trabalho em uma feature branch, crie um Pull Request (PR) para solicitar a revisão e mesclagem no branch principal. Isso facilita a revisão por pares e a identificação de problemas antes de integrar as mudanças.
+\end{itemize}
+
+\subsection{Commits Descritivos}
+\begin{itemize}
+	\item \textbf{Mensagens Claras:} Escreva mensagens de commit claras e descritivas que expliquem o que foi alterado e por quê. Evite mensagens genéricas como "correções" ou "atualização".
+	\item \textbf{Commits Pequenos:} Faça commits pequenos e coesos. Isso facilita a revisão e o rastreamento de bugs.
+\end{itemize}
+
+\subsection{Revisão de Código}
+\begin{itemize}
+	\item \textbf{Revisão por Pares:} Utilize o processo de revisão de código para identificar possíveis problemas, melhorar a qualidade do código e compartilhar conhecimento entre a equipe.
+	\item \textbf{Feedback Construtivo:} Ao revisar PRs, forneça feedback construtivo e sugestões que possam melhorar o código sem desmotivar os colegas.
+\end{itemize}
+
+\subsection{Documentação}
+\begin{itemize}
+	\item \textbf{README:} Mantenha o arquivo \texttt{README.md} atualizado com informações sobre o projeto, como propósito, instruções de instalação, e como contribuir.
+	\item \textbf{Wiki ou Documentação Adicional:} Para projetos maiores, considere usar o Wiki do GitHub ou uma pasta \texttt{docs/} para documentar funcionalidades detalhadas, arquitetura, ou decisões de design.
+\end{itemize}
+
+\subsection{Versionamento Semântico}
+\begin{itemize}
+	\item \textbf{SemVer:} Siga o \href{https://semver.org/lang/pt-BR/}{Versionamento Semântico} para versionar seu projeto. Isso facilita a comunicação de mudanças e a compatibilidade com outras bibliotecas ou projetos.
+\end{itemize}
+
+\subsection{Automatização}
+\begin{itemize}
+	\item \textbf{GitHub Actions:} Utilize GitHub Actions para automatizar tarefas como testes, linting, e deploys. Isso garante que o código seja testado consistentemente e facilita o processo de integração contínua (CI/CD).
+	\item \textbf{Hooks do Git:} Use hooks do Git (como \texttt{pre-commit}) para garantir que padrões de codificação sejam seguidos antes dos commits serem feitos.
+\end{itemize}
+
+\subsection{Gerenciamento de Issues}
+\begin{itemize}
+	\item \textbf{Uso de Issues:} Utilize o sistema de Issues do GitHub para rastrear bugs, novas funcionalidades, ou melhorias. Isso facilita o planejamento e a priorização das tarefas.
+	\item \textbf{Etiquetas (Labels):} Use etiquetas para categorizar e priorizar issues, como \texttt{bug}, \texttt{enhancement}, \texttt{question}, \texttt{priority-high}, etc.
+\end{itemize}
+
+\subsection{Licenciamento}
+\begin{itemize}
+	\item \textbf{Licença Clara:} Inclua um arquivo \texttt{LICENSE} no repositório para especificar as condições de uso, modificação e distribuição do código.
+\end{itemize}
+
+\subsection{Segurança}
+\begin{itemize}
+	\item \textbf{Revisão de Dependências:} Use ferramentas como o Dependabot para revisar e atualizar automaticamente as dependências do projeto. Isso ajuda a manter o projeto seguro contra vulnerabilidades conhecidas.
+	\item \textbf{Controle de Acesso:} Configure corretamente os níveis de acesso ao repositório, garantindo que apenas pessoas autorizadas possam modificar o código.
+\end{itemize}
+
+\subsection{Boas Práticas de Contribuição}
+\begin{itemize}
+	\item \textbf{Guia de Contribuição:} Se o projeto é open-source, forneça um \texttt{CONTRIBUTING.md} com orientações para novos contribuidores. Isso pode incluir como reportar bugs, sugerir novas funcionalidades ou fazer pull requests.
+	\item \textbf{Código de Conduta:} Considere incluir um \texttt{CODE\_OF\_CONDUCT.md} para definir as expectativas de comportamento dentro da comunidade do projeto.
+\end{itemize}
+
+\subsection{Lições aprendidas no desenvolvimento do \sistema{}}
+\begin{itemize}
+	\item \textbf{xxx:} bla, bla, bla ......
+\end{itemize}
+
+
+\end{document}

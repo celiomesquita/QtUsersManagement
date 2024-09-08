@@ -14,6 +14,9 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql)
 
 add_definitions(-DDB_PATH=\"${CMAKE_SOURCE_DIR}/users.db\")
 
+find_package(mongocxx REQUIRED)
+target_link_libraries(${PROJECT_NAME} PRIVATE mongocxx::mongocxx)
+
 set(PROJECT_SOURCES
     main.cpp
     MainWindow.cpp

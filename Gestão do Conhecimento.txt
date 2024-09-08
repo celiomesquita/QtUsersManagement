@@ -1,0 +1,19 @@
+FASE DE SUPORTE E SERVIÇOS -> DADOS 
+
+Gestão do Conhecimento:
+	-> Consciência situacional -> Alertas
+
+	Realimentação entre DISS e:
+	-> Desenvolvimento de um novo Produto
+	-> Atualização de Requisitos
+	-> Independência de iniciativas	humanas
+
+Interfaces:
+	-> 12 elementos -> 66 interfaces a especificar
+	-> Interfaces No-go -> entradas e saídas requeridas de imediato ou postergáveis
+	-> Sequenciais x Concorrentes
+	-> Integração --> sincronicidade, centralização
+	-> Entre elos --> relacionamento contínuo.
+
+Vinícius Guilherme
+Evandro Rennó

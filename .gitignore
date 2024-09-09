@@ -1,2 +1,9 @@
 build/
 .py
+.aux
+.user
+.hst
+.out
+.syntex
+.toc
+.ver

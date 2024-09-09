@@ -33,6 +33,7 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{indentfirst}
 
+\usepackage{mdframed}   % For the frame
 
 \newcommand{\sistema}{\textsf{SIRERC}}
 \newcommand{\cmake}{\textit{CMake}}
@@ -169,6 +170,7 @@ state use <linguagem e versão>
 \end{figure}
 
 \subsection*{Instalação do compilador C++}
+\label{compilador}
 
 Faça o download dos drivers do Microsoft Visual Studio C++ (Visual C++ Redistributable for Visual Studio 2019) do seguinte endereço:
 
@@ -176,9 +178,16 @@ Faça o download dos drivers do Microsoft Visual Studio C++ (Visual C++ Redistri
 
 Opte pela versão: \url{https://aka.ms/vs/17/release/vc_redist.x64.exe}
 
-\subsection*{Instalação do \cmake{}}
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.95\textwidth]{images/msvc_build_2019}}
+	\caption{Visual Studio 2019 version 16.11.39}\label{fig:msvc_build_2019}
+\end{figure}
 
-CMake é um sistema para automatizar tarefas de compilação de arquivos de código criados em C e C++. 
+\subsection*{Instalação do \cmake{}}
+\label{cmake}
+
+\cmake{} é um sistema para automatizar tarefas de compilação de arquivos de código criados em C e C++. 
 
 Baixe e instale o \cmake{} por meio do endereço: \url{https://cmake.org/download/}.
 
@@ -201,7 +210,7 @@ Adicione o Git ao PATH
 
 \begin{enumerate}
 
-	\item Pressione Win + Pause/Break para abrir as Propriedades do Sistema.
+	\item Pressione Win + Pause/Break (Win + I, se for em um notebook) para abrir as Propriedades do Sistema.
 	\item Clique em Configurações avançadas do sistema.
 	\item Na aba Avançado, clique em Variáveis de Ambiente.
 	\item Na seção Variáveis do sistema, localize a variável chamada Path e clique em Editar.
@@ -219,38 +228,46 @@ Adicione o Git ao PATH
 \subsection*{Construindo o Qt5 a partir do git}
 
 Abra o do terminal \windows{}, copie e cole os seguintes comandos:
+\begin{mdframed}
 \begin{verbatim}
 	cd c:\
 	git clone git://code.qt.io/qt/qt5.git
 	cd qt5
 	git checkout 5.15.2 // Compilar exatamente esta versão
 \end{verbatim}
+\end{mdframed}
 
 Inicializar os submódulos do repositório (isso pode demorar umas 3h):
+\begin{mdframed}
 \begin{verbatim}
 	perl init-repository
 \end{verbatim}
+\end{mdframed}
 
 \cautionbox{
 Alterne para o prompt de comando do Desenvolvedor do Visual Studio, a fim de configurar o \qt{} para compilação.
 }
 
 Copie e cole o seguinte comando:
+
+\small
+\begin{mdframed}
 \begin{verbatim}
-.\configure.bat -prefix "C:\qt5\Qt5.15.2"
- -platform win32-msvc2019 -release -opensource -confirm-license
-  -nomake examples -nomake tests -skip qtwebengine
+.\configure.bat -prefix "C:\qt5\Qt5.15.2" -platform win32-msvc2019 release
+ -opensource -confirm-license -nomake examples -nomake tests -skip qtwebengine
 \end{verbatim}
+\end{mdframed}
+\normalsize
 
 Selecione a opção \textit{Open Source Edition}.
+\begin{mdframed}
 \begin{verbatim}
 Selecting Qt Edition.
 
 Type 'c' if you want to use the Commercial Edition.
 Type 'o' if you want to use the Open Source Edition.
 \end{verbatim}
-
-
+\end{mdframed}
 
 Mude "aluno" para seu nome de usuário e execute o comando.
 
@@ -259,11 +276,12 @@ A opção {\tt -prefix} no comando {\tt configure.bat} especifica onde o Qt ser�
 Agora você pode compilar o \qt{} usando o \textbf{nmake}.
 Esta etapa também irá demorar bastante.
 
+\begin{mdframed}
 \begin{verbatim}	
 	nmake
 	nmake install
 \end{verbatim}
-
+\end{mdframed}
 
 
 \subsection{Variáveis de ambiente}
@@ -276,7 +294,7 @@ As variáveis de ambiente permitem que o ambiente de desenvolvimento localize co
 		\item Abra o \textit{Painel de Controle} do \windows{} e navegue até \textit{Sistema e Segurança} > \textit{Sistema} > \textit{Configurações avançadas do sistema}.
 		\item Clique em \textit{Variáveis de Ambiente...}.
 		\item Na seção \textit{Variáveis de sistema}, clique em \textit{Novo...}.
-		\item Crie uma nova variável chamada \textbf{QTDIR}. O valor deve ser o caminho de instalação do Qt e do compilador Microsoft Visual C++ (\msvc{}) versão 2015 integrado. Exemplo: \path{C:\Qt\5.15.2\msvc2015_64}.
+		\item Crie uma nova variável chamada \textbf{QTDIR}. O valor deve ser o caminho de instalação do \qt{}. Exemplo: \path{C:\Qt\5.15.2\}.
 	\end{enumerate}
 	
 	\begin{figure}[H]\centering
@@ -288,15 +306,17 @@ As variáveis de ambiente permitem que o ambiente de desenvolvimento localize co
 	\begin{enumerate}
 		\item Ainda na tela de variáveis de ambiente, localize e selecione a variável \textbf{Path}, depois clique em \keys{Editar...}.
 		\item Na nova tela que se abrirá, clique em \keys{Novo} para adicionar as seguintes entradas à lista existente:
+		\begin{mdframed}
 		\begin{verbatim}
 			%QTDIR%\bin
 			%QTDIR%\lib
 		\end{verbatim}
+		\end{mdframed}
 	\end{enumerate}
 	
 	\begin{figure}[H]\centering
 		\fbox{\includegraphics[width=0.75\textwidth]{images/qtpathenv}}
-		\caption{Novas variáveis dentro da lista em \emph{Path}}\label{fig:qtpathenv}
+		\caption{Novas variáveis na lista em \emph{Path}}\label{fig:qtpathenv}
 	\end{figure}
 	
 	\item **Reinicialização do sistema:**
@@ -339,11 +359,7 @@ Importante ressaltar que, até agora, estivemos instalando somente a infraestrut
 	\label{fig:qtinstallerwin}
 \end{figure}
 
-
-%\item Após a finalização do \download{}, deve estar disponível um arquivo executável do instalador com a extensão \emph{.exe}.
-
 \item Na instalação online, a próxima tela oferece a possibilidade de registro de e-mail no ambiente do \qt, conforme a Figura \ref{fig:qt_installer_email}
-
 
 \begin{figure}[H]
 	\centering
@@ -405,6 +421,11 @@ Como, no passo anterior, não é mais possível optar pelo \qtfive{}, nos restou
 
 \subsection{Instalação do \visualstudio{}}
 
+\cautionbox{Não é necessário instalar o \visualstudio{}, a não ser que você tenha habilidade no seu uso e não queira utilizar o \qtcreator{}.
+Com relação aos drivers de C++, já o fizemos na subseção \ref{compilador}.
+ }
+
+
 O \visualstudio{} é uma IDE desenvolvida e mantida pela \textit{Microsoft}, amplamente utilizada em sistemas operacionais \windows{}. Ele utiliza o compilador \emph{Microsoft Visual C++} (\msvc{}), uma alternativa ao \emph{GNU Compiler Collection} (GCC) mais comum em ambientes \linux{}. Neste projeto, utilizamos a versão 2019 do \visualstudio{} e do compilador \msvc{}.
 
 \cautionbox{
@@ -431,14 +452,8 @@ O \visualstudio{} é uma IDE desenvolvida e mantida pela \textit{Microsoft}, amp
 	\end{figure}
 
 \cautionbox{
- Caso não queira utilizar o Visual Studio (optando pelo \qtcreator{} ou pelo \vscode{}), você pode baixar e instalar as ferramentas de \textit{Build} do \textit{Visual Studio 2019}, versão 16.11.39.
+ Caso não queira utilizar o Visual Studio (optando pelo \qtcreator{} ou pelo \vscode{}), você pode baixar e instalar as ferramentas de \textit{Build} do \textit{Visual Studio 2019}, versão 16 ou anterior (subseção \ref{compilador}).
 }
-
-\begin{figure}[H]
-	\centering
-	\fbox{\includegraphics[width=0.95\textwidth]{images/msvc_build_2019}}
-	\caption{Visual Studio 2019 version 16.11.39}\label{fig:msvc_build_2019}
-\end{figure}
 
 \item No \qtcreator{} ou no \vscode{}, configure o compilador compatível com o Qt 5.15.2, agora disponíveis após a instalação das ferramentas de \textit{Build}.
 
@@ -464,32 +479,37 @@ O \visualstudio{} é uma IDE desenvolvida e mantida pela \textit{Microsoft}, amp
 
 \end{enumerate}
 
-https://www.mongodb.com/try/download/community
 
-MongoDB Community Server Download
+\subsection{Instalação do \mongo{}}
 
-sirerc\_conn
+Baixe e instale o \mongo{} a partir do endereço: \url{https://www.mongodb.com/try/download/community}.
 
-sirerc\_db
+Baixe e extraia o driver do \mongo{} para
 
-sirerc\_collection
+\begin{mdframed}
+	\begin{verbatim}
+C:\Downloads\mongo-c-driver-1.27.6.tar
+	\end{verbatim}
+\end{mdframed}
 
+Abra a pasta em um terminal \textit{Developer Command Prompt} (isto foi instalado na subseção \ref{compilador}).
 
-
-Baixe e extraia o driver do \mongo{} para C.
-
-Downloads\\mongo-c-driver-1.27.6.tar
-
-Abra a pasta em um terminal \textit{Developer Command Prompt} (isto foi instalado com o Visual Studio).
+\cautionbox{Substitua "aluno"\ pelo seu nome de usuário.}
 
 \small
+\begin{mdframed}
 \begin{verbatim}
-cd C:\Users\aluno\Downloads\mongo-c-driver-1.27.6\mongo-c-driver-1.27.6
-mkdir cmake-build
-cd cmake-build
-cmake -G "NMake Makefiles" -DENABLE_AUTOMATIC_INIT_AND_CLEANUP=OFF
- -DCMAKE_INSTALL_PREFIX="C:\Users\aluno\Downloads\mongo-c-driver-1.27.6\mongo-c-driver-1.27.6" ..
+	cd C:\Users\aluno\Downloads\mongo-c-driver-1.27.6\mongo-c-driver-1.27.6
+	
+	mkdir cmake-build
+	cd cmake-build
+	
+	cmake -G "NMake Makefiles" -DENABLE_AUTOMATIC_INIT_AND_CLEANUP=OFF
+	
+	-DCMAKE_INSTALL_PREFIX=
+	"C:\Users\aluno\Downloads\mongo-c-driver-1.27.6\mongo-c-driver-1.27.6" ..
 \end{verbatim}
+\end{mdframed}
 \normalsize
 
 \begin{figure}[H]
@@ -498,12 +518,14 @@ cmake -G "NMake Makefiles" -DENABLE_AUTOMATIC_INIT_AND_CLEANUP=OFF
 	\caption{Build do driver do \mongo{} realizado com sucesso.}\label{fig:mongodb_build}
 \end{figure}
 
-Agora instale do \textit{driver} do \mongo{}.
+Agora instale do \textit{driver} do \mongo{}. Tenha paciência, pois irá demorar.
+\begin{mdframed}
 \begin{verbatim}
 	cd ..
-	nmake   // Tenha paciência, pois irá demorar.
+	nmake
 	nmake install
 \end{verbatim}
+\end{mdframed}
 
 \begin{figure}[H]
 	\centering
@@ -512,7 +534,7 @@ Agora instale do \textit{driver} do \mongo{}.
 \end{figure}
 
 
-In your CMakeLists.txt, link the MongoDB C++ driver to your project:
+No \textit{CMakeLists.txt} no seu projeto, associe o \mongo{} C++ driver:
 
 \begin{verbatim}
 	find_package(mongocxx REQUIRED)
@@ -522,10 +544,30 @@ In your CMakeLists.txt, link the MongoDB C++ driver to your project:
 \textbf{Sumário:}
 \begin{enumerate}
 	\item Faça o download e o build  da libmongoc e da libbson manualmente.
-	\item Faça o build com o CMake (se não estive instalado, baixe o instalador.)
+	\item Faça o \textit{build} com o \cmake{} (instalado na subseção \ref{cmake})
 	\item Faça a instalação das bibliotecas
-	\item Link essas bibliotecas no CMakeLists.txt do Sirerc.
+	\item Associe essas bibliotecas no \textit{CMakeLists.txt} do \sistema{}.
 \end{enumerate}
+
+\subsection*{Criação de objetos no \mongo{}}
+
+O \mongo{} vem com uma ferramenta para administração de objetos \textbf{json}, o \textit{Compass}.
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.95\textwidth]{images/mongo_compass}}
+	\caption{\mongo{} Compass}\label{fig:mongo_compass}
+\end{figure}
+
+Na Figura \ref{fig:mongo_compass}, pode-se observar que foram criados os objetos:
+\begin{enumerate}
+\item sirerc\_conn
+\item sirerc\_db
+\item sirerc\_collection
+\end{enumerate}
+
+No $sirerc\_collection$, criamos duas coleções: $users$ e $projects$.
+
+A coleção $users$ será utilizada para associar usuários e seus projetos. A coleção $projects$ será utilizada para registrar os projetos e suas informações. 
 
 
 
@@ -638,9 +680,11 @@ O \emph{Visualization Toolkit} (VTK) é um software multiplataforma utilizado pa
 	\begin{enumerate}
 		\item Ainda na tela de variáveis de ambiente, localize e selecione a variável \textbf{Path}, depois clique em \keys{Editar...}.
 		\item Na nova tela que se abrirá, clique em \keys{Novo} para adicionar a seguinte entrada à lista existente:
+		\begin{mdframed}
 		\begin{verbatim}
 			%VTK_DIR%\bin
 		\end{verbatim}
+		\end{mdframed}
 	\end{enumerate}
 	
 	\begin{figure}[H]\centering
@@ -1016,7 +1060,8 @@ Utilizar o WSL facilita o seguimento de processos e ferramentas já usados por c
 		\item Insira o comando \texttt{wsl --install} e pressione \keys{Enter}. Este comando instalará o WSL e a distribuição padrão do Linux. Após a instalação, reinicie o computador.
 	\end{enumerate}
 	
-	\begin{figure}[ht!]\centering
+	\begin{figure}[H]
+		\centering
 		\fbox{\includegraphics[width=0.75\textwidth]{images/prompt_wsl.png}}
 		\caption{Comando para instalar o WSL no \windows{}}\label{fig:prompt_wsl}
 	\end{figure}

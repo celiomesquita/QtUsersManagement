@@ -20,30 +20,6 @@
 \usepackage{xcolor}
 \usepackage{float}
 
-\lstset{
-	basicstyle=\ttfamily\footnotesize,
-	frame=single,
-	keywordstyle=\color{blue},
-	commentstyle=\color{green},
-	xleftmargin=3em,
-	xrightmargin=3em
-}
-
-% Definindo um estilo personalizado para RAII
-\lstdefinestyle{raii}{
-	language=C++,
-	keywordstyle=\color{blue}\bfseries,
-	stringstyle=\color{red},
-	commentstyle=\color{gray}\itshape,
-	numbers=left,
-	numberstyle=\tiny\color{gray},
-	backgroundcolor=\color{lightgray!10},
-	breaklines=true,           % Permite que as linhas sejam quebradas
-	breakatwhitespace=true,    % Quebra em espaços em branco
-	showstringspaces=false,    % Não mostra espaços em branco em strings
-	escapeinside={(*@}{@*)}    % Permite inserir comandos LaTeX dentro do código
-}
-
 \usepackage[os=win]{menukeys}
 \renewmenumacro{\keys}[+]{shadowedroundedkeys}
 \usepackage{framed}
@@ -55,6 +31,8 @@
 \usepackage[colorlinks=true, linkcolor=blue, urlcolor=blue]{hyperref}
 
 \usepackage[margin=1in]{geometry}
+\usepackage{indentfirst}
+
 
 \newcommand{\sistema}{\textsf{SIRERC}}
 \newcommand{\cmake}{\textit{CMake}}
@@ -74,6 +52,7 @@
 \newcommand{\gnu}{\textit{GNU General Public License}}
 \newcommand{\qtfive}{\textit{Qt 5.15.2}}
 \newcommand{\mongo}{\textit{MongoDB}}
+\newcommand{\github}{\textit{GitHub}}
 
 \newcommand{\cautionbox}[1]{
 	\vskip 5mm
@@ -113,9 +92,223 @@
 
 O \sistema{} é uma aplicação \emph{desktop} baseada na versão \emph{open-source} do \emph{framework} \qt{}, escolhido pela sua portabilidade, capacidade de gerar aplicações multiplataforma para sistemas MS \windows{}, \linux{} e \mac{}. A linguagem de programação utilizada é C++.
 
-Este manual foi atualizado por meio de uma máquina com \textit{Windows 11 Pro}.
+Este manual foi atualizado por meio das instalações em duas máquina com \textit{Windows 11 Pro}.
 
-\subsection{\textit{Download} e instalação da última versão do \qt{}}
+\subsection{GitHub e LaTeX}
+
+\subsection*{GitHub}
+
+Baixe e instale o \textit{GitHub Desktop} do endereço: \url{https://desktop.github.com/download/}
+
+Ao abrir a tela de instalação entre com o sua conta do \github{}.
+
+Clone ou atualize o projeto de interesse.
+
+
+\subsection*{LaTeX - apenas para quem estiver encarregado de atualizar este manual}
+
+Baixe e instale um editor de \textit{LaTeX}. Pode ser este \url{https://www.texstudio.org/} ou outro da sua preferência.
+
+\subsection{\textit{Download} e instalação da versão 5.15.x do \qt{}}
+
+Primeiramente, será preciso instalar o \qt{} versão 5.15.x, padrão atual para desenvolvimento do \sistema{}, bem como as versões corretas dos \textit{drivers} do C++. Assim, quando se for instalar o \qtcreator{}, as bibliotecas necessárias já estarão instaladas para permitir a configuração exata do projeto.
+
+
+\subsection*{Requisitos do Sistema}
+
+\begin{itemize}
+	\item Perl
+	\item Python
+	\item Ruby
+	\item Compilador C++ com suporte ao padrão C++11 e compatível com o \qt{} 5.15.x
+	\item CMake
+	\item Git
+\end{itemize}
+
+\subsection*{Instalando o ambiente \textit{ActiveState}}
+
+Crie uma conta, uma organização e um projeto para cada linguagem de programação no \textit{ActiveState}. A conta poderá ser o seu e-mail e a organização o seu nome.
+
+Ao criar um projeto aparecerá esta tela para instalação do ambiente do \textit{ActiveState}. Faça o download e a instalação.
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.95\textwidth]{images/activeState_install}}
+	\caption{Instalação do ambiente \textit{ActiveState}}
+	\label{fig:activeState_install}
+\end{figure}
+
+Crie uma pasta para cada linguagem. Exemplo: activeStatePython, activeStatePerl e activeStateRuby.
+
+Em cada uma dessas pastas digite os comandos copiados do site \textit{ActiveState} (mantenha o ponto no final):
+
+
+\begin{verbatim}
+state checkout <sua organização no ActiveSate>/<linguagem e versão> .
+state use <linguagem e versão>
+\end{verbatim}
+
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.95\textwidth]{images/perl_install_1}}
+	\caption{Perl instalado com sucesso}
+	\label{fig:perl_install_1}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.95\textwidth]{images/python_install_1}}
+	\caption{Python instalado com sucesso.}
+	\label{fig:python_install_1}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.95\textwidth]{images/ruby_install_1}}
+	\caption{Ruby instalado com sucesso.}
+	\label{fig:ruby_install_1}
+\end{figure}
+
+\subsection*{Instalação do compilador C++}
+
+Faça o download dos drivers do Microsoft Visual Studio C++ (Visual C++ Redistributable for Visual Studio 2019) do seguinte endereço:
+
+\url{https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-160}
+
+Opte pela versão: \url{https://aka.ms/vs/17/release/vc_redist.x64.exe}
+
+\subsection*{Instalação do \cmake{}}
+
+CMake é um sistema para automatizar tarefas de compilação de arquivos de código criados em C e C++. 
+
+Baixe e instale o \cmake{} por meio do endereço: \url{https://cmake.org/download/}.
+
+Instale a versão \textit{Windows x64 Installer}.
+
+Marque a opção: \textit{Add CMake to the PATH environment variable}.
+
+\subsection*{Instalando do \textit{Git}}
+
+Acesse o site oficial do Git: \url{https://git-scm.com/download/win}
+
+Selecione esta versão: \textit{64-bit Git for Windows Setup}.
+
+Ao instalar, a não ser que tenha experiência para decidir, utilize todas as opções oferecidas pelo instalador.
+
+Se o Git já estiver instalado, mas ainda não for reconhecido, talvez o caminho (PATH) não tenha sido configurado corretamente.
+
+Adicione o Git ao PATH
+
+
+\begin{enumerate}
+
+	\item Pressione Win + Pause/Break para abrir as Propriedades do Sistema.
+	\item Clique em Configurações avançadas do sistema.
+	\item Na aba Avançado, clique em Variáveis de Ambiente.
+	\item Na seção Variáveis do sistema, localize a variável chamada Path e clique em Editar.
+	\item Clique em Novo e adicione o caminho completo para o diretório bin do Git, por exemplo:
+	
+	\begin{verbatim}
+	C:\Program Files\Git\bin
+	\end{verbatim}
+	
+	\item Clique em OK em todas as janelas para salvar as mudanças.
+
+\end{enumerate}
+
+
+\subsection*{Construindo o Qt5 a partir do git}
+
+Abra o do terminal \windows{}, copie e cole os seguintes comandos:
+\begin{verbatim}
+	cd c:\
+	git clone git://code.qt.io/qt/qt5.git
+	cd qt5
+	git checkout 5.15.2 // Compilar exatamente esta versão
+\end{verbatim}
+
+Inicializar os submódulos do repositório (isso pode demorar umas 3h):
+\begin{verbatim}
+	perl init-repository
+\end{verbatim}
+
+\cautionbox{
+Alterne para o prompt de comando do Desenvolvedor do Visual Studio, a fim de configurar o \qt{} para compilação.
+}
+
+Copie e cole o seguinte comando:
+\begin{verbatim}
+.\configure.bat -prefix "C:\qt5\Qt5.15.2"
+ -platform win32-msvc2019 -release -opensource -confirm-license
+  -nomake examples -nomake tests -skip qtwebengine
+\end{verbatim}
+
+Selecione a opção \textit{Open Source Edition}.
+\begin{verbatim}
+Selecting Qt Edition.
+
+Type 'c' if you want to use the Commercial Edition.
+Type 'o' if you want to use the Open Source Edition.
+\end{verbatim}
+
+
+
+Mude "aluno" para seu nome de usuário e execute o comando.
+
+A opção {\tt -prefix} no comando {\tt configure.bat} especifica onde o Qt será instalado após o processo de compilação, portanto o diretório {\tt Qt5.15.2} não precisa existir ainda. Ele será criado durante a etapa de instalação (\textit{nmake install}) se ainda não existir.
+
+Agora você pode compilar o \qt{} usando o \textbf{nmake}.
+Esta etapa também irá demorar bastante.
+
+\begin{verbatim}	
+	nmake
+	nmake install
+\end{verbatim}
+
+
+
+\subsection{Variáveis de ambiente}
+
+As variáveis de ambiente permitem que o ambiente de desenvolvimento localize corretamente as bibliotecas do Qt. Elas são especialmente importantes se o Qt foi instalado em um diretório não padrão no \windows{}, como fora de \path{C:\Program Files} ou \path{C:\Program Files (x86)}.
+
+\begin{enumerate}
+	\item **Criação da variável QTDIR:**
+	\begin{enumerate}
+		\item Abra o \textit{Painel de Controle} do \windows{} e navegue até \textit{Sistema e Segurança} > \textit{Sistema} > \textit{Configurações avançadas do sistema}.
+		\item Clique em \textit{Variáveis de Ambiente...}.
+		\item Na seção \textit{Variáveis de sistema}, clique em \textit{Novo...}.
+		\item Crie uma nova variável chamada \textbf{QTDIR}. O valor deve ser o caminho de instalação do Qt e do compilador Microsoft Visual C++ (\msvc{}) versão 2015 integrado. Exemplo: \path{C:\Qt\5.15.2\msvc2015_64}.
+	\end{enumerate}
+	
+	\begin{figure}[H]\centering
+		\fbox{\includegraphics[width=0.75\textwidth]{images/qtdirenv}}
+		\caption{Criação da variável de ambiente \emph{QTDIR}}\label{fig:qtdirenv}
+	\end{figure}
+	
+	\item **Atualização da variável Path:**
+	\begin{enumerate}
+		\item Ainda na tela de variáveis de ambiente, localize e selecione a variável \textbf{Path}, depois clique em \keys{Editar...}.
+		\item Na nova tela que se abrirá, clique em \keys{Novo} para adicionar as seguintes entradas à lista existente:
+		\begin{verbatim}
+			%QTDIR%\bin
+			%QTDIR%\lib
+		\end{verbatim}
+	\end{enumerate}
+	
+	\begin{figure}[H]\centering
+		\fbox{\includegraphics[width=0.75\textwidth]{images/qtpathenv}}
+		\caption{Novas variáveis dentro da lista em \emph{Path}}\label{fig:qtpathenv}
+	\end{figure}
+	
+	\item **Reinicialização do sistema:**
+	\begin{enumerate}
+		\item Faça logout e login novamente ou reinicie o sistema operacional para que as novas variáveis sejam carregadas corretamente.
+	\end{enumerate}
+\end{enumerate}
+
+Importante ressaltar que, até agora, estivemos instalando somente a infraestrutura.  A seguir virão as ferramentas de desenvolvimento.
+
+
+\subsection{\textit{Download} e instalação da última versão \textit{Opensource} do \qtcreator{}}
 
 \begin{enumerate}
 	\item Acesse a página de \download{} do \qt{} em: \url{https://www.qt.io/download-open-source}
@@ -186,26 +379,7 @@ Este manual foi atualizado por meio de uma máquina com \textit{Windows 11 Pro}.
 	\label{fig:qt_inst_modules}
 \end{figure}
 
-Como, no passo anterior, não é mais possível optar pelo \qtfive{}, nos resta a opção da instalação a versão \textit{offline}.
-
-
-	\url{https://www.qt.io/offline-installers}
-	
-\begin{figure}[H]
-	\centering
-	\fbox{\includegraphics[width=0.95\textwidth]{images/qt_offline_installer}}
-	\caption{\download{} do instalador do Qt 5.15.x }
-	\label{fig:qt_offline_installer}
-\end{figure}	
-
-Salve o arquivo compactado e continue com a instalação do \qtcreator{}. Posteriormente iremos demonstrar a instalação do \qtfive{}.
-
-\begin{figure}[H]
-	\centering
-	\fbox{\includegraphics[width=0.75\textwidth]{images/qt_everywhere}}
-	\caption{Salve o arquivo compactado. }
-	\label{fig:qt_everywhere}
-\end{figure}	
+Como, no passo anterior, não é mais possível optar pelo \qtfive{}, nos restou a opção da instalação a versão \textit{offline}, que fizemos na subseção anterior.
 
 \item Em seguida, será oferecida a possibilidade de marcar que concorda com os termos do \textit{CMake license agreement} (Figura \ref{fig:qt_mark_read}). Marque e continue com o processo de instalação.
 
@@ -227,44 +401,6 @@ Salve o arquivo compactado e continue com a instalação do \qtcreator{}. Poster
 
 \end{enumerate}
 
-\subsection{Variáveis de ambiente}
-
-As variáveis de ambiente permitem que o ambiente de desenvolvimento localize corretamente as bibliotecas do Qt. Elas são especialmente importantes se o Qt foi instalado em um diretório não padrão no \windows{}, como fora de \path{C:\Program Files} ou \path{C:\Program Files (x86)}.
-
-\begin{enumerate}
-	\item **Criação da variável QTDIR:**
-	\begin{enumerate}
-		\item Abra o \textit{Painel de Controle} do \windows{} e navegue até \textit{Sistema e Segurança} > \textit{Sistema} > \textit{Configurações avançadas do sistema}.
-		\item Clique em \textit{Variáveis de Ambiente...}.
-		\item Na seção \textit{Variáveis de sistema}, clique em \textit{Novo...}.
-		\item Crie uma nova variável chamada \textbf{QTDIR}. O valor deve ser o caminho de instalação do Qt e do compilador Microsoft Visual C++ (\msvc{}) versão 2015 integrado. Exemplo: \path{C:\Qt\5.15.2\msvc2015_64}.
-	\end{enumerate}
-	
-	\begin{figure}[H]\centering
-		\fbox{\includegraphics[width=0.75\textwidth]{images/qtdirenv}}
-		\caption{Criação da variável de ambiente \emph{QTDIR}}\label{fig:qtdirenv}
-	\end{figure}
-	
-	\item **Atualização da variável Path:**
-	\begin{enumerate}
-		\item Ainda na tela de variáveis de ambiente, localize e selecione a variável \textbf{Path}, depois clique em \keys{Editar...}.
-		\item Na nova tela que se abrirá, clique em \keys{Novo} para adicionar as seguintes entradas à lista existente:
-		\begin{verbatim}
-			%QTDIR%\bin
-			%QTDIR%\lib
-		\end{verbatim}
-	\end{enumerate}
-	
-	\begin{figure}[H]\centering
-		\fbox{\includegraphics[width=0.75\textwidth]{images/qtpathenv}}
-		\caption{Novas variáveis dentro da lista em \emph{Path}}\label{fig:qtpathenv}
-	\end{figure}
-	
-	\item **Reinicialização do sistema:**
-	\begin{enumerate}
-		\item Faça logout e login novamente ou reinicie o sistema operacional para que as novas variáveis sejam carregadas corretamente.
-	\end{enumerate}
-\end{enumerate}
 
 
 \subsection{Instalação do \visualstudio{}}
@@ -894,186 +1030,9 @@ Utilizar o WSL facilita o seguimento de processos e ferramentas já usados por c
 \end{enumerate}
 
 
-\section{INSTALAÇÃO DO QT 5.15.2 NO WINDOWS}
-
-\subsection{Requisitos do Sistema}
-
-\begin{itemize}
-	\item Perl 5.8 ou posterior
-	\item Python 2.7 ou posterior
-	\item Compilador C++ com suporte ao padrão C++11
-\end{itemize}
-
-Para outros requisitos específicos da plataforma, consulte a seção "Configurando sua máquina" em: \href{http://wiki.qt.io/Get_The_Source}{http://wiki.qt.io/Get\_The\_Source}
-
-\subsection{Windows:}
-
-\begin{verbatim}
-	Abra um prompt de comando.
-	Certifique-se de que as seguintes ferramentas possam ser encontradas no caminho:
-	* Compilador suportado (Visual Studio 2012 ou posterior,
-	MinGW-builds gcc 4.9 ou posterior)
-	* Perl versão 5.12 ou posterior   [http://www.activestate.com/activeperl/]
-	* Python versão 2.7 ou posterior  [http://www.activestate.com/activepython/]
-	* Ruby versão 1.9.3 ou posterior  [http://rubyinstaller.org/]
-	
-	cd <caminho>\<pacote_fonte>
-	configure -prefix %CD%\qtbase <license> -nomake tests
-	nmake // jom // mingw32-make
-\end{verbatim}
-
-Para acelerar o bootstrap do qmake com MSVC, pode ser útil passar \texttt{"-make-tool jom"} na linha de comando do \texttt{configure}. Se você não usar \texttt{jom}, adicionar \texttt{"/MP"} à variável de ambiente \texttt{CL} é uma boa ideia.
-
-\subsection{BUILD!}
-
-Um processo típico de `\texttt{configure; make}' é usado.
-
-\subsection*{Algumas opções relevantes do configure (veja \texttt{configure -help}):}
-
-\begin{itemize}
-	\item \texttt{-release} \hspace{3pt} Compila e vincula o Qt com a depuração desativada.
-	\item \texttt{-debug} \hspace{3pt} Compila e vincula o Qt com a depuração ativada.
-	\item \texttt{-nomake tests} \hspace{3pt} Desativa a construção de testes para acelerar a compilação.
-	\item \texttt{-nomake examples} \hspace{3pt} Desativa a construção de exemplos para acelerar a compilação.
-	\item \texttt{-confirm-license} \hspace{3pt} Reconhece automaticamente a licença LGPL 2.1.
-\end{itemize}
-
-\subsection*{Exemplo para uma construção de release:}
-
-\begin{verbatim}
-	(adapte o parâmetro `-jN' conforme necessário para o seu sistema)
-	
-	./configure -prefix $PWD/qtbase <license>
-	make -j4
-\end{verbatim}
-
-\subsection*{Exemplo para uma construção de desenvolvedor:}
-
-\begin{verbatim}
-	(habilita mais autotestes, constrói versão de depuração das bibliotecas, ...)
-	
-	./configure -developer-build <license>
-	make -j4
-\end{verbatim}
-
-Veja a saída de \texttt{./configure -help} para a documentação sobre várias opções para configurar.
-
-Os exemplos acima irão construir quaisquer módulos Qt5 que tenham sido habilitados por padrão no sistema de construção.
-
-É possível construir módulos selecionados com suas dependências executando um \texttt{make module-<foo>}. Por exemplo, para construir apenas \texttt{qtdeclarative}, e os módulos dos quais ele depende:
-
-\begin{verbatim}
-	./configure -prefix $PWD/qtbase <license>
-	make -j4 module-qtdeclarative
-\end{verbatim}
-
-Isso pode economizar muito tempo se você estiver interessado apenas em um subconjunto do Qt5.
-
-\subsection{Dicas}
-
-O repositório de submódulos \texttt{qtrepotools} contém scripts úteis para desenvolvedores e engenheiros de liberação. Considere adicionar \texttt{qtrepotools/bin} à sua variável de ambiente \texttt{PATH} para acessá-los.
-
-A ferramenta \texttt{qt5\_tool} no \texttt{qtrepotools} possui alguns recursos adicionais que podem ser de interesse. Experimente \texttt{qt5\_tool --help}.
-
-\section*{Construindo o Qt5 a partir do git}
-
-1. Install Required Tools
-Make sure you have the following tools installed:
-
-Visual Studio: Qt recommends using a specific Visual Studio version for compatibility. For \qtfive{}, you can use Visual Studio 2017 or 2019. During installation, ensure the C++ development components are installed. 
-
-\url{https://visualstudio.microsoft.com/pt-br/vs/older-downloads/}
-
-
-Perl: Download and install Strawberry Perl from Strawberry Perl. Qt requires Perl for its build system.
-
-Python: Install Python 3 from the official Python website. Make sure Python is added to the PATH.
-
-Ruby: Download and install Ruby from rubyinstaller.org.
-
-Git: Since you've already cloned the repository, ensure Git is available in your PATH.
-
-CMake: You’ll need CMake to configure and build Qt.
-
-2. Download \qtfive{} Source
-
-If you haven't already, you can download the \qtfive{} source code from the official Qt website or use the version you've cloned.
-
-\begin{verbatim}
-git clone git://code.qt.io/qt/qt5.git
-cd qt5
-git checkout 5.15.2 // compilar exatamente esta versão
-\end{verbatim}
-
-Now you're all set to proceed with the compilation process. You can follow the steps to configure and build \qtfive{} as mentioned earlier
-
-3. Configure \qtfive{}
-
-Open the Developer Command Prompt for Visual Studio with administrative privileges, navigate to the qt5 directory, and run the configure script with the appropriate options.
-
-\begin{verbatim}
-cd C:\...\qt5
-perl init-repository // bem demorado. Tenha paciência.
-\end{verbatim}
-
-Abra um terminal no \textbf{Prompt de Comando do Desenvolvedor} Visual Studio.
-
-\begin{verbatim}
-	configure.bat -prefix "C:\Users\aluno\Documents\qt5\Qt5.15.2" -platform win32-msvc2019 -release -opensource -confirm-license -nomake examples -nomake tests -skip qtwebengine
-\end{verbatim}
-
--prefix \begin{verbatim}"C:\...\qt5\end{verbatim}: The directory where Qt will be installed after building.
--platform win32-msvc2019: Specifies Visual Studio 2019 for building.
--release: Build a release version.
--opensource: Use the open-source license.
--confirm-license: Automatically confirm the open-source license agreement.
--nomake examples -nomake tests: Skip building examples and tests to speed up the process.
--skip qtwebengine: Skips the Qt WebEngine module, which can be complex to build.
-
-
-The -prefix option in the configure.bat command specifies where Qt will be installed after the build process, so the directory \begin{verbatim}C:\Users\aluno\Documents\qt5\Qt5.15.2\end{verbatim} doesn't need to exist yet. It will be created during the installation step (nmake install) if it doesn't exist.
-
-Here's what happens:
--prefix \begin{verbatim}C:\Users\aluno\Documents\qt5\Qt5.15.2\end{verbatim}: This tells Qt where to install its built binaries, libraries, and tools once the build process is complete.
-Qt will automatically create the \qtfive{} directory during the installation phase.
-What you should do:
-You don’t need to manually create the directory. When the nmake install command is executed after the build, it will place the files in the specified -prefix directory. So you can safely proceed with the configure.bat command as it is.
-
-To summarize:
-
-Run the \begin{verbatim}init-repository\end{verbatim} command to initialize the submodules.
-Use the same configure.bat command with the -prefix option pointing to \begin{verbatim}C:\Users\aluno\Documents\qt\Qt5.15.2\end{verbatim}.
-The \qtfive{} folder will be created automatically during the installation phase.
-
-
-Run vcvarsall.bat with the Correct Arguments
-Open the Visual Studio Developer Command Prompt or use the current command prompt where you're running the script.
-
-Run the following command to set up the environment for 64-bit development (for Visual Studio 2022 Community):
-\begin{verbatim}
-"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat" amd64
-\end{verbatim}
-
-
-After Setting Up the Environment:
-Once you have set up the environment, you can proceed with your Qt build:
-
-Navigate to your Qt directory:
-
-\begin{verbatim}
-cd C:\Users\aluno\Documents\qt5
-\end{verbatim}
-	
-Run the nmake command to start building Qt:
-
-\begin{verbatim}
-cd qtbase
-configure.bat
-nmake // Tenha paciência. Irá demorar.
-nmake install
-\end{verbatim}
-
 \section{INSTALAÇÃO DO AMBIENTE LINUX}
+
+\section*{\color{red}ESTA PARTE SERÁ TESTADA POSTERIORMENTE}
 
 \begin{verbatim}
 	sudo apt-get install ninja-build   # For Ubuntu or Debian

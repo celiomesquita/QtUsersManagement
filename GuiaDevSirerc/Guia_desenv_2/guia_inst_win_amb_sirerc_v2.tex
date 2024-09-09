@@ -484,6 +484,7 @@ O \visualstudio{} é uma IDE desenvolvida e mantida pela \textit{Microsoft}, amp
 
 Baixe e instale o \mongo{} a partir do endereço: \url{https://www.mongodb.com/try/download/community}.
 
+
 Baixe e extraia o driver do \mongo{} para
 
 \begin{mdframed}
@@ -504,7 +505,8 @@ Abra a pasta em um terminal \textit{Developer Command Prompt} (isto foi instalad
 	mkdir cmake-build
 	cd cmake-build
 	
-	cmake -G "NMake Makefiles" -DENABLE_AUTOMATIC_INIT_AND_CLEANUP=OFF
+	cmake -G "NMake Makefiles" -DENABLE_AUTOMATIC_INIT_AND_CLEANUP=OFF ..
+	
 	
 	-DCMAKE_INSTALL_PREFIX=
 	"C:\Users\aluno\Downloads\mongo-c-driver-1.27.6\mongo-c-driver-1.27.6" ..
@@ -540,6 +542,38 @@ No \textit{CMakeLists.txt} no seu projeto, associe o \mongo{} C++ driver:
 	find_package(mongocxx REQUIRED)
 	target_link_libraries(${PROJECT_NAME} PRIVATE mongocxx::mongocxx)
 \end{verbatim}
+
+\subsection*{C++ drivers para \mongo{}}
+
+Instale o driver C++ (mongocxx)
+
+\begin{verbatim}
+git clone https://github.com/mongodb/mongo-cxx-driver.git --branch releases/stable --depth 1
+\end{verbatim}
+
+
+https://sourceforge.net/projects/boost/
+
+
+Configure o build por meio do \cmake{}.
+
+\begin{verbatim}
+cd mongo-cxx-driver/build
+set BOOST_ROOT=C:\local\boost_1_86_0
+cmake .. -G "Visual Studio 16 2019" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="C:\Drivers\mongo_db"
+\end{verbatim}
+
+\begin{verbatim}
+C:/Users/aluno/mongo-cxx-driver/build
+\end{verbatim}
+
+Se estiver usando uma versão diferente do Visual Studio, ajuste {\tt Visual Studio 16 2019} convenientemente.
+
+\begin{verbatim}
+cmake --build . --config Release --target install
+\end{verbatim}
+
+
 
 \textbf{Sumário:}
 \begin{enumerate}

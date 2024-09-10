@@ -16,8 +16,7 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql)
 find_package(mongocxx REQUIRED)
 find_package(bsoncxx REQUIRED)
 
-# Link mongocxx and bsoncxx libraries to the project
-target_link_libraries(Sirerc PRIVATE mongocxx::mongocxx bsoncxx::bsoncxx)
+target_link_libraries(Sirerc PRIVATE mongocxx bsoncxx)
 
 add_definitions(-DDB_PATH=\"${CMAKE_SOURCE_DIR}/users.db\")
 

@@ -421,39 +421,13 @@ Como, no passo anterior, não é mais possível optar pelo \qtfive{}, nos restou
 
 \subsection{Instalação do \visualstudio{}}
 
-\cautionbox{Não é necessário instalar o \visualstudio{}, a não ser que você tenha habilidade no seu uso e não queira utilizar o \qtcreator{}.
+\cautionbox{\color{blue}Não é necessário instalar o \visualstudio{}, a não ser que você tenha habilidade no seu uso e não queira utilizar o \qtcreator{}.
 Com relação aos drivers de C++, já o fizemos na subseção \ref{compilador}.
  }
 
-
-O \visualstudio{} é uma IDE desenvolvida e mantida pela \textit{Microsoft}, amplamente utilizada em sistemas operacionais \windows{}. Ele utiliza o compilador \emph{Microsoft Visual C++} (\msvc{}), uma alternativa ao \emph{GNU Compiler Collection} (GCC) mais comum em ambientes \linux{}. Neste projeto, utilizamos a versão 2019 do \visualstudio{} e do compilador \msvc{}.
-
-\cautionbox{
-	O \qtcreator{} já inclui um compilador \msvc{} integrado, mas sua utilização é restrita ao contexto do \qtcreator{}. Recomendamos a instalação do \visualstudio{} e do \msvc{} globalmente para compilar bibliotecas de terceiros e outros projetos fora do \qtcreator{}.
-}
+O \visualstudio{} é uma IDE desenvolvida e mantida pela \textit{Microsoft}, amplamente utilizada em sistemas operacionais \windows{}. Ele utiliza o compilador \emph{Microsoft Visual C++} (\msvc{}), uma alternativa ao \emph{GNU Compiler Collection} (GCC) mais comum em ambientes \linux{}. Neste projeto, poderemos utilizar a versão 2019 do \visualstudio{} e do compilador \msvc{}.
 
 \begin{enumerate}
-	\item **\download{} do Visual Studio:**
-	\begin{enumerate}
-		\item Acesse a página oficial de lançamentos do Visual Studio 2019 \emph{Community} em \url{https://learn.microsoft.com/pt-br/visualstudio/releases/2019/release-notes}.
-		\item Clique no botão \includegraphics[height=1.5em]{images/vsdownloadbutton.png} para iniciar o \download{} do instalador.
-	\end{enumerate}
-	
-	\item **Instalação do Visual Studio:**
-	\begin{enumerate}
-		\item Após a finalização do \download{}, localize e execute o instalador.
-		\item Siga as instruções fornecidas pelo instalador para concluir a instalação do \visualstudio{}.
-		\item Durante a instalação, quando solicitado, selecione os módulos de C/C++ (vide Figura \ref{fig:vsworkloadcpp}) para habilitar o suporte a projetos nessas linguagens.
-	\end{enumerate}
-	
-	\begin{figure}[H]\centering
-		\fbox{\includegraphics[width=0.95\textwidth]{images/vsworkloadcpp}}
-		\caption{Módulo C/C++ habilitado durante a instalação do \visualstudio{}}\label{fig:vsworkloadcpp}
-	\end{figure}
-
-\cautionbox{
- Caso não queira utilizar o Visual Studio (optando pelo \qtcreator{} ou pelo \vscode{}), você pode baixar e instalar as ferramentas de \textit{Build} do \textit{Visual Studio 2019}, versão 16 ou anterior (subseção \ref{compilador}).
-}
 
 \item No \qtcreator{} ou no \vscode{}, configure o compilador compatível com o Qt 5.15.2, agora disponíveis após a instalação das ferramentas de \textit{Build}.
 
@@ -482,108 +456,87 @@ O \visualstudio{} é uma IDE desenvolvida e mantida pela \textit{Microsoft}, amp
 
 \subsection{Instalação do \mongo{}}
 
+\cautionbox{\color{red}"Sub judice"}
+
+\color{brown}
+
+Com a finalidade de controlar os projetos dos usuários do \sistema{}, poderemos utilizar o banco de dados não relacional \mongo{}, que armazena as informações no formato de objetos \textbf{json}.
+
+Isto tem potencial de contribuir para a segurança dos dados industriais.
+
 Baixe e instale o \mongo{} a partir do endereço: \url{https://www.mongodb.com/try/download/community}.
 
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.65\textwidth]{images/mongodb_download_2}}
+	\caption{Clique em \download{}.}\label{fig:mongodb_download_2}
+\end{figure}
 
-Baixe e extraia o driver do \mongo{} para
+Clique na opção \textit{Complete} e continue a instalação.
+
+Agora com o \mongo{} instalado, vamos instalar os drivers de C++ para \mongo{}, a serem utilizados pelo \qtcreator{}.
+
+
+\subsection*{Drivers de C++ para \mongo{}}
+
+Baixe a versão mais recente do driver \textbf{mongocxx}
+O ponto de partida mais confiável para criar o driver \textbf{mongocxx} é o \textit{tarball} da versão mais recente.
+
+Os lançamentos do \textbf{mongocxx} terá links para o \textit{tarball} de versão da versão que você deseja instalar. Por exemplo, para baixar a versão 3.10.1:
+
+\newpage
+
+\cautionbox{\color{orange}Comandos deste manual grafados em mais de uma linha, precisam ser editados para somente uma linha, antes de colar no terminal.}
 
 \begin{mdframed}
 	\begin{verbatim}
-C:\Downloads\mongo-c-driver-1.27.6.tar
+curl -OL https://github.com/mongodb/mongo-cxx-driver/releases/download/
+r3.10.1/mongo-cxx-driver-r3.10.2.tar.gz
+
+tar -xzf mongo-cxx-driver-r3.10.2.tar.gz
 	\end{verbatim}
 \end{mdframed}
 
-Abra a pasta em um terminal \textit{Developer Command Prompt} (isto foi instalado na subseção \ref{compilador}).
+\subsection*{Configurar o driver}
 
-\cautionbox{Substitua "aluno"\ pelo seu nome de usuário.}
+No Windows, o driver de C++ é configurado da seguinte forma (ajustando o caminho do executável \cmake{} conforme apropriado para seu sistema)
 
-\small
+Crie a pasta {\tt Drivers} no seu computador, se não existir.
+
 \begin{mdframed}
-\begin{verbatim}
-	cd C:\Users\aluno\Downloads\mongo-c-driver-1.27.6\mongo-c-driver-1.27.6
-	
-	mkdir cmake-build
-	cd cmake-build
-	
-	cmake -G "NMake Makefiles" -DENABLE_AUTOMATIC_INIT_AND_CLEANUP=OFF ..
-	
-	
-	-DCMAKE_INSTALL_PREFIX=
-	"C:\Users\aluno\Downloads\mongo-c-driver-1.27.6\mongo-c-driver-1.27.6" ..
-\end{verbatim}
-\end{mdframed}
-\normalsize
-
-\begin{figure}[H]
-	\centering
-	\fbox{\includegraphics[width=0.99\textwidth]{images/mongodb_build}}
-	\caption{Build do driver do \mongo{} realizado com sucesso.}\label{fig:mongodb_build}
-\end{figure}
-
-Agora instale do \textit{driver} do \mongo{}. Tenha paciência, pois irá demorar.
-\begin{mdframed}
-\begin{verbatim}
-	cd ..
-	nmake
-	nmake install
-\end{verbatim}
+	\begin{verbatim}
+		
+cd mongo-cxx-driver-r3.10.2
+		
+"C:\Program Files\CMake\bin\cmake.exe" -G "Visual Studio 16 2019" -A "x64"
+-DCMAKE_CXX_STANDARD=17 -DCMAKE_INSTALL_PREFIX=C:\Drivers\mongo-cxx-driver
+	\end{verbatim}
 \end{mdframed}
 
-\begin{figure}[H]
-	\centering
-	\fbox{\includegraphics[width=0.99\textwidth]{images/mongodb_lib_installed}}
-	\caption{Driver do \mongo{} instalado com sucesso.}\label{fig:mongodb_lib_installed}
-\end{figure}
+\subsection*{Compilar o driver}
 
+Agora que os arquivos de build foram gerados, você pode iniciar a compilação do driver. No Prompt de Comando do Desenvolvedor do Visual Studio ou no terminal que você está usando, execute o seguinte comando para compilar o projeto:
 
-No \textit{CMakeLists.txt} no seu projeto, associe o \mongo{} C++ driver:
+\begin{mdframed}
+	\begin{verbatim}
+cmake --build . --config Release
+	\end{verbatim}
+\end{mdframed}
 
-\begin{verbatim}
-	find_package(mongocxx REQUIRED)
-	target_link_libraries(${PROJECT_NAME} PRIVATE mongocxx::mongocxx)
-\end{verbatim}
+Esse comando compilará o driver no modo Release.
 
-\subsection*{C++ drivers para \mongo{}}
+\subsection*{Instalar o driver}
 
-Instale o driver C++ (mongocxx)
+Execute o seguinte comando para instalar o driver:
+\begin{mdframed}
+	\begin{verbatim}
+cmake --install . --prefix "C:/Drivers/mongo-cxx-driver"
+	\end{verbatim}
+\end{mdframed}
 
-\begin{verbatim}
-git clone https://github.com/mongodb/mongo-cxx-driver.git --branch releases/stable --depth 1
-\end{verbatim}
+Agora os arquivos devem estar corretamente instalados no diretório {\tt C:/Drivers/mongo-cxx-driver}. A partir daqui, você pode usar o \textbf{mongo-cxx-driver} em seus projetos C++ vinculando as bibliotecas e incluindo os cabeçalhos instalados.
 
-
-https://sourceforge.net/projects/boost/
-
-
-Configure o build por meio do \cmake{}.
-
-\begin{verbatim}
-cd mongo-cxx-driver/build
-set BOOST_ROOT=C:\local\boost_1_86_0
-cmake .. -G "Visual Studio 16 2019" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="C:\Drivers\mongo_db"
-\end{verbatim}
-
-\begin{verbatim}
-C:/Users/aluno/mongo-cxx-driver/build
-\end{verbatim}
-
-Se estiver usando uma versão diferente do Visual Studio, ajuste {\tt Visual Studio 16 2019} convenientemente.
-
-\begin{verbatim}
-cmake --build . --config Release --target install
-\end{verbatim}
-
-
-
-\textbf{Sumário:}
-\begin{enumerate}
-	\item Faça o download e o build  da libmongoc e da libbson manualmente.
-	\item Faça o \textit{build} com o \cmake{} (instalado na subseção \ref{cmake})
-	\item Faça a instalação das bibliotecas
-	\item Associe essas bibliotecas no \textit{CMakeLists.txt} do \sistema{}.
-\end{enumerate}
-
-\subsection*{Criação de objetos no \mongo{}}
+\subsection{Criação de objetos no \mongo{}}
 
 O \mongo{} vem com uma ferramenta para administração de objetos \textbf{json}, o \textit{Compass}.
 \begin{figure}[H]
@@ -606,7 +559,7 @@ A coleção $users$ será utilizada para associar usuários e seus projetos. A c
 
 
 
-
+\color{black}
 
 
 
@@ -1112,6 +1065,8 @@ Utilizar o WSL facilita o seguimento de processos e ferramentas já usados por c
 \section{INSTALAÇÃO DO AMBIENTE LINUX}
 
 \section*{\color{red}ESTA PARTE SERÁ TESTADA POSTERIORMENTE}
+
+O branch de checkout padrão deste repositório é releases/stable. Ele sempre conterá a versão estável mais recente do driver. O branch master é usado para desenvolvimento ativo. master deve ser usado somente ao fazer contribuições de volta ao driver, pois ele não é estável para uso em produção.
 
 \begin{verbatim}
 	sudo apt-get install ninja-build   # For Ubuntu or Debian

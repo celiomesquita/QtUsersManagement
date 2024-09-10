@@ -111,6 +111,7 @@ Clone ou atualize o projeto de interesse.
 Baixe e instale um editor de \textit{LaTeX}. Pode ser este \url{https://www.texstudio.org/} ou outro da sua preferência.
 
 \subsection{\textit{Download} e instalação da versão 5.15.x do \qt{}}
+\label{qt5}
 
 Primeiramente, será preciso instalar o \qt{} versão 5.15.x, padrão atual para desenvolvimento do \sistema{}, bem como as versões corretas dos \textit{drivers} do C++. Assim, quando se for instalar o \qtcreator{}, as bibliotecas necessárias já estarão instaladas para permitir a configuração exata do projeto.
 
@@ -181,19 +182,22 @@ Opte pela versão: \url{https://aka.ms/vs/17/release/vc_redist.x64.exe}
 \begin{figure}[H]
 	\centering
 	\fbox{\includegraphics[width=0.95\textwidth]{images/msvc_build_2019}}
-	\caption{Visual Studio 2019 version 16.11.39}\label{fig:msvc_build_2019}
+	\caption{Visual Studio 2019 versão 16.11.39}\label{fig:msvc_build_2019}
 \end{figure}
+
+\cautionbox{\color{purple}A partir deste ponto, todas as compilações serão baseadas em \textbf{Visual Studio 16 2019}.}
 
 \subsection*{Instalação do \cmake{}}
 \label{cmake}
 
 \cmake{} é um sistema para automatizar tarefas de compilação de arquivos de código criados em C e C++. 
 
-Baixe e instale o \cmake{} por meio do endereço: \url{https://cmake.org/download/}.
+\begin{enumerate}
+	\item Baixe e instale o \cmake{} por meio do endereço: \url{https://cmake.org/download/}.
+	\item Instale a versão \textit{Windows x64 Installer}.
+	\item Marque a opção: \textit{Add CMake to the PATH environment variable}.
+\end{enumerate}
 
-Instale a versão \textit{Windows x64 Installer}.
-
-Marque a opção: \textit{Add CMake to the PATH environment variable}.
 
 \subsection*{Instalando do \textit{Git}}
 
@@ -226,30 +230,32 @@ Adicione o Git ao PATH
 
 
 \subsection*{Construindo o Qt5 a partir do git}
-
-Abra o do terminal \windows{}, copie e cole os seguintes comandos:
-\begin{mdframed}
-\begin{verbatim}
-	cd c:\
-	git clone git://code.qt.io/qt/qt5.git
-	cd qt5
-	git checkout 5.15.2 // Compilar exatamente esta versão
-\end{verbatim}
-\end{mdframed}
-
-Inicializar os submódulos do repositório (isso pode demorar umas 3h):
-\begin{mdframed}
-\begin{verbatim}
-	perl init-repository
-\end{verbatim}
-\end{mdframed}
+\begin{enumerate}
+	\item Abra o do terminal \windows{}, copie e cole os seguintes comandos:
+	\begin{mdframed}
+		\begin{verbatim}
+			cd c:\
+			git clone git://code.qt.io/qt/qt5.git
+			cd qt5
+			git checkout 5.15.2 // Compilar exatamente esta versão
+		\end{verbatim}
+	\end{mdframed}
+	
+	\item Inicializar os submódulos do repositório (isso pode demorar umas 3h):
+	\begin{mdframed}
+		\begin{verbatim}
+			perl init-repository
+		\end{verbatim}
+	\end{mdframed}
+\end{enumerate}
 
 \cautionbox{
 Alterne para o prompt de comando do Desenvolvedor do Visual Studio, a fim de configurar o \qt{} para compilação.
 }
 
-Copie e cole o seguinte comando:
+\cautionbox{\color{orange}Ao copiar o comando deste manual, altere-o para ocupar somente uma linha, antes de colar no \textit{Developer Command Prompt}}
 
+Copie e cole o seguinte comando:
 \small
 \begin{mdframed}
 \begin{verbatim}
@@ -258,6 +264,8 @@ Copie e cole o seguinte comando:
 \end{verbatim}
 \end{mdframed}
 \normalsize
+
+\newpage
 
 Selecione a opção \textit{Open Source Edition}.
 \begin{mdframed}
@@ -269,7 +277,6 @@ Type 'o' if you want to use the Open Source Edition.
 \end{verbatim}
 \end{mdframed}
 
-Mude "aluno" para seu nome de usuário e execute o comando.
 
 A opção {\tt -prefix} no comando {\tt configure.bat} especifica onde o Qt será instalado após o processo de compilação, portanto o diretório {\tt Qt5.15.2} não precisa existir ainda. Ele será criado durante a etapa de instalação (\textit{nmake install}) se ainda não existir.
 
@@ -321,7 +328,7 @@ As variáveis de ambiente permitem que o ambiente de desenvolvimento localize co
 	
 	\item **Reinicialização do sistema:**
 	\begin{enumerate}
-		\item Faça logout e login novamente ou reinicie o sistema operacional para que as novas variáveis sejam carregadas corretamente.
+		\item Faça logout e login ou reinicie o sistema operacional para que as novas variáveis sejam carregadas corretamente.
 	\end{enumerate}
 \end{enumerate}
 
@@ -395,7 +402,7 @@ Importante ressaltar que, até agora, estivemos instalando somente a infraestrut
 	\label{fig:qt_inst_modules}
 \end{figure}
 
-Como, no passo anterior, não é mais possível optar pelo \qtfive{}, nos restou a opção da instalação a versão \textit{offline}, que fizemos na subseção anterior.
+Como, no passo anterior, não é mais possível optar pelo \qtfive{}, nos restou a opção da instalação a versão \textit{offline}, que fizemos na subseção \ref{qt5}.
 
 \item Em seguida, será oferecida a possibilidade de marcar que concorda com os termos do \textit{CMake license agreement} (Figura \ref{fig:qt_mark_read}). Marque e continue com o processo de instalação.
 
@@ -480,38 +487,34 @@ Agora com o \mongo{} instalado, vamos instalar os drivers de C++ para \mongo{}, 
 \subsection*{Drivers de C++ para \mongo{}}
 
 Baixe a versão mais recente do driver \textbf{mongocxx}
-O ponto de partida mais confiável para criar o driver \textbf{mongocxx} é o \textit{tarball} da versão mais recente.
+O ponto de partida mais confiável para criar o driver \textbf{mongocxx} é o \textit{tarball} (arquivo compactado) da versão mais recente.
 
-Os lançamentos do \textbf{mongocxx} terá links para o \textit{tarball} de versão da versão que você deseja instalar. Por exemplo, para baixar a versão 3.10.1:
-
-\newpage
+Os lançamentos do \textbf{mongocxx} terá links para o \textit{tarball} de versão da versão que você deseja instalar.
 
 \cautionbox{\color{orange}Comandos deste manual grafados em mais de uma linha, precisam ser editados para somente uma linha, antes de colar no terminal.}
 
-\begin{mdframed}
-	\begin{verbatim}
-curl -OL https://github.com/mongodb/mongo-cxx-driver/releases/download/
-r3.10.1/mongo-cxx-driver-r3.10.2.tar.gz
+Baixe e descompacte do endereço: \url{https://github.com/mongodb/mongo-cxx-driver/releases/tag/r3.10.2}
 
-tar -xzf mongo-cxx-driver-r3.10.2.tar.gz
-	\end{verbatim}
+Abra o \textit{Developer Command Prompt}.
+\begin{mdframed}
+\begin{verbatim}
+cd C:/Users/<seu usuário>/Downloads/
+\end{verbatim}
 \end{mdframed}
 
 \subsection*{Configurar o driver}
 
-No Windows, o driver de C++ é configurado da seguinte forma (ajustando o caminho do executável \cmake{} conforme apropriado para seu sistema)
-
-Crie a pasta {\tt Drivers} no seu computador, se não existir.
-
 \begin{mdframed}
 	\begin{verbatim}
-		
-cd mongo-cxx-driver-r3.10.2
-		
-"C:\Program Files\CMake\bin\cmake.exe" -G "Visual Studio 16 2019" -A "x64"
--DCMAKE_CXX_STANDARD=17 -DCMAKE_INSTALL_PREFIX=C:\Drivers\mongo-cxx-driver
+	cd mongo-cxx-driver-r3.10.2/mongo-cxx-driver-r3.10.2
+	cmake -G "Visual Studio 16 2019" -A x64 -DCMAKE_CXX_STANDARD=17
+	 -DCMAKE_BUILD_TYPE=Release
 	\end{verbatim}
 \end{mdframed}
+
+Caso o comando \textbf{cmake} não seja reconhecido, coloque este endereço no \textbf{path}
+
+{\tt C:/Program Files/CMake/bin} e repita os comandos acima.
 
 \subsection*{Compilar o driver}
 
@@ -519,22 +522,30 @@ Agora que os arquivos de build foram gerados, você pode iniciar a compilação 
 
 \begin{mdframed}
 	\begin{verbatim}
-cmake --build . --config Release
+	cmake --build . --config Release
 	\end{verbatim}
 \end{mdframed}
 
-Esse comando compilará o driver no modo Release.
+Esse comando compilará o driver no modo Release. Como pode ser bastante demorado, você pode, antes de iniciar, tentar conseguir uma versão já compilada de algum colega.
 
 \subsection*{Instalar o driver}
+
+Crie a pasta {\tt Drivers} no seu computador, se não existir.
 
 Execute o seguinte comando para instalar o driver:
 \begin{mdframed}
 	\begin{verbatim}
-cmake --install . --prefix "C:/Drivers/mongo-cxx-driver"
+cmake --install . --config Release --prefix "C:/Drivers/mongo-cxx-driver"
 	\end{verbatim}
 \end{mdframed}
 
 Agora os arquivos devem estar corretamente instalados no diretório {\tt C:/Drivers/mongo-cxx-driver}. A partir daqui, você pode usar o \textbf{mongo-cxx-driver} em seus projetos C++ vinculando as bibliotecas e incluindo os cabeçalhos instalados.
+
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.55\textwidth]{images/mongodb_drivers}}
+	\caption{Drivers de C++ para \mongo{} instalados com sucesso.}\label{fig:mongodb_drivers}
+\end{figure}
 
 \subsection{Criação de objetos no \mongo{}}
 
@@ -556,96 +567,67 @@ No $sirerc\_collection$, criamos duas coleções: $users$ e $projects$.
 
 A coleção $users$ será utilizada para associar usuários e seus projetos. A coleção $projects$ será utilizada para registrar os projetos e suas informações. 
 
-
-
-
 \color{black}
 
-
-
+\newpage
 \subsection{Instalação do VTK}
+\label{vtk}
 
 O \emph{Visualization Toolkit} (VTK) é um software multiplataforma utilizado para computação gráfica 3D, visualização e processamento de imagens. No \sistema{}, o VTK é usado para visualizar os resultados gráficos após a execução do simulador, relacionados ao problema de dinâmica de fluidos.
 
-\cautionbox{
-	Nesta seção, você aprenderá a compilar o VTK \emph{from source}. Este processo pode ser demorado. Como alternativa, você pode obter o software já compilado por outros desenvolvedores do \sistema{} e instalá-lo manualmente em um diretório do sistema operacional. Nesse caso, você pode pular para a Seção 4.1 deste guia.
-}
+\begin{enumerate}
+	\item Baixe o código-fonte da versão 9.3.0 RC1 do VTK, atualmente em uso no \sistema{}, no seguinte endereço: \url{https://gitlab.kitware.com/vtk/vtk/-/archive/v9.3.0.rc1/vtk-v9.3.0.rc1.zip}.
+	\item Descompacte no diretório Downloads.
+	\item Abra o \textit{Developer Command Prompt}.
+	\begin{mdframed}
+		\begin{verbatim}
+			cd C:/Users/<seu usuário>/Downloads/
+		\end{verbatim}
+	\end{mdframed}
+\end{enumerate}
+
+
+\subsection*{Configurar o driver}
+
+\begin{mdframed}
+	\begin{verbatim}
+		cd vtk-v9.3.0.rc1
+		mkir build
+		cd build
+		
+		cmake -G "Visual Studio 16 2019" -A x64 -DCMAKE_CXX_STANDARD=17
+		 -DCMAKE_BUILD_TYPE=Release ..
+	\end{verbatim}
+\end{mdframed}
+
+Caso o comando \textbf{cmake} não seja reconhecido, coloque este endereço no \textbf{path}
+
+{\tt C:/Program Files/CMake/bin} e repita os comandos acima.
+
+\subsection*{Compilar o driver}
+
+Agora que os arquivos de \textit{build} foram gerados, você pode iniciar a compilação do VTK. Execute o seguinte comando para compilar o projeto:
+\begin{mdframed}
+	\begin{verbatim}
+	cmake --build . --config Release 
+	\end{verbatim}
+\end{mdframed}
+
+Esse comando compilará o \textit{driver} no modo \textit{Release}, que depois será instalado em {\tt C:/Drivers/VTK}.
+
+\subsection*{Instalar o driver}
 
 \begin{enumerate}
-	\item **Obtenção do código-fonte:**
-	\begin{enumerate}
-		\item Baixe o código-fonte da versão 9.3.0 RC1 do VTK, atualmente em uso no \sistema{}, no seguinte endereço: \url{https://gitlab.kitware.com/vtk/vtk/-/archive/v9.3.0.rc1/vtk-v9.3.0.rc1.zip}.
-		\item Após o download, extraia o conteúdo do arquivo compactado para um diretório temporário no sistema.
-	\end{enumerate}
+	\item Crie a pasta {\tt Drivers} no seu computador, se não existir.
+	\item Execute o seguinte comando para instalar o driver:
 	
-	\item **Preparação para compilação:**
-	\begin{enumerate}
-		\item Crie um diretório vazio chamado \path{build} dentro do diretório descompactado do código-fonte do VTK (vide Figura \ref{fig:vtkbuilddir}).
-		
-		\begin{figure}[H]\centering
-			\fbox{\includegraphics[width=0.75\textwidth]{images/vtkbuilddir.png}}
-			\caption{Criação do diretório \build{} para compilação do VTK}\label{fig:vtkbuilddir}
-		\end{figure}
-		
-		\item Execute o \cmake{} (interface visual). No campo \emph{Where is the source code}, insira o caminho do código-fonte descompactado do VTK, algo como \path{C:\Users\username\Downloads\VTK-9.3.0.rc1} (vide Figura \ref{fig:vtkbuildsrc}).
-		
-		\begin{figure}[H]\centering
-			\fbox{\includegraphics[width=0.95\textwidth]{images/vtkbuildsrc.png}}
-			\caption{Configuração do diretório de código-fonte no \cmake{}}\label{fig:vtkbuildsrc}
-		\end{figure}
-		
-		\item No campo \emph{Where to build the binaries}, insira o caminho do diretório \build{} que você criou anteriormente, por exemplo: \path{C:\Users\username\Downloads\VTK-9.3.0.rc1\build} (vide Figura \ref{fig:vtkbuilddest}).
-		
-		\begin{figure}[H]\centering
-			\fbox{\includegraphics[width=0.95\textwidth]{images/vtkbuilddest.png}}
-			\caption{Configuração do diretório de código-fonte e \build{} no \cmake{}}\label{fig:vtkbuilddest}
-		\end{figure}
-	\end{enumerate}
-	
-	\item **Configuração do CMake:**
-	\begin{enumerate}
-		\item Na parte inferior da tela do \cmake{}, clique no botão \keys{Configure}.
-		\item Na nova tela que se abrirá, selecione \visualstudio{} 16 2019 como o gerador de projetos e escolha a arquitetura x64 como plataforma. Em seguida, clique no botão \keys{Finish} (vide Figura \ref{fig:vtkbuildconfigure}).
-		
-		\begin{figure}[H]\centering
-			\fbox{\includegraphics[width=0.75\textwidth]{images/vs19buildconfigure.png}}
-			\caption{Definição do gerador de projeto e plataforma no \cmake{}}\label{fig:vtkbuildconfigure}
-		\end{figure}
-		
-		\item Aguarde a conclusão do processo de configuração. Isso pode levar alguns minutos até que uma lista com várias variáveis em destaque vermelho apareça.
-		\item Use o campo de busca \emph{Search} para encontrar a variável \emph{VTK\_GROUP\_ENABLE\_Qt}. Altere o valor dessa variável para \textbf{YES} e clique em \keys{Configure} novamente.
-		\item Aguarde a reconfiguração do \cmake{}.
-		\item Opcionalmente, use o campo de busca \emph{Search} para encontrar a variável \emph{CMAKE\_INSTALL\_PREFIX}. Por padrão, essa variável está configurada para \path{C:/Program Files/VTK}. Você pode manter esse valor ou alterá-lo para outro diretório de sua escolha. Se fizer alterações, clique em \keys{Configure} novamente e aguarde a reconfiguração.
-		\item Clique no botão \keys{Generate} para gerar o projeto para o \visualstudio{} 2019 no diretório \path{build}.
-		\item Aguarde a conclusão do processo de geração do projeto.
-	\end{enumerate}
-	
-	\item **Compilação e instalação no Visual Studio:**
-	\begin{enumerate}
-		\item Se o \visualstudio{} 2019 estiver corretamente instalado, clique no botão \keys{Open Project} para carregar o projeto no \visualstudio{}. Se houver problemas, você pode abrir manualmente o arquivo \emph{.sln} criado no diretório \path{build}.
-		
-		\cautionbox{
-			Se o diretório de instalação escolhido estiver em um dos diretórios protegidos do \windows{}, como \path{C:/Program Files/}, você precisará executar o \visualstudio{} como administrador para realizar a instalação. Caso contrário, ocorrerá um erro de permissão.
-		}
-		
-		\item Após o carregamento do projeto no \visualstudio{}, mude o tipo de \build{} para \emph{Release} na parte superior da interface e mantenha a arquitetura como \emph{x64} (vide Figura \ref{fig:vtkvsproject}).
-		
-		\begin{figure}[H]\centering
-			\fbox{\includegraphics[width=0.75\textwidth]{images/vs19project.png}}
-			\caption{Definição do tipo de \build{} e arquitetura no \visualstudio{}}\label{fig:vtkvsproject}
-		\end{figure}
-		
-		\item No painel direito do \visualstudio{}, localize o submódulo \emph{ALL\_BUILD}, clique com o botão direito sobre ele e selecione \emph{Compilar} ou \emph{Build} (vide Figura \ref{fig:vtkvsprojectall}).
-		
-		\begin{figure}[H]\centering
-			\fbox{\includegraphics[width=0.75\textwidth]{images/vs19projectall.png}}
-			\caption{Compilação completa \emph{ALL\_BUILD} do VTK}\label{fig:vtkvsprojectall}
-		\end{figure}
-		
-		\item Aguarde a conclusão da compilação, que pode levar algum tempo.
-		\item Após a compilação, se não houver erros, localize o item \emph{INSTALL} no painel direito, clique com o botão direito e selecione \emph{Compilar} ou \emph{Build}. Isso copiará os arquivos compilados para o diretório definido na variável \emph{CMAKE\_INSTALL\_PREFIX}.
-	\end{enumerate}
+	\begin{mdframed}
+		\begin{verbatim}
+			cmake --install . --config Release --prefix "C:\Drivers\VTK"
+		\end{verbatim}
+	\end{mdframed}
 \end{enumerate}
+
 
 \subsection*{Criação de Variáveis de Ambiente do VTK}
 
@@ -655,13 +637,8 @@ O \emph{Visualization Toolkit} (VTK) é um software multiplataforma utilizado pa
 		\item Abra o \textit{Painel de Controle} do \windows{} e navegue até \textit{Sistema e Segurança} > \textit{Sistema} > \textit{Configurações avançadas do sistema}.
 		\item Clique em \textit{Variáveis de Ambiente...}.
 		\item Na seção \textit{Variáveis de sistema}, clique em \textit{Novo...}.
-		\item Crie uma nova variável chamada \textbf{VTK\_DIR}. O valor deve ser o caminho do diretório onde o VTK foi instalado. Exemplo: \path{C:\Program Files\VTK}.
+		\item Crie uma nova variável chamada \textbf{VTK\_DIR}. O valor deve ser o caminho do diretório onde o VTK foi instalado. 
 	\end{enumerate}
-	
-	\begin{figure}[H]\centering
-		\fbox{\includegraphics[width=0.75\textwidth]{images/vtkdirenv.png}}
-		\caption{Criação da variável de ambiente \emph{VTK\_DIR}}\label{fig:vtkdirenv}
-	\end{figure}
 	
 	\item **Atualização da variável Path:**
 	\begin{enumerate}
@@ -674,17 +651,13 @@ O \emph{Visualization Toolkit} (VTK) é um software multiplataforma utilizado pa
 		\end{mdframed}
 	\end{enumerate}
 	
-	\begin{figure}[H]\centering
-		\fbox{\includegraphics[width=0.75\textwidth]{images/vtkdirpath.png}}
-		\caption{Novas variáveis dentro da lista em \emph{Path}}\label{fig:vtkdirpath}
-	\end{figure}
-	
 	\item **Reinicialização do sistema:**
 	\begin{enumerate}
-		\item Faça logout e login novamente ou reinicie o sistema operacional para que as novas variáveis sejam carregadas corretamente.
+		\item Faça logout e login ou reinicie o sistema para que as novas variáveis sejam carregadas corretamente.
 	\end{enumerate}
 \end{enumerate}
 
+\newpage
 \subsection{Instalação do \gmsh{}}
 
 O \gmsh{} é um gerador de malha de elementos finitos 3D de código aberto, com um mecanismo CAD integrado e pós-processador. No \sistema{}, o \gmsh{} é utilizado para gerar a malha que representa o domínio a ser simulado, como poços de petróleo.
@@ -795,7 +768,7 @@ Seu objetivo de design é fornecer uma ferramenta de malha rápida, leve e fáci
 	
 	\item **Reinicialização do sistema:**
 	\begin{enumerate}
-		\item Faça logout e login novamente ou reinicie o sistema operacional para que as novas variáveis sejam carregadas corretamente.
+		\item Faça logout e login ou reinicie o sistema operacional para que as novas variáveis sejam carregadas corretamente.
 	\end{enumerate}
 \end{enumerate}
 \subsection{Compilação do \sistema{}}

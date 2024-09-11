@@ -1,0 +1,28 @@
+\babel@toc {brazilian}{}\relax 
+\contentsline {section}{\numberline {1}INSTALAÇÃO DO AMBIENTE WINDOWS}{4}{section.1}%
+\contentsline {subsection}{\numberline {1.1}GitHub e LaTeX}{4}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Instalação do \emph {WSL}}{4}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Instalação dos requisitos de desenvolvimento}{5}{subsection.1.3}%
+\contentsline {subsubsection}{\numberline {1.3.1}Instalando o ambiente \textit {ActiveState}}{5}{subsubsection.1.3.1}%
+\contentsline {subsubsection}{\numberline {1.3.2}Instalação do compilador C++}{7}{subsubsection.1.3.2}%
+\contentsline {subsubsection}{\numberline {1.3.3}Instalação do \textit {CMake}{}}{7}{subsubsection.1.3.3}%
+\contentsline {subsubsection}{\numberline {1.3.4}Instalando do \textit {Git}}{7}{subsubsection.1.3.4}%
+\contentsline {subsection}{\numberline {1.4}\textit {Download} e instalação da última versão \textit {Opensource} do \textit {Qt Creator}{}}{8}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Instalação do \textit {MongoDB}{}}{12}{subsection.1.5}%
+\contentsline {subsubsection}{\numberline {1.5.1}Drivers de C++ para \textit {MongoDB}{}}{13}{subsubsection.1.5.1}%
+\contentsline {subsubsection}{\numberline {1.5.2}Configurar o driver}{13}{subsubsection.1.5.2}%
+\contentsline {subsubsection}{\numberline {1.5.3}Compilar o driver}{14}{subsubsection.1.5.3}%
+\contentsline {subsubsection}{\numberline {1.5.4}Instalar o driver}{14}{subsubsection.1.5.4}%
+\contentsline {subsubsection}{\numberline {1.5.5}Criação de objetos no \textit {MongoDB}{}}{14}{subsubsection.1.5.5}%
+\contentsline {subsection}{\numberline {1.6}Instalação do VTK}{16}{subsection.1.6}%
+\contentsline {subsubsection}{\numberline {1.6.1}Configurar o driver}{16}{subsubsection.1.6.1}%
+\contentsline {subsubsection}{\numberline {1.6.2}Compilar o driver}{16}{subsubsection.1.6.2}%
+\contentsline {subsubsection}{\numberline {1.6.3}Instalar o driver}{17}{subsubsection.1.6.3}%
+\contentsline {subsubsection}{\numberline {1.6.4}Variáveis de Ambiente do VTK}{17}{subsubsection.1.6.4}%
+\contentsline {subsection}{\numberline {1.7}Instalação do \textit {Gmsh}{}}{18}{subsection.1.7}%
+\contentsline {subsubsection}{\numberline {1.7.1}Configurar o driver}{18}{subsubsection.1.7.1}%
+\contentsline {subsubsection}{\numberline {1.7.2}Compilar o driver}{19}{subsubsection.1.7.2}%
+\contentsline {subsubsection}{\numberline {1.7.3}Instalar o driver}{19}{subsubsection.1.7.3}%
+\contentsline {subsubsection}{\numberline {1.7.4}Variáveis de Ambiente do \textit {Gmsh}{}}{19}{subsubsection.1.7.4}%
+\contentsline {subsection}{\numberline {1.8}Compilação do \textsf {SIRERC}{}}{20}{subsection.1.8}%
+\contentsline {subsection}{\numberline {1.9}Criação do Instalador}{23}{subsection.1.9}%

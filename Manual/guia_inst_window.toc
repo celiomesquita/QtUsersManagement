@@ -1,15 +1,32 @@
 \babel@toc {brazilian}{}\relax 
 \contentsline {section}{\numberline {1}INSTALAÇÃO DO AMBIENTE WINDOWS}{4}{section.1}%
 \contentsline {subsection}{\numberline {1.1}GitHub e LaTeX}{4}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}\textit {Download} e instalação da versão 5.15.x do \textit {Qt}{}}{4}{subsection.1.2}%
-\contentsline {subsection}{\numberline {1.3}Variáveis de ambiente}{9}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.2}Instalação do \emph {WSL} (opcional)}{4}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}\textit {Download} e instalação da versão \textit {Qt 5.15.2}{}}{5}{subsection.1.3}%
+\contentsline {subsubsection}{\numberline {1.3.1}Instalação dos requisitos de desenvolvimento}{5}{subsubsection.1.3.1}%
+\contentsline {subsubsection}{\numberline {1.3.2}Instalando o ambiente \textit {ActiveState}}{5}{subsubsection.1.3.2}%
+\contentsline {subsubsection}{\numberline {1.3.3}Instalação do compilador C++}{7}{subsubsection.1.3.3}%
+\contentsline {subsubsection}{\numberline {1.3.4}Instalação do \textit {CMake}{}}{7}{subsubsection.1.3.4}%
+\contentsline {subsubsection}{\numberline {1.3.5}Instalando do \textit {Git}}{7}{subsubsection.1.3.5}%
+\contentsline {subsubsection}{\numberline {1.3.6}Construindo o \textit {Qt 5.15.2}{} a partir do \textbf {git}}{8}{subsubsection.1.3.6}%
+\contentsline {subsubsection}{\numberline {1.3.7}Variáveis de ambiente do \textit {Qt 5.15.2}{}}{9}{subsubsection.1.3.7}%
 \contentsline {subsection}{\numberline {1.4}\textit {Download} e instalação da última versão \textit {Opensource} do \textit {Qt Creator}{}}{10}{subsection.1.4}%
 \contentsline {subsection}{\numberline {1.5}Instalação do \textit {Visual Studio}{}}{14}{subsection.1.5}%
 \contentsline {subsection}{\numberline {1.6}Instalação do \textit {MongoDB}{}}{16}{subsection.1.6}%
-\contentsline {subsection}{\numberline {1.7}Criação de objetos no \textit {MongoDB}{}}{18}{subsection.1.7}%
-\contentsline {subsection}{\numberline {1.8}Instalação do VTK}{20}{subsection.1.8}%
-\contentsline {subsection}{\numberline {1.9}Instalação do \textit {Gmsh}{}}{22}{subsection.1.9}%
-\contentsline {subsection}{\numberline {1.10}Compilação do \textsf {SIRERC}{}}{24}{subsection.1.10}%
-\contentsline {subsection}{\numberline {1.11}Criação do Instalador}{27}{subsection.1.11}%
-\contentsline {subsection}{\numberline {1.12}Instalação do \emph {WSL} (opcional)}{33}{subsection.1.12}%
-\contentsline {section}{\numberline {2}INSTALAÇÃO DO AMBIENTE LINUX}{34}{section.2}%
+\contentsline {subsubsection}{\numberline {1.6.1}Drivers de C++ para \textit {MongoDB}{}}{17}{subsubsection.1.6.1}%
+\contentsline {subsubsection}{\numberline {1.6.2}Configurar o driver}{17}{subsubsection.1.6.2}%
+\contentsline {subsubsection}{\numberline {1.6.3}Compilar o driver}{17}{subsubsection.1.6.3}%
+\contentsline {subsubsection}{\numberline {1.6.4}Instalar o driver}{18}{subsubsection.1.6.4}%
+\contentsline {subsubsection}{\numberline {1.6.5}Criação de objetos no \textit {MongoDB}{}}{18}{subsubsection.1.6.5}%
+\contentsline {subsection}{\numberline {1.7}Instalação do VTK}{20}{subsection.1.7}%
+\contentsline {subsubsection}{\numberline {1.7.1}Configurar o driver}{20}{subsubsection.1.7.1}%
+\contentsline {subsubsection}{\numberline {1.7.2}Compilar o driver}{20}{subsubsection.1.7.2}%
+\contentsline {subsubsection}{\numberline {1.7.3}Instalar o driver}{21}{subsubsection.1.7.3}%
+\contentsline {subsubsection}{\numberline {1.7.4}Variáveis de Ambiente do VTK}{21}{subsubsection.1.7.4}%
+\contentsline {subsection}{\numberline {1.8}Instalação do \textit {Gmsh}{}}{22}{subsection.1.8}%
+\contentsline {subsubsection}{\numberline {1.8.1}Configurar o driver}{22}{subsubsection.1.8.1}%
+\contentsline {subsubsection}{\numberline {1.8.2}Compilar o driver}{23}{subsubsection.1.8.2}%
+\contentsline {subsubsection}{\numberline {1.8.3}Instalar o driver}{23}{subsubsection.1.8.3}%
+\contentsline {subsubsection}{\numberline {1.8.4}Variáveis de Ambiente do \textit {Gmsh}{}}{23}{subsubsection.1.8.4}%
+\contentsline {subsection}{\numberline {1.9}Compilação do \textsf {SIRERC}{}}{24}{subsection.1.9}%
+\contentsline {subsection}{\numberline {1.10}Criação do Instalador}{27}{subsection.1.10}%

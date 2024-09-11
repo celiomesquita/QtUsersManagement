@@ -101,26 +101,58 @@ Este manual foi atualizado por meio das instalações em duas máquina com \text
 
 \subsection{GitHub e LaTeX}
 
-\subsection*{GitHub Desktop}
+\begin{enumerate}
+	
+	\item **GitHub Desktop**
+	\begin{enumerate}
+		\item Baixe e instale o \textit{GitHub Desktop} do endereço: \url{https://desktop.github.com/download/}
+		\item Ao abrir a tela de instalação entre com o sua conta do \github{}.
+		\item Clone ou atualize o projeto de interesse.
+	\end{enumerate}
 
-Baixe e instale o \textit{GitHub Desktop} do endereço: \url{https://desktop.github.com/download/}
+	\item **LaTeX** {\color{blue}apenas para quem estiver encarregado de atualizar este manual.}
 
-Ao abrir a tela de instalação entre com o sua conta do \github{}.
+		Baixe e instale um editor de \textit{LaTeX}. Pode ser este \url{https://www.texstudio.org/} ou outro da sua preferência.
 
-Clone ou atualize o projeto de interesse.
+\end{enumerate}
 
 
-\subsection*{LaTeX - apenas para quem estiver encarregado de atualizar este manual}
+\subsection{Instalação do \emph{WSL} (opcional)}
 
-Baixe e instale um editor de \textit{LaTeX}. Pode ser este \url{https://www.texstudio.org/} ou outro da sua preferência.
+O \textit{WSL} (\textit{Windows Subsystem for Linux}) permite que desenvolvedores executem um ambiente \textit{GNU/Linux} diretamente no \windows{}, sem a necessidade de uma máquina virtual ou \textit{dual-boot}.
 
-\subsection{\textit{Download} e instalação da versão 5.15.x do \qt{}}
+Utilizar o WSL facilita o seguimento de processos e ferramentas já usados por colegas que desenvolvem em sistemas \textit{Linux}, tornando a colaboração em projetos mais integrada e eficiente.
+
+\begin{enumerate}
+	
+	\item **Instalação do WSL:**
+	\begin{enumerate}
+		\item Abra o \textit{PowerShell} ou o \textit{Prompt de Comando} do \windows{} no modo administrador clicando com o botão direito do mouse e selecionando "Executar como administrador".
+		\item Insira o comando \texttt{wsl --install} e pressione \keys{Enter}. Este comando instalará o WSL e a distribuição padrão do Linux. Após a instalação, reinicie o computador.
+	\end{enumerate}
+	
+	\begin{figure}[H]
+		\centering
+		\fbox{\includegraphics[width=0.75\textwidth]{images/prompt_wsl.png}}
+		\caption{Comando para instalar o WSL no \windows{}}\label{fig:prompt_wsl}
+	\end{figure}
+	
+	\item **Verificação da Instalação:**
+	\begin{enumerate}
+		\item Após reiniciar o computador, abra novamente o \textit{PowerShell} ou o \textit{Prompt de Comando} e insira o comando \texttt{wsl} para verificar se o WSL foi instalado corretamente.
+		\item Se o WSL estiver instalado corretamente, um prompt de linha de comando do Linux será exibido. Você pode usar esse ambiente para executar comandos do Linux e interagir com o sistema de arquivos do \windows{}.
+	\end{enumerate}
+	
+\end{enumerate}
+
+
+\subsection{\textit{Download} e instalação da versão \qtfive{}}
 \label{qt5}
 
 Primeiramente, será preciso instalar o \qt{} versão 5.15.x, padrão atual para desenvolvimento do \sistema{}, bem como as versões corretas dos \textit{drivers} do C++. Assim, quando se for instalar o \qtcreator{}, as bibliotecas necessárias já estarão instaladas para permitir a configuração exata do projeto.
 
 
-\subsection*{Requisitos do Sistema}
+\subsubsection{Instalação dos requisitos de desenvolvimento}
 
 Há ainda, algumas linguagens de programação e ferramentas que serão utilizadas direta ou indiretamente nas compilações e no desenvolvimento do \sistema{}.
 
@@ -133,7 +165,7 @@ Há ainda, algumas linguagens de programação e ferramentas que serão utilizad
 	\item Git
 \end{itemize}
 
-\subsection*{Instalando o ambiente \textit{ActiveState}}
+\subsubsection{Instalando o ambiente \textit{ActiveState}}
 
 \textit{ActiveState} é uma empresa de software que fornece distribuições de linguagens de programação \textit{open source}, como \textit{Python}, \textit{Perl}, \textit{Ruby} e \textit{Tcl}. Essas distribuições são pré-configuradas e testadas para garantir compatibilidade e desempenho em diferentes sistemas operacionais.
 
@@ -180,7 +212,7 @@ state use <linguagem e versão>
 	\label{fig:ruby_install_1}
 \end{figure}
 
-\subsection*{Instalação do compilador C++}
+\subsubsection{Instalação do compilador C++}
 \label{compilador}
 
 Faça o download dos drivers do Microsoft Visual Studio C++ (Visual C++ Redistributable for Visual Studio 2019) do seguinte endereço:
@@ -197,7 +229,7 @@ Opte pela versão: \url{https://aka.ms/vs/17/release/vc_redist.x64.exe}
 
 \cautionbox{\color{purple}A partir deste ponto, todas as compilações serão baseadas em \textbf{Visual Studio 16 2019}.}
 
-\subsection*{Instalação do \cmake{}}
+\subsubsection{Instalação do \cmake{}}
 \label{cmake}
 
 \cmake{} é um sistema para automatizar tarefas de compilação de arquivos de código criados em C e C++. 
@@ -209,7 +241,7 @@ Opte pela versão: \url{https://aka.ms/vs/17/release/vc_redist.x64.exe}
 \end{enumerate}
 
 
-\subsection*{Instalando do \textit{Git}}
+\subsubsection{Instalando do \textit{Git}}
 
 Acesse o site oficial do Git: \url{https://git-scm.com/download/win}
 
@@ -239,7 +271,7 @@ Adicione o Git ao PATH
 \end{enumerate}
 
 
-\subsection*{Construindo o Qt5 a partir do git}
+\subsubsection{Construindo o \qtfive{} a partir do \textbf{git}}
 \begin{enumerate}
 	\item Abra o do terminal \windows{}, copie e cole os seguintes comandos:
 	\begin{mdframed}
@@ -260,10 +292,13 @@ Adicione o Git ao PATH
 \end{enumerate}
 
 \cautionbox{
-Alterne para o prompt de comando do Desenvolvedor do Visual Studio, a fim de configurar o \qt{} para compilação.
+Alterne para o prompt de comando do Desenvolvedor do Visual Studio, a fim de configurar o \qtfive{} para compilação.
 }
 
-\cautionbox{\color{orange}Ao copiar o comando deste manual, altere-o para ocupar somente uma linha, antes de colar no \textit{Developer Command Prompt}}
+\cautionbox{\color{orange}
+	Ao copiar o comando deste manual, altere-o para ocupar somente uma linha, antes de colar no \textit{Developer Command Prompt}.
+	Também pode copiar e uma linha de cada vez, concatenando em uma linha no terminal.
+}
 
 Copie e cole o seguinte comando:
 \small
@@ -301,7 +336,7 @@ Esta etapa também irá demorar bastante.
 \end{mdframed}
 
 
-\subsection{Variáveis de ambiente}
+\subsubsection{Variáveis de ambiente do \qtfive{}}
 
 As variáveis de ambiente permitem que o ambiente de desenvolvimento localize corretamente as bibliotecas do Qt. Elas são especialmente importantes se o Qt foi instalado em um diretório não padrão no \windows{}, como fora de \path{C:\Program Files} ou \path{C:\Program Files (x86)}.
 
@@ -412,7 +447,7 @@ Importante ressaltar que, até agora, estivemos instalando somente a infraestrut
 	\label{fig:qt_inst_modules}
 \end{figure}
 
-Como, no passo anterior, não é mais possível optar pelo \qtfive{}, nos restou a opção da instalação a versão \textit{offline}, que fizemos na subseção \ref{qt5}.
+Como, no passo anterior (Figura \ref{fig:qt_inst_modules}), não é mais possível optar pelo \qtfive{}, nos restou a opção da instalação a versão \textit{offline}, o que fizemos na subseção \ref{qt5}.
 
 \item Em seguida, será oferecida a possibilidade de marcar que concorda com os termos do \textit{CMake license agreement} (Figura \ref{fig:qt_mark_read}). Marque e continue com o processo de instalação.
 
@@ -494,7 +529,7 @@ Clique na opção \textit{Complete} e continue a instalação.
 Agora com o \mongo{} instalado, vamos instalar os drivers de C++ para \mongo{}, a serem utilizados pelo \qtcreator{}.
 
 
-\subsection*{Drivers de C++ para \mongo{}}
+\subsubsection{Drivers de C++ para \mongo{}}
 
 Baixe a versão mais recente do driver \textbf{mongocxx}
 O ponto de partida mais confiável para criar o driver \textbf{mongocxx} é o \textit{tarball} (arquivo compactado) da versão mais recente.
@@ -512,7 +547,7 @@ cd C:/Users/<seu usuário>/Downloads/
 \end{verbatim}
 \end{mdframed}
 
-\subsection*{Configurar o driver}
+\subsubsection{Configurar o driver}
 
 \begin{mdframed}
 	\begin{verbatim}
@@ -526,7 +561,7 @@ Caso o comando \textbf{cmake} não seja reconhecido, coloque este endereço no \
 
 {\tt C:/Program Files/CMake/bin} e repita os comandos acima.
 
-\subsection*{Compilar o driver}
+\subsubsection{Compilar o driver}
 
 Agora que os arquivos de build foram gerados, você pode iniciar a compilação do driver. No Prompt de Comando do Desenvolvedor do Visual Studio ou no terminal que você está usando, execute o seguinte comando para compilar o projeto:
 
@@ -538,7 +573,7 @@ Agora que os arquivos de build foram gerados, você pode iniciar a compilação 
 
 Esse comando compilará o driver no modo Release. Como pode ser bastante demorado, você pode, antes de iniciar, tentar conseguir uma versão já compilada de algum colega.
 
-\subsection*{Instalar o driver}
+\subsubsection{Instalar o driver}
 
 Crie a pasta {\tt Drivers} no seu computador, se não existir.
 
@@ -557,7 +592,7 @@ Agora os arquivos devem estar corretamente instalados no diretório {\tt C:/Driv
 	\caption{Drivers de C++ para \mongo{} instalados com sucesso.}\label{fig:mongodb_drivers}
 \end{figure}
 
-\subsection{Criação de objetos no \mongo{}}
+\subsubsection{Criação de objetos no \mongo{}}
 
 O \mongo{} vem com uma ferramenta para administração de objetos \textbf{json}, o \textit{Compass}.
 \begin{figure}[H]
@@ -588,11 +623,17 @@ O \emph{Visualization Toolkit} (VTK) é um software multiplataforma utilizado pa
 \begin{enumerate}
 	\item Baixe o código-fonte da versão 9.3.0 RC1 do VTK, atualmente em uso no \sistema{}, no seguinte endereço: \url{https://gitlab.kitware.com/vtk/vtk/-/archive/v9.3.0.rc1/vtk-v9.3.0.rc1.zip}.
 	\item Descompacte no diretório Downloads.
+	
+	\begin{enumerate}
+	\item 	Caso deseje, você pode descompactar com o botão direito do mouse sobre o arquivo \textbf{.zip} ou \textbf{.tar.gz}.
+	\item 	Também é possível, em um terminal do \windows{}, digitar WSL, acessando o terminal do \linux{}, e colar este comando: {\tt tar -xvf vtk-v9.3.0.rc1.zip}.
+	\end{enumerate}
+	
 	\item Abra o \textit{Developer Command Prompt}.
 \end{enumerate}
 
 
-\subsection*{Configurar o driver}
+\subsubsection{Configurar o driver}
 
 Na extração, serão criados dois diretórios: {\tt vtk-v9.3.0.rc1/vtk-v9.3.0.rc}
 
@@ -620,7 +661,7 @@ Caso o comando \textbf{cmake} não seja reconhecido, coloque este endereço no \
 	\label{fig:vtk_make}
 \end{figure}
 
-\subsection*{Compilar o driver}
+\subsubsection{Compilar o driver}
 
 Agora que os arquivos de \textit{build} foram gerados, você pode iniciar a compilação do VTK. Execute o seguinte comando para compilar o projeto:
 \begin{mdframed}
@@ -631,7 +672,7 @@ Agora que os arquivos de \textit{build} foram gerados, você pode iniciar a comp
 
 Esse comando compilará o \textit{driver} no modo \textit{Release}, que depois será instalado em {\tt C:/Drivers/VTK}.
 
-\subsection*{Instalar o driver}
+\subsubsection{Instalar o driver}
 
 \begin{enumerate}
 	\item Crie a pasta {\tt Drivers} no seu computador, se não existir.
@@ -651,7 +692,7 @@ Esse comando compilará o \textit{driver} no modo \textit{Release}, que depois s
 	\label{fig:vtk_drivers}
 \end{figure}
 
-\subsection*{Criação de Variáveis de Ambiente do VTK}
+\subsubsection{Variáveis de Ambiente do VTK}
 
 \begin{enumerate}
 	\item **Criação da variável VTK\_DIR:**
@@ -692,7 +733,7 @@ Seu objetivo de design é fornecer uma ferramenta de malha rápida, leve e fáci
 	\item Abra o \textit{Developer Command Prompt}.
 \end{enumerate}
 
-\subsection*{Configurar o driver}
+\subsubsection{Configurar o driver}
 
 Na extração, serão criados dois diretórios: {\tt vtk-v9.3.0.rc1/vtk-v9.3.0.rc}
 
@@ -720,7 +761,7 @@ cmake -G "Visual Studio 16 2019" -A x64 -DCMAKE_CXX_STANDARD=17 -DCMAKE_BUILD_TY
 	\label{fig:gmsh_build}
 \end{figure}
 
-\subsection*{Compilar o driver}
+\subsubsection{Compilar o driver}
 
 Agora que os arquivos de \textit{build} foram gerados, você pode iniciar a compilação do \gmsh{}. Execute o seguinte comando para compilar o projeto:
 \begin{mdframed}
@@ -731,7 +772,7 @@ Agora que os arquivos de \textit{build} foram gerados, você pode iniciar a comp
 
 Esse comando compilará o \textit{driver} no modo \textit{Release}, que depois será instalado em {\tt C:/Drivers/Gmsh}.
 
-\subsection*{Instalar o driver}
+\subsubsection{Instalar o driver}
 
 \begin{enumerate}
 	\item Execute o seguinte comando para instalar o driver:
@@ -750,7 +791,7 @@ Esse comando compilará o \textit{driver} no modo \textit{Release}, que depois s
 \end{figure}
 
 
-\subsection*{Variáveis de Ambiente do \gmsh{}}
+\subsubsection{Variáveis de Ambiente do \gmsh{}}
 
 	\begin{enumerate}
 		\item Tecle Win + I para acessar as configurações do \windows{} e localize $variáveis\ de\ ambiente$.
@@ -1003,85 +1044,6 @@ Um instalador \emph{offline} simplifica o processo de instalação ao fornecer u
 	\end{enumerate}
 \end{enumerate}
 
-\subsection{Instalação do \emph{WSL} (opcional)}
 
-O \textit{WSL} (\textit{Windows Subsystem for Linux}) permite que desenvolvedores executem um ambiente \textit{GNU/Linux} diretamente no \windows{}, sem a necessidade de uma máquina virtual ou \textit{dual-boot}.
-
-Utilizar o WSL facilita o seguimento de processos e ferramentas já usados por colegas que desenvolvem em sistemas \textit{Linux}, tornando a colaboração em projetos mais integrada e eficiente.
-
-\begin{enumerate}
-	
-	\item **Instalação do WSL:**
-	\begin{enumerate}
-		\item Abra o \textit{PowerShell} ou o \textit{Prompt de Comando} do \windows{} no modo administrador clicando com o botão direito do mouse e selecionando "Executar como administrador".
-		\item Insira o comando \texttt{wsl --install} e pressione \keys{Enter}. Este comando instalará o WSL e a distribuição padrão do Linux. Após a instalação, reinicie o computador.
-	\end{enumerate}
-	
-	\begin{figure}[H]
-		\centering
-		\fbox{\includegraphics[width=0.75\textwidth]{images/prompt_wsl.png}}
-		\caption{Comando para instalar o WSL no \windows{}}\label{fig:prompt_wsl}
-	\end{figure}
-	
-	\item **Verificação da Instalação:**
-	\begin{enumerate}
-		\item Após reiniciar o computador, abra novamente o \textit{PowerShell} ou o \textit{Prompt de Comando} e insira o comando \texttt{wsl} para verificar se o WSL foi instalado corretamente.
-		\item Se o WSL estiver instalado corretamente, um prompt de linha de comando do Linux será exibido. Você pode usar esse ambiente para executar comandos do Linux e interagir com o sistema de arquivos do \windows{}.
-	\end{enumerate}
-	
-\end{enumerate}
-
-
-\section{INSTALAÇÃO DO AMBIENTE LINUX}
-
-\section*{\color{red}ESTA PARTE SERÁ TESTADA POSTERIORMENTE}
-
-O branch de checkout padrão deste repositório é releases/stable. Ele sempre conterá a versão estável mais recente do driver. O branch master é usado para desenvolvimento ativo. master deve ser usado somente ao fazer contribuições de volta ao driver, pois ele não é estável para uso em produção.
-
-\begin{verbatim}
-	sudo apt-get install ninja-build   # For Ubuntu or Debian
-	
-	sudo add-apt-repository universe
-	sudo apt-get update
-	sudo apt-get install qtbase5-dev qtbase5-dev-tools libqt5charts5 libqt5charts5-dev
-	
-	sudo apt-get install build-essential cmake git libgl1-mesa-dev libxt-dev
-	sudo apt-get install qtchooser qt5-qmake
-	
-	sudo apt-get install gmsh libgmsh-dev
-	
-	// clonando, compilando e instalando o Gmsh
-	% git clone https://gitlab.onelab.info/gmsh/gmsh.git
-	git clone https://github.com/live-clones/gmsh.git
-	cd gmsh
-	mkdir build
-	cd build
-	cmake ..
-	make -j$(nproc)
-	sudo make install
-	
-	First, remove all the VTK 9.1.0 packages from your system.
-	You can use the following command to purge VTK 9.1.0 and its related packages:
-	
-	sudo apt-get purge 'libvtk9*' vtk9 python3-vtk9
-	sudo apt-get autoremove
-	sudo apt-get clean
-	
-	// clonando, compilando e instalando o VTK
-	git clone https://gitlab.kitware.com/vtk/vtk.git
-	cd vtk
-	git checkout v9.3.1
-	mkdir build
-	cd build
-	cmake .. -DVTK_QT_VERSION=5 -DVTK_Group_Qt=ON -DVTK_Group_Rendering=ON -DVTK_Group_StandAlone=ON
-	make -j$(nproc)
-	sudo make install
-	
-	
-	No Sirerc, a fim de passar a utilizar o VTK 9.3.1
-	rm -rf build/CMakeCache.txt
-	cmake ..
-	
-\end{verbatim}
 
 \end{document}

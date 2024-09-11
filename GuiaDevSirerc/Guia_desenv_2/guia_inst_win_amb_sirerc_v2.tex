@@ -664,10 +664,6 @@ O \gmsh{} é um gerador de malha de elementos finitos 3D de código aberto, com 
 
 Seu objetivo de design é fornecer uma ferramenta de malha rápida, leve e fácil de usar com entrada paramétrica e recursos avançados de visualização. O \gmsh{} é construído em torno de quatro módulos: geometria, malha, solucionador e pós-processamento. A especificação de qualquer entrada para esses módulos é feita interativamente usando a interface gráfica do usuário ou em arquivos de texto ASCII usando a própria linguagem de \textit{script} do \gmsh{}.
 
-\cautionbox{
-	Neste processo, você aprenderá a compilar o \gmsh{} \emph{from source}. Esse processo pode ser demorado. Como alternativa, você pode obter o software já compilado por outros desenvolvedores do \sistema{} e instalá-lo manualmente em algum diretório do sistema operacional.
-}
-
 \begin{enumerate}
 	\item **Obtenção do código-fonte:**
 	\begin{enumerate}
@@ -677,12 +673,8 @@ Seu objetivo de design é fornecer uma ferramenta de malha rápida, leve e fáci
 	
 	\item **Preparação para compilação:**
 	\begin{enumerate}
-		\item Crie um diretório vazio chamado \path{build} dentro do diretório descompactado do código-fonte do \gmsh{} (vide Figura \ref{fig:gmshbuilddir}).
-		
-		\begin{figure}[H]\centering
-			\fbox{\includegraphics[width=0.75\textwidth]{images/gmshbuilddir.png}}
-			\caption{Criação do diretório \build{} para compilação do \gmsh{}}\label{fig:gmshbuilddir}
-		\end{figure}
+		\item Crie um diretório vazio chamado \path{build} dentro do diretório descompactado do código-fonte do \gmsh{}.
+	
 		
 		\item Execute o \cmake{} (interface visual). No campo \emph{Where is the source code}, insira o caminho do código-fonte descompactado do \gmsh{}, algo como \path{C:\Users\username\Downloads\gmsh-4.11.1-source} (vide Figura \ref{fig:gmshbuildsrc}).
 		

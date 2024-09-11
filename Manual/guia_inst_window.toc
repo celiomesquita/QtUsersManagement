@@ -9,7 +9,7 @@
 \contentsline {subsection}{\numberline {1.7}Criação de objetos no \textit {MongoDB}{}}{18}{subsection.1.7}%
 \contentsline {subsection}{\numberline {1.8}Instalação do VTK}{20}{subsection.1.8}%
 \contentsline {subsection}{\numberline {1.9}Instalação do \textit {Gmsh}{}}{22}{subsection.1.9}%
-\contentsline {subsection}{\numberline {1.10}Compilação do \textsf {SIRERC}{}}{25}{subsection.1.10}%
-\contentsline {subsection}{\numberline {1.11}Criação do Instalador}{28}{subsection.1.11}%
-\contentsline {subsection}{\numberline {1.12}Instalação do \emph {WSL}}{34}{subsection.1.12}%
-\contentsline {section}{\numberline {2}INSTALAÇÃO DO AMBIENTE LINUX}{35}{section.2}%
+\contentsline {subsection}{\numberline {1.10}Compilação do \textsf {SIRERC}{}}{24}{subsection.1.10}%
+\contentsline {subsection}{\numberline {1.11}Criação do Instalador}{27}{subsection.1.11}%
+\contentsline {subsection}{\numberline {1.12}Instalação do \emph {WSL} (opcional)}{33}{subsection.1.12}%
+\contentsline {section}{\numberline {2}INSTALAÇÃO DO AMBIENTE LINUX}{34}{section.2}%

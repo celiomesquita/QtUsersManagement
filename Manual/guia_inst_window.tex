@@ -75,12 +75,16 @@
   \vhEntry{0.2.0}{04/09/2023}{André F. M. Caetano}{Nova seção para instalador.}
   \vhEntry{0.3.0}{25/09/2023}{André F. M. Caetano}{Nova seção \gmsh{}, atualização de versões.}
   \vhEntry{0.4.0}{27/04/2024}{Nicolas F. C. Granese}{Nova seção WSL, melhorias na seção compilação do código.}
-  \vhEntry{0.5.0}{01/09/2024}{A. Celio P. Mesquita}{Atualização da instalação do ambiente de desenvolvimento}
+  \vhEntry{0.5.0}{02/09/2024}{A. Celio P. Mesquita}{Atualização da instalação do ambiente de desenvolvimento}
 \end{versionhistory}
 
 \newpage
 \begin{abstract}
-	O front-end de um software de simulação deve prover uma interface de usuário intuitiva e organizada que facilite a definição dos cenários a serem simulados. \sistema{} é uma interface humano-máquina (\emph{HMI - Human-Machine Interface}) para definição de cenários em dinâmica de fluidos computacional (\textit{Computational Fluid Dynamics — CFD}). Este é o guia de instalação dos ambientes de desenvolvimentos do \sistema{}.
+	O \textit{front-end} de um software de simulação deve prover uma interface de usuário intuitiva e organizada que facilite a definição dos cenários a serem simulados.
+	
+	\sistema{} é uma interface humano-máquina (\emph{HMI - Human-Machine Interface}) para definição de cenários em dinâmica de fluidos computacional (\textit{Computational Fluid Dynamics — CFD}).
+	
+	Este é o guia de instalação dos ambientes de desenvolvimentos do \sistema{}.
 \end{abstract}
 
 
@@ -93,11 +97,11 @@
 
 O \sistema{} é uma aplicação \emph{desktop} baseada na versão \emph{open-source} do \emph{framework} \qt{}, escolhido pela sua portabilidade, capacidade de gerar aplicações multiplataforma para sistemas MS \windows{}, \linux{} e \mac{}. A linguagem de programação utilizada é C++.
 
-Este manual foi atualizado por meio das instalações em duas máquina com \textit{Windows 11 Pro}.
+Este manual foi atualizado por meio das instalações em duas máquina com \textit{Windows 11 Pro} com versões diferentes.
 
 \subsection{GitHub e LaTeX}
 
-\subsection*{GitHub}
+\subsection*{GitHub Desktop}
 
 Baixe e instale o \textit{GitHub Desktop} do endereço: \url{https://desktop.github.com/download/}
 
@@ -118,6 +122,8 @@ Primeiramente, será preciso instalar o \qt{} versão 5.15.x, padrão atual para
 
 \subsection*{Requisitos do Sistema}
 
+Há ainda, algumas linguagens de programação e ferramentas que serão utilizadas direta ou indiretamente nas compilações e no desenvolvimento do \sistema{}.
+
 \begin{itemize}
 	\item Perl
 	\item Python
@@ -128,6 +134,10 @@ Primeiramente, será preciso instalar o \qt{} versão 5.15.x, padrão atual para
 \end{itemize}
 
 \subsection*{Instalando o ambiente \textit{ActiveState}}
+
+\textit{ActiveState} é uma empresa de software que fornece distribuições de linguagens de programação \textit{open source}, como \textit{Python}, \textit{Perl}, \textit{Ruby} e \textit{Tcl}. Essas distribuições são pré-configuradas e testadas para garantir compatibilidade e desempenho em diferentes sistemas operacionais.
+
+Em resumo, \textit{ActiveState} é uma solução que simplifica o processo de desenvolvimento e implantação de aplicativos usando linguagens de programação \textit{open source}.
 
 Crie uma conta, uma organização e um projeto para cada linguagem de programação no \textit{ActiveState}. A conta poderá ser o seu e-mail e a organização o seu nome.
 
@@ -579,19 +589,16 @@ O \emph{Visualization Toolkit} (VTK) é um software multiplataforma utilizado pa
 	\item Baixe o código-fonte da versão 9.3.0 RC1 do VTK, atualmente em uso no \sistema{}, no seguinte endereço: \url{https://gitlab.kitware.com/vtk/vtk/-/archive/v9.3.0.rc1/vtk-v9.3.0.rc1.zip}.
 	\item Descompacte no diretório Downloads.
 	\item Abra o \textit{Developer Command Prompt}.
-	\begin{mdframed}
-		\begin{verbatim}
-			cd C:/Users/<seu usuário>/Downloads/
-		\end{verbatim}
-	\end{mdframed}
 \end{enumerate}
 
 
 \subsection*{Configurar o driver}
 
+Na extração, serão criados dois diretórios: {\tt vtk-v9.3.0.rc1/vtk-v9.3.0.rc}
+
 \begin{mdframed}
 	\begin{verbatim}
-		cd vtk-v9.3.0.rc1
+		cd Downloads/vtk-v9.3.0.rc1/vtk-v9.3.0.rc1
 		mkir build
 		cd build
 		
@@ -600,9 +607,18 @@ O \emph{Visualization Toolkit} (VTK) é um software multiplataforma utilizado pa
 	\end{verbatim}
 \end{mdframed}
 
+Os dois pontos no final fazem com que o comando se refira ao diretório pai.
+
 Caso o comando \textbf{cmake} não seja reconhecido, coloque este endereço no \textbf{path}
 
-{\tt C:/Program Files/CMake/bin} e repita os comandos acima.
+{\tt C:/Program Files/CMake/bin} e repita o \cmake{} acima.
+
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.95\textwidth]{images/vtk_make}}
+	\caption{VTK drivers configurados para o Visual Studio 16 2019 com sucesso.}
+	\label{fig:vtk_make}
+\end{figure}
 
 \subsection*{Compilar o driver}
 
@@ -628,6 +644,12 @@ Esse comando compilará o \textit{driver} no modo \textit{Release}, que depois s
 	\end{mdframed}
 \end{enumerate}
 
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.95\textwidth]{images/vtk_drivers}}
+	\caption{VTK drivers gerados com sucesso.}
+	\label{fig:vtk_drivers}
+\end{figure}
 
 \subsection*{Criação de Variáveis de Ambiente do VTK}
 
@@ -665,104 +687,87 @@ O \gmsh{} é um gerador de malha de elementos finitos 3D de código aberto, com 
 Seu objetivo de design é fornecer uma ferramenta de malha rápida, leve e fácil de usar com entrada paramétrica e recursos avançados de visualização. O \gmsh{} é construído em torno de quatro módulos: geometria, malha, solucionador e pós-processamento. A especificação de qualquer entrada para esses módulos é feita interativamente usando a interface gráfica do usuário ou em arquivos de texto ASCII usando a própria linguagem de \textit{script} do \gmsh{}.
 
 \begin{enumerate}
-	\item **Obtenção do código-fonte:**
-	\begin{enumerate}
-		\item Baixe o código-fonte da versão 4.11.1 do \gmsh{}, atualmente em uso no \sistema{}, no seguinte endereço: \url{https://gmsh.info/src/gmsh-4.11.1-source.tgz}.
-		\item Após o download, extraia o conteúdo do arquivo compactado para um diretório temporário no sistema.
-	\end{enumerate}
-	
-	\item **Preparação para compilação:**
-	\begin{enumerate}
-		\item Crie um diretório vazio chamado \path{build} dentro do diretório descompactado do código-fonte do \gmsh{}.
-	
-		
-		\item Execute o \cmake{} (interface visual). No campo \emph{Where is the source code}, insira o caminho do código-fonte descompactado do \gmsh{}, algo como \path{C:\Users\username\Downloads\gmsh-4.11.1-source} (vide Figura \ref{fig:gmshbuildsrc}).
-		
-		\begin{figure}[H]\centering
-			\fbox{\includegraphics[width=0.95\textwidth]{images/gmshbuildsrc.png}}
-			\caption{Configuração do diretório de código-fonte no \cmake{}}\label{fig:gmshbuildsrc}
-		\end{figure}
-		
-		\item No campo \emph{Where to build the binaries}, insira o caminho do diretório \build{} que você criou anteriormente, por exemplo: \path{C:\Users\username\Downloads\gmsh-4.11.1-source\build} (vide Figura \ref{fig:gmshbuilddest}).
-		
-		\begin{figure}[H]\centering
-			\fbox{\includegraphics[width=0.95\textwidth]{images/gmshbuilddest.png}}
-			\caption{Configuração do diretório de código-fonte e \build{} no \cmake{}}\label{fig:gmshbuilddest}
-		\end{figure}
-	\end{enumerate}
-	
-	\item **Configuração do CMake:**
-	\begin{enumerate}
-		\item Na parte inferior da tela do \cmake{}, clique no botão \keys{Configure}.
-		\item Na nova tela que se abrirá, selecione \visualstudio{} 16 2019 como o gerador de projetos e escolha a arquitetura x64 como plataforma. Em seguida, clique no botão \keys{Finish} (vide Figura \ref{fig:gmshbuildconfigure}).
-		
-		\begin{figure}[H]\centering
-			\fbox{\includegraphics[width=0.75\textwidth]{images/vs19buildconfigure.png}}
-			\caption{Definição do gerador de projeto e plataforma no \cmake{}}\label{fig:gmshbuildconfigure}
-		\end{figure}
-		
-		\item Aguarde a conclusão do processo de configuração. Isso pode levar alguns minutos até que uma lista com várias variáveis em destaque vermelho apareça.
-		\item Use o campo de busca \emph{Search} para encontrar as seguintes variáveis e configure-as conforme indicado:
-		\begin{itemize}
-			\item \textbf{ENABLE\_OPENMP} = \textbf{False}
-			\item \textbf{ENABLE\_PRIVATE\_API} = \textbf{True}
-			\item \textbf{ENABLE\_BUILD\_DYNAMIC} = \textbf{True}
-			\item \textbf{ENABLE\_TESTS} = \textbf{False}
-		\end{itemize}
-		\item Opcionalmente, utilize o campo de busca \emph{Search} para encontrar a variável \emph{CMAKE\_INSTALL\_PREFIX}. Por padrão, essa variável está configurada para \path{C:/Program Files/\gmsh{}}. Você pode manter esse valor ou alterá-lo para outro diretório de sua escolha.
-		\item Na parte inferior da tela do \cmake{}, clique no botão \keys{Configure} novamente.
-		\item Clique no botão \keys{Generate} para gerar o projeto para o \visualstudio{} 2019 no diretório \path{build}.
-		\item Aguarde a conclusão do processo de geração do projeto.
-	\end{enumerate}
-	
-	\item **Compilação e instalação no Visual Studio:**
-	\begin{enumerate}
-		\item Se o \visualstudio{} 2019 estiver corretamente instalado, clique no botão \keys{Open Project} para carregar o projeto no \visualstudio{}. Se houver problemas, você pode abrir manualmente o arquivo \emph{.sln} criado no diretório \path{build}.
-		
-		\cautionbox{
-			Se o diretório de instalação escolhido estiver em um dos diretórios protegidos do \windows{}, como \path{C:/Program Files/}, você precisará executar o \visualstudio{} como administrador para realizar a instalação. Caso contrário, ocorrerá um erro de permissão.
-		}
-		
-		\item Após o carregamento do projeto no \visualstudio{}, mude o tipo de \build{} para \emph{Release} na parte superior da interface e mantenha a arquitetura como \emph{x64} (vide Figura \ref{fig:gmshvsproject}).
-		
-		\begin{figure}[H]\centering
-			\fbox{\includegraphics[width=0.75\textwidth]{images/vs19project.png}}
-			\caption{Definição do tipo de \build{} e arquitetura no \visualstudio{}}\label{fig:gmshvsproject}
-		\end{figure}
-		
-		\item No painel direito do \visualstudio{}, localize o submódulo \emph{ALL\_BUILD}, clique com o botão direito sobre ele e selecione \emph{Compilar} ou \emph{Build} (vide Figura \ref{fig:gmshvsprojectall}).
-		
-		\begin{figure}[H]\centering
-			\fbox{\includegraphics[width=0.75\textwidth]{images/vs19projectall.png}}
-			\caption{Compilação completa \emph{ALL\_BUILD} do \gmsh{}}\label{fig:gmshvsprojectall}
-		\end{figure}
-		
-		\item Aguarde a conclusão da compilação, que pode levar algum tempo.
-		\item Após a compilação, se não houver erros, localize o item \emph{INSTALL} no painel direito, clique com o botão direito e selecione \emph{Compilar} ou \emph{Build}. Isso copiará os arquivos compilados para o diretório definido na variável \emph{CMAKE\_INSTALL\_PREFIX}.
-	\end{enumerate}
+	\item Baixe o código-fonte da versão 4.11.1 do \gmsh{}, atualmente em uso no \sistema{}, no seguinte endereço: \url{https://gmsh.info/src/gmsh-4.11.1-source.tgzp}.
+	\item Descompacte no diretório Downloads.
+	\item Abra o \textit{Developer Command Prompt}.
 \end{enumerate}
-\subsection*{Variáveis de Ambiente do \gmsh{}}
+
+\subsection*{Configurar o driver}
+
+Na extração, serão criados dois diretórios: {\tt vtk-v9.3.0.rc1/vtk-v9.3.0.rc}
+
+\begin{mdframed}
+	\begin{verbatim}
+		cd Downloads\gmsh-4.11.1-source\gmsh-4.11.1-source
+		mkir build
+		cd build
+		
+
+cmake -G "Visual Studio 16 2019" -A x64 -DCMAKE_CXX_STANDARD=17 -DCMAKE_BUILD_TYPE=Release
+ -DENABLE_OPENMP=False
+  -DENABLE_PRIVATE_API=True
+   -DENABLE_BUILD_DYNAMIC=True
+    -DENABLE_TESTS=False
+		
+	\end{verbatim}
+\end{mdframed}
+
+
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.95\textwidth]{images/gmsh_build}}
+	\caption{\gmsh{} drivers configurados para o Visual Studio 16 2019 com sucesso.}
+	\label{fig:gmsh_build}
+\end{figure}
+
+\subsection*{Compilar o driver}
+
+Agora que os arquivos de \textit{build} foram gerados, você pode iniciar a compilação do \gmsh{}. Execute o seguinte comando para compilar o projeto:
+\begin{mdframed}
+	\begin{verbatim}
+		cmake --build . --config Release 
+	\end{verbatim}
+\end{mdframed}
+
+Esse comando compilará o \textit{driver} no modo \textit{Release}, que depois será instalado em {\tt C:/Drivers/Gmsh}.
+
+\subsection*{Instalar o driver}
 
 \begin{enumerate}
-	\item **Criação das variáveis GMSH\_INC e GMSH\_LIB:**
-	\begin{enumerate}
-		\item Abra o \textit{Painel de Controle} do \windows{} e navegue até \textit{Sistema e Segurança} > \textit{Sistema} > \textit{Configurações avançadas do sistema}.
-		\item Clique em \textit{Variáveis de Ambiente...}.
-		\item Na seção \textit{Variáveis de sistema}, clique em \textit{Novo...}.
-		\item Crie uma nova variável chamada \textbf{GMSH\_INC}. O valor deve ser o caminho do diretório de \emph{headers} do GMSH. Exemplo: \path{C:\Program Files\gmsh\include}.
-		\item Em seguida, crie outra variável chamada \textbf{GMSH\_LIB}. O valor deve ser o caminho do diretório de \emph{libs} do GMSH. Exemplo: \path{C:\Program Files\gmsh\lib}.
-	\end{enumerate}
-	
-	\begin{figure}[H]\centering
-		\fbox{\includegraphics[width=0.75\textwidth]{images/gmshdirsenv.png}}
-		\caption{Criação das variáveis de ambiente \emph{GMSH\_INC} e \emph{GMSH\_LIB}}\label{fig:gmshdirsenv}
-	\end{figure}
-	
-	\item **Reinicialização do sistema:**
-	\begin{enumerate}
-		\item Faça logout e login ou reinicie o sistema operacional para que as novas variáveis sejam carregadas corretamente.
-	\end{enumerate}
+	\item Execute o seguinte comando para instalar o driver:
+	\begin{mdframed}
+		\begin{verbatim}
+			cmake --install . --config Release --prefix "C:\Drivers\Gmsh"
+		\end{verbatim}
+	\end{mdframed}
 \end{enumerate}
+
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.95\textwidth]{images/gmsh_install}}
+	\caption{\gmsh{} drivers instalados com sucesso em {\tt C:/Drivers/Gmsh}.}
+	\label{fig:gmsh_install}
+\end{figure}
+
+
+\subsection*{Variáveis de Ambiente do \gmsh{}}
+
+	\begin{enumerate}
+		\item Tecle Win + I para acessar as configurações do \windows{} e localize $variáveis\ de\ ambiente$.
+		\item Na seção \textit{Variáveis de sistema}, clique em \textit{Novo...}.
+		\item Crie uma nova variável chamada $GMSH\_INC$. O valor deve ser o caminho dos drivers do GMSH. Exemplo: \path{C:\Drivers\Gmsh\include}.
+		\item Em seguida, crie outra variável chamada $GMSH\_LIB$. Exemplo: \path{C:\Drivers\Gmsh\lib}.
+	\end{enumerate}
+	
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.85\textwidth]{images/gmsh_lib}}
+	\caption{Configuração da variável $GMSH\_LIB$.}
+	\label{fig:gmsh_lib}
+\end{figure}
+	
+Faça logout e login ou reinicie o sistema para que as novas variáveis sejam carregadas corretamente.
+
 \subsection{Compilação do \sistema{}}
 
 Neste ponto, o ambiente está pronto para compilar o código do \sistema{}. Este guia foi testado com a versão do sistema disponível na branch \emph{development} do projeto no GitHub em 25/04/2024.
@@ -998,7 +1003,7 @@ Um instalador \emph{offline} simplifica o processo de instalação ao fornecer u
 	\end{enumerate}
 \end{enumerate}
 
-\subsection{Instalação do \emph{WSL}}
+\subsection{Instalação do \emph{WSL} (opcional)}
 
 O \textit{WSL} (\textit{Windows Subsystem for Linux}) permite que desenvolvedores executem um ambiente \textit{GNU/Linux} diretamente no \windows{}, sem a necessidade de uma máquina virtual ou \textit{dual-boot}.
 

@@ -362,6 +362,18 @@ Importante ressaltar que, até agora, estivemos instalando somente a infraestrut
 
 Esta instalação precisará fazer o download de muitos arquivos e a sua instalação. Portanto será bastante demorada.
 
+Foi preciso adicionar estas duas entradas no \path{CMakeLists.txt}:
+
+\begin{mdframed}
+	\begin{verbatim}
+set(CMAKE_GENERATOR "Visual Studio 16 2019")
+set(Qt5Charts_DIR "C:/Qt/5.15.2/winrt_x86_msvc2019/lib/cmake/Qt5Charts")
+	\end{verbatim}
+\end{mdframed}
+
+Ajuste o caminho do \path{.cmake} do \path{Qt5Charts_DIR} conforme a sua instalação.
+
+
 \subsection{Instalação do \mongo{}}
 
 \cautionbox{\color{red}"Sub judice"}
@@ -495,11 +507,12 @@ Na extração, serão criados dois diretórios: {\tt vtk-v9.3.0.rc1/vtk-v9.3.0.r
 
 \begin{mdframed}
 	\begin{verbatim}
-		cd Downloads/vtk-v9.3.0.rc1/vtk-v9.3.0.rc1
+		cd Downloads/vtk-v9.3.0.rc1
 		mkir build
 		cd build
 		
 		cmake -G "Visual Studio 16 2019" -A x64 -DCMAKE_CXX_STANDARD=17
+		 -DVTK_GROUP_ENABLE_Qt=YES
 		 -DCMAKE_BUILD_TYPE=Release ..
 	\end{verbatim}
 \end{mdframed}
@@ -512,9 +525,9 @@ Caso o comando \textbf{cmake} não seja reconhecido, coloque este endereço no \
 
 \begin{figure}[H]
 	\centering
-	\fbox{\includegraphics[width=0.95\textwidth]{images/vtk_make}}
+	\fbox{\includegraphics[width=0.95\textwidth]{images/vtk_build}}
 	\caption{VTK drivers configurados para o Visual Studio 16 2019 com sucesso.}
-	\label{fig:vtk_make}
+	\label{fig:vtk_build}
 \end{figure}
 
 \subsubsection{Compilar o driver}
@@ -584,22 +597,22 @@ O \gmsh{} é um gerador de malha de elementos finitos 3D de código aberto, com 
 Seu objetivo de design é fornecer uma ferramenta de malha rápida, leve e fácil de usar com entrada paramétrica e recursos avançados de visualização. O \gmsh{} é construído em torno de quatro módulos: geometria, malha, solucionador e pós-processamento. A especificação de qualquer entrada para esses módulos é feita interativamente usando a interface gráfica do usuário ou em arquivos de texto ASCII usando a própria linguagem de \textit{script} do \gmsh{}.
 
 \begin{enumerate}
-	\item Baixe o código-fonte da versão 4.11.1 do \gmsh{}, atualmente em uso no \sistema{}, no seguinte endereço: \url{https://gmsh.info/src/gmsh-4.11.1-source.tgzp}.
+	\item Baixe o código-fonte da versão 4.11.1 do \gmsh{}, atualmente em uso no \sistema{}, no seguinte endereço: \url{https://gmsh.info/src/gmsh-4.11.1-source.tgz}.
 	\item Descompacte no diretório Downloads.
 	\item Abra o \textit{Developer Command Prompt}.
 \end{enumerate}
 
 \subsubsection{Configurar o driver}
 
-Na extração, serão criados dois diretórios: {\tt vtk-v9.3.0.rc1/vtk-v9.3.0.rc}
-
 \cautionbox{
 Copie e cole no terminal as linhas do comando do \cmake{}, uma a uma, separadas por um espaço, antes de executar.
 }
+
+Lembre-se que os dois pontos da última linha são para o comando \cmake{} ler o diretório pai.
 \begin{mdframed}
 	\begin{verbatim}
-		cd Downloads\gmsh-4.11.1-source\gmsh-4.11.1-source
-		mkir build
+		cd Downloads/gmsh-4.11.1-source
+		mkdir build
 		cd build
 		
 
@@ -608,8 +621,7 @@ cmake -G "Visual Studio 16 2019" -A x64 -DCMAKE_CXX_STANDARD=17
 		-DENABLE_OPENMP=False
 			-DENABLE_PRIVATE_API=True
 				-DENABLE_BUILD_DYNAMIC=True
-					-DENABLE_TESTS=False
-		
+					-DENABLE_TESTS=False ..
 	\end{verbatim}
 \end{mdframed}
 
@@ -630,7 +642,16 @@ Agora que os arquivos de \textit{build} foram gerados, você pode iniciar a comp
 	\end{verbatim}
 \end{mdframed}
 
+Poderá haver "Warnings" na cor amarela ou "Errors" na cor vermelha durante a compilação do \gmsh{}.
+
 Esse comando compilará o \textit{driver} no modo \textit{Release}, que depois será instalado em {\tt C:/Drivers/Gmsh}.
+
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.95\textwidth]{images/gmsh_compile}}
+	\caption{\gmsh{} drivers compilados para o Visual Studio 16 2019 com "warnings".}
+	\label{fig:gmsh_compile}
+\end{figure}
 
 \subsubsection{Instalar o driver}
 

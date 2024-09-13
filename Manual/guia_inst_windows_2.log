@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.3.20)  11 SEP 2024 16:30
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.3.20)  11 SEP 2024 19:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1287,7 +1287,7 @@ Package pdftex.def Info: images/qt_wait_inst_finish.png  used on input line 356
 .
 (pdftex.def)             Requested size: 430.31812pt x 227.97183pt.
  [12 <./images/qt_mark_read.png> <./images/qt_wait_inst_finish.png>]
-Overfull \hbox (1.26738pt too wide) in paragraph at lines 375--376
+Overfull \hbox (1.26738pt too wide) in paragraph at lines 387--388
 []\T1/lmr/m/n/10.95 (-20) Baixe e ins-tale o \T1/lmr/m/it/10.95 (-20) Mon-goDB 
 \T1/lmr/m/n/10.95 (-20) a par-tir do en-de-reço: [][]$\T1/lmtt/m/n/10.95 https 
 : / / www . mongodb . com / try / download /
@@ -1296,11 +1296,11 @@ Overfull \hbox (1.26738pt too wide) in paragraph at lines 375--376
 <images/mongodb_download_2.png, id=325, 564.60938pt x 312.41719pt>
 File: images/mongodb_download_2.png Graphic file (type png)
 <use images/mongodb_download_2.png>
-Package pdftex.def Info: images/mongodb_download_2.png  used on input line 379.
+Package pdftex.def Info: images/mongodb_download_2.png  used on input line 391.
 
 (pdftex.def)             Requested size: 294.42636pt x 162.9155pt.
 [13 <./images/mongodb_download_2.png>]
-Overfull \hbox (30.73993pt too wide) in paragraph at lines 443--444
+Overfull \hbox (30.73993pt too wide) in paragraph at lines 455--456
 []\T1/lmr/m/n/10.95 (-20) Agora os ar-qui-vos de-vem es-tar cor-re-ta-mente ins
 -ta-la-dos no di-re-tó-rio \T1/lmtt/m/n/10.95 C:/Drivers/mongo-cxx-driver\T1/lm
 r/m/n/10.95 (-20) .
@@ -1309,226 +1309,223 @@ r/m/n/10.95 (-20) .
 <images/mongodb_drivers.png, id=336, 299.9205pt x 221.628pt>
 File: images/mongodb_drivers.png Graphic file (type png)
 <use images/mongodb_drivers.png>
-Package pdftex.def Info: images/mongodb_drivers.png  used on input line 447.
+Package pdftex.def Info: images/mongodb_drivers.png  used on input line 459.
 (pdftex.def)             Requested size: 249.13371pt x 184.10675pt.
 <images/mongo_compass.png, id=337, 754.61925pt x 410.7345pt>
 File: images/mongo_compass.png Graphic file (type png)
 <use images/mongo_compass.png>
-Package pdftex.def Info: images/mongo_compass.png  used on input line 456.
+Package pdftex.def Info: images/mongo_compass.png  used on input line 468.
 (pdftex.def)             Requested size: 430.31812pt x 234.22136pt.
 [14 <./images/mongodb_drivers.png>] [15{c:/texlive/2024/texmf-dist/fonts/enc/dv
 ips/lm/lm-mathit.enc} <./images/mongo_compass.png>]
-<images/vtk_make.png, id=356, 715.17188pt x 137.01187pt>
-File: images/vtk_make.png Graphic file (type png)
-<use images/vtk_make.png>
-Package pdftex.def Info: images/vtk_make.png  used on input line 515.
-(pdftex.def)             Requested size: 430.31812pt x 82.4398pt.
+<images/vtk_build.png, id=356, 615.4995pt x 193.9245pt>
+File: images/vtk_build.png Graphic file (type png)
+<use images/vtk_build.png>
+Package pdftex.def Info: images/vtk_build.png  used on input line 528.
+(pdftex.def)             Requested size: 430.31812pt x 135.58347pt.
+ [16 <./images/vtk_build.png>]
+Package mdframed Info: Not enough space on this page on input line 540.
 
-Overfull \hbox (14.58011pt too wide) in paragraph at lines 529--530
+Overfull \hbox (14.58011pt too wide) in paragraph at lines 542--543
 []\T1/lmr/m/n/10.95 (-20) Esse co-mando com-pi-lará o \T1/lmr/m/it/10.95 (-20) 
 dri-ver \T1/lmr/m/n/10.95 (-20) no modo \T1/lmr/m/it/10.95 (-20) Re-le-ase\T1/l
 mr/m/n/10.95 (-20) , que de-pois será ins-ta-lado em \T1/lmtt/m/n/10.95 C:/Driv
 ers/VTK\T1/lmr/m/n/10.95 (-20) . 
  []
 
-[16 <./images/vtk_make.png>]
 <images/vtk_drivers.png, id=369, 596.98032pt x 177.66376pt>
 File: images/vtk_drivers.png Graphic file (type png)
 <use images/vtk_drivers.png>
-Package pdftex.def Info: images/vtk_drivers.png  used on input line 546.
+Package pdftex.def Info: images/vtk_drivers.png  used on input line 559.
 (pdftex.def)             Requested size: 430.31812pt x 128.06418pt.
- [17 <./images/vtk_drivers.png>]
+[17 <./images/vtk_drivers.png>]
 LaTeX Font Info:    Font shape `T1/lmss/bx/it' in size <10.95> not available
-(Font)              Font shape `T1/lmss/bx/sl' tried instead on input line 598.
+(Font)              Font shape `T1/lmss/bx/sl' tried instead on input line 609.
 
 <images/gmsh_build.png, id=389, 563.10374pt x 236.38312pt>
 File: images/gmsh_build.png Graphic file (type png)
 <use images/gmsh_build.png>
-Package pdftex.def Info: images/gmsh_build.png  used on input line 619.
+Package pdftex.def Info: images/gmsh_build.png  used on input line 631.
 (pdftex.def)             Requested size: 430.31812pt x 180.64133pt.
  [18]
-Overfull \hbox (20.32884pt too wide) in paragraph at lines 633--634
+Overfull \hbox (20.32884pt too wide) in paragraph at lines 647--648
 []\T1/lmr/m/n/10.95 (-20) Esse co-mando com-pi-lará o \T1/lmr/m/it/10.95 (-20) 
 dri-ver \T1/lmr/m/n/10.95 (-20) no modo \T1/lmr/m/it/10.95 (-20) Re-le-ase\T1/l
 mr/m/n/10.95 (-20) , que de-pois será ins-ta-lado em \T1/lmtt/m/n/10.95 C:/Driv
 ers/Gmsh\T1/lmr/m/n/10.95 (-20) . 
  []
 
-<images/gmsh_install.png, id=398, 587.19376pt x 189.70876pt>
+<images/gmsh_compile.png, id=398, 875.06924pt x 254.1495pt>
+File: images/gmsh_compile.png Graphic file (type png)
+<use images/gmsh_compile.png>
+Package pdftex.def Info: images/gmsh_compile.png  used on input line 651.
+(pdftex.def)             Requested size: 430.31812pt x 124.97643pt.
+<images/gmsh_install.png, id=399, 587.19376pt x 189.70876pt>
 File: images/gmsh_install.png Graphic file (type png)
 <use images/gmsh_install.png>
-Package pdftex.def Info: images/gmsh_install.png  used on input line 648.
+Package pdftex.def Info: images/gmsh_install.png  used on input line 669.
 (pdftex.def)             Requested size: 430.31812pt x 139.02464pt.
+[19 <./images/gmsh_build.png> <./images/gmsh_compile.png>]
 
-LaTeX Warning: Command \' invalid in math mode on input line 657.
+LaTeX Warning: Command \' invalid in math mode on input line 678.
 
-[19{c:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc} <./images/gmsh_bui
-ld.png> <./images/gmsh_install.png>]
-<images/gmsh_lib.png, id=412, 453.94594pt x 371.13657pt>
+<images/gmsh_lib.png, id=410, 453.94594pt x 371.13657pt>
 File: images/gmsh_lib.png Graphic file (type png)
 <use images/gmsh_lib.png>
-Package pdftex.def Info: images/gmsh_lib.png  used on input line 665.
+Package pdftex.def Info: images/gmsh_lib.png  used on input line 686.
 (pdftex.def)             Requested size: 385.02547pt x 314.79366pt.
- [20 <./images/gmsh_lib.png>]
-<images/qtcreatorver.png, id=430, 351.56343pt x 263.48438pt>
+[20{c:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc} <./images/gmsh_ins
+tall.png> <./images/gmsh_lib.png>]
+<images/qtcreatorver.png, id=426, 351.56343pt x 263.48438pt>
 File: images/qtcreatorver.png Graphic file (type png)
 <use images/qtcreatorver.png>
-Package pdftex.def Info: images/qtcreatorver.png  used on input line 698.
+Package pdftex.def Info: images/qtcreatorver.png  used on input line 719.
 (pdftex.def)             Requested size: 339.72592pt x 254.6106pt.
-<images/qtcreatoropen.png, id=431, 96.36pt x 22.28325pt>
+<images/qtcreatoropen.png, id=427, 96.36pt x 22.28325pt>
 File: images/qtcreatoropen.png Graphic file (type png)
 <use images/qtcreatoropen.png>
-Package pdftex.def Info: images/qtcreatoropen.png  used on input line 702.
+Package pdftex.def Info: images/qtcreatoropen.png  used on input line 723.
 (pdftex.def)             Requested size: 71.03178pt x 16.42499pt.
-<images/qtcreatoralert.png, id=433, 302.3295pt x 162.00525pt>
+<images/qtcreatoralert.png, id=429, 302.3295pt x 162.00525pt>
 File: images/qtcreatoralert.png Graphic file (type png)
 <use images/qtcreatoralert.png>
-Package pdftex.def Info: images/qtcreatoralert.png  used on input line 707.
+Package pdftex.def Info: images/qtcreatoralert.png  used on input line 728.
 (pdftex.def)             Requested size: 249.13371pt x 133.49776pt.
-<images/qtcreatorconf.png, id=435, 255.95625pt x 106.14656pt>
+ [21 <./images/qtcreatorver.png> <./images/qtcreatoropen.png>]
+<images/qtcreatorconf.png, id=449, 255.95625pt x 106.14656pt>
 File: images/qtcreatorconf.png Graphic file (type png)
 <use images/qtcreatorconf.png>
-Package pdftex.def Info: images/qtcreatorconf.png  used on input line 714.
+Package pdftex.def Info: images/qtcreatorconf.png  used on input line 735.
 (pdftex.def)             Requested size: 249.13371pt x 103.31674pt.
- [21 <./images/qtcreatorver.png> <./images/qtcreatoropen.png> <./images/qtcreat
-oralert.png>]
-<images/qtcreatorsirerc.png, id=453, 198.14024pt x 275.8305pt>
+<images/qtcreatorsirerc.png, id=451, 198.14024pt x 275.8305pt>
 File: images/qtcreatorsirerc.png Graphic file (type png)
 <use images/qtcreatorsirerc.png>
-Package pdftex.def Info: images/qtcreatorsirerc.png  used on input line 724.
+Package pdftex.def Info: images/qtcreatorsirerc.png  used on input line 745.
 (pdftex.def)             Requested size: 158.54152pt x 220.7194pt.
-<images/qtcreatorrelease.png, id=455, 205.9695pt x 198.7425pt>
+ [22 <./images/qtcreatoralert.png> <./images/qtcreatorconf.png>]
+<images/qtcreatorrelease.png, id=466, 205.9695pt x 198.7425pt>
 File: images/qtcreatorrelease.png Graphic file (type png)
 <use images/qtcreatorrelease.png>
-Package pdftex.def Info: images/qtcreatorrelease.png  used on input line 731.
+Package pdftex.def Info: images/qtcreatorrelease.png  used on input line 752.
 (pdftex.def)             Requested size: 203.83417pt x 196.67986pt.
-
-[22 <./images/qtcreatorconf.png> <./images/qtcreatorsirerc.png>]
 <images/sirercrun.png, id=467, 42.75975pt x 30.1125pt>
 File: images/sirercrun.png Graphic file (type png)
 <use images/sirercrun.png>
-Package pdftex.def Info: images/sirercrun.png  used on input line 738.
+Package pdftex.def Info: images/sirercrun.png  used on input line 759.
 (pdftex.def)             Requested size: 23.32414pt x 16.42499pt.
 <images/sirerc.png, id=469, 1927.2pt x 777.65532pt>
 File: images/sirerc.png Graphic file (type png)
 <use images/sirerc.png>
-Package pdftex.def Info: images/sirerc.png  used on input line 741.
+Package pdftex.def Info: images/sirerc.png  used on input line 762.
 (pdftex.def)             Requested size: 430.31812pt x 173.6359pt.
-<images/qtinstallerframework.png, id=471, 573.342pt x 384.83775pt>
+ [23 <./images/qtcreatorsirerc.png> <./images/qtcreatorrelease.png> <./images/s
+irercrun.png>]
+<images/qtinstallerframework.png, id=482, 573.342pt x 384.83775pt>
 File: images/qtinstallerframework.png Graphic file (type png)
 <use images/qtinstallerframework.png>
-Package pdftex.def Info: images/qtinstallerframework.png  used on input line 75
-7.
+Package pdftex.def Info: images/qtinstallerframework.png  used on input line 77
+8.
 (pdftex.def)             Requested size: 317.07614pt x 212.83585pt.
- [23 <./images/qtcreatorrelease.png> <./images/sirercrun.png> <./images/sirerc.
-png>]
-Overfull \hbox (4.55525pt too wide) in paragraph at lines 764--765
+
+Overfull \hbox (4.55525pt too wide) in paragraph at lines 785--786
 []\T1/lmr/m/n/10.95 (-20) Após a ins-ta-la-ção, o QtIns-tal-ler-Fra-mework es-t
 ará dis-po-ní-vel no di-re-tó-rio $\T1/lmtt/m/n/10.95 ${QtDirectory} /
  []
 
-<images/sirercinstallerdir.png, id=485, 499.26524pt x 86.12175pt>
+[24 <./images/sirerc.png> <./images/qtinstallerframework.png>]
+<images/sirercinstallerdir.png, id=495, 499.26524pt x 86.12175pt>
 File: images/sirercinstallerdir.png Graphic file (type png)
 <use images/sirercinstallerdir.png>
-Package pdftex.def Info: images/sirercinstallerdir.png  used on input line 769.
+Package pdftex.def Info: images/sirercinstallerdir.png  used on input line 790.
 
 (pdftex.def)             Requested size: 339.72592pt x 58.60274pt.
-[24 <./images/qtinstallerframework.png> <./images/sirercinstallerdir.png>]
-<images/sirercinstallerpackage.png, id=512, 417.35925pt x 75.8835pt>
+<images/sirercinstallerpackage.png, id=498, 417.35925pt x 75.8835pt>
 File: images/sirercinstallerpackage.png Graphic file (type png)
 <use images/sirercinstallerpackage.png>
 Package pdftex.def Info: images/sirercinstallerpackage.png  used on input line 
-799.
+820.
 (pdftex.def)             Requested size: 339.72592pt x 61.7698pt.
-<images/sirercpackagedirs.png, id=514, 472.164pt x 100.57574pt>
+<images/sirercpackagedirs.png, id=500, 472.164pt x 100.57574pt>
 File: images/sirercpackagedirs.png Graphic file (type png)
 <use images/sirercpackagedirs.png>
-Package pdftex.def Info: images/sirercpackagedirs.png  used on input line 806.
+Package pdftex.def Info: images/sirercpackagedirs.png  used on input line 827.
 (pdftex.def)             Requested size: 339.72592pt x 72.36536pt.
-
-Overfull \hbox (11.19373pt too wide) in paragraph at lines 822--823
+ [25 <./images/sirercinstallerdir.png> <./images/sirercinstallerpackage.png>]
+Overfull \hbox (11.19373pt too wide) in paragraph at lines 843--844
 [][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (64.64166pt too wide) in paragraph at lines 829--830
+Overfull \hbox (64.64166pt too wide) in paragraph at lines 850--851
 \T1/lmtt/m/n/10.95 qtinstallerframework / ifw-[]component-[]description . html 
 # package-[]information-[]file-[]syntax$[][]\T1/lmr/m/n/10.95 (-20) .
  []
 
-<images/sirercpackagemeta.png, id=518, 495.65175pt x 105.39375pt>
+<images/sirercpackagemeta.png, id=532, 495.65175pt x 105.39375pt>
 File: images/sirercpackagemeta.png Graphic file (type png)
 <use images/sirercpackagemeta.png>
-Package pdftex.def Info: images/sirercpackagemeta.png  used on input line 834.
+Package pdftex.def Info: images/sirercpackagemeta.png  used on input line 855.
 (pdftex.def)             Requested size: 339.72592pt x 72.2409pt.
-[25 <./images/sirercinstallerpackage.png> <./images/sirercpackagedirs.png>]
-<images/sirercdatawin64.png, id=548, 496.254pt x 102.3825pt>
+<images/sirercdatawin64.png, id=535, 496.254pt x 102.3825pt>
 File: images/sirercdatawin64.png Graphic file (type png)
 <use images/sirercdatawin64.png>
-Package pdftex.def Info: images/sirercdatawin64.png  used on input line 844.
+Package pdftex.def Info: images/sirercdatawin64.png  used on input line 865.
 (pdftex.def)             Requested size: 339.72592pt x 70.0894pt.
-<images/sirercdataexe.png, id=549, 536.60475pt x 100.57574pt>
+[26 <./images/sirercpackagedirs.png> <./images/sirercpackagemeta.png>]
+<images/sirercdataexe.png, id=562, 536.60475pt x 100.57574pt>
 File: images/sirercdataexe.png Graphic file (type png)
 <use images/sirercdataexe.png>
-Package pdftex.def Info: images/sirercdataexe.png  used on input line 849.
+Package pdftex.def Info: images/sirercdataexe.png  used on input line 870.
 (pdftex.def)             Requested size: 339.72592pt x 63.67458pt.
 
-Overfull \hbox (124.52122pt too wide) in paragraph at lines 859--859
+Overfull \hbox (124.52122pt too wide) in paragraph at lines 880--880
  []   \T1/lmtt/m/n/10.95 ${QtDirectory}\5.15.2\msvc2015_64\bin\windeployqt.exe 
 Sirerc_Project.exe --compiler-runtime[] 
  []
 
-<images/sirercdeploy.png, id=551, 557.6835pt x 546.24075pt>
+<images/sirercdeploy.png, id=564, 557.6835pt x 546.24075pt>
 File: images/sirercdeploy.png Graphic file (type png)
 <use images/sirercdeploy.png>
-Package pdftex.def Info: images/sirercdeploy.png  used on input line 864.
+Package pdftex.def Info: images/sirercdeploy.png  used on input line 885.
 (pdftex.def)             Requested size: 339.72592pt x 332.76462pt.
-[26 <./images/sirercpackagemeta.png> <./images/sirercdatawin64.png> <./images/s
-irercdataexe.png>]
-<images/deptool.png, id=569, 595.62524pt x 632.3625pt>
+[27 <./images/sirercdatawin64.png> <./images/sirercdataexe.png>]
+<images/deptool.png, id=577, 595.62524pt x 632.3625pt>
 File: images/deptool.png Graphic file (type png)
 <use images/deptool.png>
-Package pdftex.def Info: images/deptool.png  used on input line 875.
+Package pdftex.def Info: images/deptool.png  used on input line 896.
 (pdftex.def)             Requested size: 339.72592pt x 360.6916pt.
- [27 <./images/sirercdeploy.png>]
-Overfull \hbox (291.2345pt too wide) in paragraph at lines 891--891
+ [28 <./images/sirercdeploy.png>]
+Overfull \hbox (291.2345pt too wide) in paragraph at lines 912--912
  []   \T1/lmtt/m/n/10.95 ${QtDirectory}\Tools\QtInstallerFramework\4.6\bin\bina
 rycreator.exe -c config\config.xml -p packages\ -f SirercInstaller[] 
  []
 
-<images/sirercinstallerfinish.png, id=582, 479.391pt x 131.2905pt>
+<images/sirercinstallerfinish.png, id=589, 479.391pt x 131.2905pt>
 File: images/sirercinstallerfinish.png Graphic file (type png)
 <use images/sirercinstallerfinish.png>
-Package pdftex.def Info: images/sirercinstallerfinish.png  used on input line 8
-96.
+Package pdftex.def Info: images/sirercinstallerfinish.png  used on input line 9
+17.
 (pdftex.def)             Requested size: 339.72592pt x 93.0426pt.
-[28 <./images/deptool.png>]
-<images/sirercinstaller.png, id=594, 483.0045pt x 246.9225pt>
+[29 <./images/deptool.png>]
+<images/sirercinstaller.png, id=601, 483.0045pt x 246.9225pt>
 File: images/sirercinstaller.png Graphic file (type png)
 <use images/sirercinstaller.png>
-Package pdftex.def Info: images/sirercinstaller.png  used on input line 901.
+Package pdftex.def Info: images/sirercinstaller.png  used on input line 922.
 (pdftex.def)             Requested size: 339.72592pt x 173.67345pt.
- [29 <./images/sirercinstallerfinish.png> <./images/sirercinstaller.PNG>] (./gu
+ [30 <./images/sirercinstallerfinish.png> <./images/sirercinstaller.PNG>] (./gu
 ia_inst_windows_2.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-03-14>
  ***********
-
-
-Package rerunfilecheck Warning: File `guia_inst_windows_2.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `guia_inst_windows_2.out':
-(rerunfilecheck)             Before: A81F2423F2E3D32DEDB2A901E15D069E;5216
-(rerunfilecheck)             After:  A6CAD16677CFC493705B6D922F21CBDD;5189.
+Package rerunfilecheck Info: File `guia_inst_windows_2.out' has not changed.
+(rerunfilecheck)             Checksum: A6CAD16677CFC493705B6D922F21CBDD;5189.
  ) 
 Here is how much of TeX's memory you used:
- 32877 strings out of 474104
- 633425 string characters out of 5747502
- 1951496 words of memory out of 5000000
- 54214 multiletter control sequences out of 15000+600000
+ 32894 strings out of 474104
+ 633844 string characters out of 5747502
+ 1950496 words of memory out of 5000000
+ 54229 multiletter control sequences out of 15000+600000
  653402 words of font info for 192 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,9n,101p,1016b,1352s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1543,10 +1540,10 @@ fonts/type1/public/lm/lmri10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public
 -dist/fonts/type1/public/lm/lmssbo10.pfb><c:/texlive/2024/texmf-dist/fonts/type
 1/public/lm/lmssbx10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmtt
 10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on guia_inst_windows_2.pdf (29 pages, 1283216 bytes).
+Output written on guia_inst_windows_2.pdf (30 pages, 1338569 bytes).
 PDF statistics:
- 718 PDF objects out of 1000 (max. 8388607)
- 563 compressed objects within 6 object streams
- 227 named destinations out of 1000 (max. 500000)
- 55314 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 726 PDF objects out of 1000 (max. 8388607)
+ 568 compressed objects within 6 object streams
+ 229 named destinations out of 1000 (max. 500000)
+ 55319 words of extra memory for PDF output out of 61914 (max. 10000000)
 

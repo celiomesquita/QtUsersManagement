@@ -1,7 +1,7 @@
 #include "../Hash/HashUtils.h"     // Include the file where sha256 is declared
 #include "../build/ui_LoginDialog.h"  // Include the generated header
 #include "../Login/LoginDialog.h"
-#include "../Database/UserDB.h"
+#include "../Database/Database.h"
 
 #include <QSqlDatabase>    // Include for QSqlDatabase
 #include <QSqlQuery>       // Include for QSqlQuery
@@ -14,11 +14,11 @@ LoginDialog::LoginDialog(QWidget *parent)
 {
     ui->setupUi(this);  // Set up the UI as defined in the .ui file
 
-    setWindowTitle("Login");
+    setWindowTitle("Acesso ao Sistema");
     setModal(true);
 
     // Connect the login button click signal to the appropriate slot
-    connect(ui->loginBtn, &QPushButton::clicked, this, &LoginDialog::onloginBtnClicked);
+    connect(ui->LoginBtn, &QPushButton::clicked, this, &LoginDialog::onLoginBtnClicked);
 }
 
 LoginDialog::~LoginDialog()
@@ -36,7 +36,7 @@ bool LoginDialog::isAdmin() const
     return m_isAdmin;
 }
 
-void LoginDialog::onloginBtnClicked()
+void LoginDialog::onLoginBtnClicked()
 {
     QString username = ui->usernameEdit->text();
     QString password = ui->passwordEdit->text();
@@ -51,7 +51,7 @@ void LoginDialog::onloginBtnClicked()
     QSqlDatabase db = Database::getDatabase();
     if (!db.isOpen()) {
         qDebug() << "Database is not open!";
-        ui->statusLabel->setText("Erro ao tentar entrar.");
+        ui->statusLabel->setText("Erro ao tentar acessar o sistema.");
         return;
     }
 
@@ -64,7 +64,7 @@ void LoginDialog::onloginBtnClicked()
 
     if (!query.exec()) {
         qDebug() << "Failed to execute query:" << query.lastError().text();
-        ui->statusLabel->setText("Erro ao tentar entrar.");
+        ui->statusLabel->setText("Erro ao tentar acessar o sistema.");
         return;
     }
 

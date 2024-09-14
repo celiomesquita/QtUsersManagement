@@ -149,25 +149,25 @@ The dialog is modal, meaning it blocks interaction with other windows until the 
 
 The UI elements are laid out vertically using a QVBoxLayout, ensuring a simple and user-friendly interface.
 
-A signal-slot connection is established to handle the login button click event (onloginBtnClicked).
+A signal-slot connection is established to handle the login button click event (onLoginBtnClicked).
 
 **UI Elements:**
 
 QLineEdit: Used for input fields (usernameEdit, passwordEdit), with passwordEdit configured to mask the password input (EchoMode::Password).
 
-QPushButton: Used to trigger the login process (loginBtn).
+QPushButton: Used to trigger the login process (LoginBtn).
 
 QLabel: Used to display status messages or errors (statusLabel).
 
 **Signal-Slot Connections:**
 
-The connection of the login button to the onloginBtnClicked slot indicates that the actual login logic (e.g., authentication check) is implemented within this slot.
+The connection of the login button to the onLoginBtnClicked slot indicates that the actual login logic (e.g., authentication check) is implemented within this slot.
 
 **Feedback:**
 
 **User Feedback:** The use of QLabel for status messages is effective for providing immediate feedback to users, such as "Invalid username or password." Ensure that the messages are clear and informative to guide the user appropriately.
 
-**Signal-Slot Usage:** The signal-slot mechanism is correctly employed to handle user interaction. It’s essential to ensure that the onloginBtnClicked slot efficiently handles the authentication logic and that it securely processes user credentials.
+**Signal-Slot Usage:** The signal-slot mechanism is correctly employed to handle user interaction. It’s essential to ensure that the onLoginBtnClicked slot efficiently handles the authentication logic and that it securely processes user credentials.
 
 **UI Simplicity:** The dialog's UI is simple and focused, which is ideal for a login screen. Simplicity in design reduces user errors and improves the overall user experience.
 

@@ -73,7 +73,7 @@
      <string>Janela principal do Sirerc - Petrobrás</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="openProjectManager">
+   <widget class="QPushButton" name="ProjManBtn">
     <property name="geometry">
      <rect>
       <x>280</x>

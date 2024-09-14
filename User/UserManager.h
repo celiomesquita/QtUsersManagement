@@ -1,6 +1,7 @@
 #ifndef USERMANAGEMENTDIALOG_H
 #define USERMANAGEMENTDIALOG_H
 
+#include "../Database/Database.h"
 #include <QDialog>
 #include <QSqlDatabase>
 
@@ -19,12 +20,17 @@ public:
     ~UserManagementDialog();
 
 private slots:
-    void onEditUser();
     void loadUsers();
     void resetFields();
+
+    void onEditUser();
     void onAddOrUpdateUser();
     void onDeleteUser();
     void onShowPasswordHashToggled(bool checked);
+
+    bool AddUser(const std::string& username, const std::string& hashedPassword, int isAdmin);
+    bool UpdateUser(int id, const std::string& hashedPassword, int isAdmin, bool updatingPassword);
+    bool DeleteUser(int id);
 
 private:
     void initializeUserTable(); // Declare the method for initializing the table

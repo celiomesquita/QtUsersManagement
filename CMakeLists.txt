@@ -16,32 +16,32 @@ find_package(QT NAMES Qt5 REQUIRED COMPONENTS Widgets Sql)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql)
 
 # Add a definition for the database path
-add_definitions(-DDB_PATH=\"${CMAKE_SOURCE_DIR}/Database/users.db\")
+add_definitions(-DDB_PATH=\"${CMAKE_SOURCE_DIR}/Database/Database.db\")
 
 # Source files for the project
 set(PROJECT_SOURCES
-    Managers/main.cpp
-    Managers/MainWindow.cpp
-    Managers/MainWindow.h
-    Managers/MainWindow.ui
+    Main/main.cpp
+    Main/MainWindow.cpp
+    Main/MainWindow.h
+    Main/MainWindow.ui
 
     Database/Database.cpp
     Database/Database.h
-    Database/UserDB.cpp
-    Database/UserDB.h
-
-    Hash/HashUtils.cpp
-    Hash/HashUtils.h
 
     Login/LoginDialog.cpp
     Login/LoginDialog.h
     Login/LoginDialog.ui
 
-    Management/UserManagementDialog.cpp
-    Management/UserManagementDialog.h
-    Management/UserManagementDialog.ui
+    User/UserManager.cpp
+    User/UserManager.h
+    User/UserManager.ui
 
-    Project
+    Hash/HashUtils.cpp
+    Hash/HashUtils.h
+
+    Project/ProjectManager.h
+    Project/ProjectManager.cpp
+    Project/ProjectManager.ui
 )
 
 # Handle different Qt versions

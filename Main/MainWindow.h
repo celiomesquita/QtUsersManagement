@@ -1,7 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "../Project/project.h"
+// #include "../Project/ProjectManager.h"
 #include <QMainWindow>
 #include <QSqlDatabase>
 
@@ -18,15 +18,15 @@ public:
     ~MainWindow();
 
 private slots:
-    void onUsersManBtnClicked();  // Slot to handle the button click
-    void openProjectManager();
+    void onUsersManBtnClicked();
+    void onProjManBtnClicked();
 
 private:
     Ui::MainWindow *ui;
     QString loggedInUser;
     bool isAdmin;
-    QSqlDatabase db;  // Assuming you have a database connection here
-    ProjectManager *projectManager;
+    QSqlDatabase& db; 
+    // ProjectManager *projectManager;
 };
 
 #endif // MAINWINDOW_H

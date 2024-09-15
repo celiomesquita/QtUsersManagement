@@ -6,16 +6,16 @@
 #include <QPushButton>
 
 namespace Ui {
-class ProjectManagerDialog;
+class ProjectManager;
 }
 
-class ProjectManagerDialog : public QDialog
+class ProjectManager : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit ProjectManagerDialog(QSqlDatabase& db, QString Name, QString Config, QWidget *parent = nullptr);
-    ~ProjectManagerDialog();
+    explicit ProjectManager(QSqlDatabase& db, QString Name, QString Config, QWidget *parent = nullptr);
+    ~ProjectManager();
 
 private slots:
     void onAddOrUpdateProject();  // Slot for adding or updating a project
@@ -23,7 +23,7 @@ private slots:
     void onEditProject();         // Slot for editing an existing project
 
 private:
-    Ui::ProjectManagerDialog *ui;
+    Ui::ProjectManager *ui;
     QSqlDatabase& db;              // Reference to the SQLite database
     QString ProjectIDBeingEdited;  // Stores the ID of the project being edited
 

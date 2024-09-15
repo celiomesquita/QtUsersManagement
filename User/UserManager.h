@@ -1,23 +1,22 @@
-#ifndef USERMANAGEMENTDIALOG_H
-#define USERMANAGEMENTDIALOG_H
+#ifndef UserManager_H
+#define UserManager_H
 
-#include "../Database/Database.h"
 #include <QDialog>
 #include <QSqlDatabase>
 
 namespace Ui {
-class UserManagementDialog;
+class UserManager;
 }
 
-class UserManagementDialog : public QDialog
+class UserManager : public QDialog
 {
     Q_OBJECT
 
 public:
     enum class UserRole { Admin, User };
 
-    explicit UserManagementDialog(QSqlDatabase& db, QString loggedInUser, UserRole role, QWidget* parent = nullptr);
-    ~UserManagementDialog();
+    explicit UserManager(QSqlDatabase& db, QString loggedInUser, UserRole role, QWidget* parent = nullptr);
+    ~UserManager();
 
 private slots:
     void loadUsers();
@@ -35,11 +34,11 @@ private slots:
 private:
     void initializeUserTable(); // Declare the method for initializing the table
 
-    Ui::UserManagementDialog *ui;  // Declare the UI pointer
+    Ui::UserManager *ui;  // Declare the UI pointer
     QSqlDatabase& db;
     QString loggedInUser;
     UserRole role;
     QString userIDBeingEdited;
 };
 
-#endif // USERMANAGEMENTDIALOG_H
+#endif // UserManager_H

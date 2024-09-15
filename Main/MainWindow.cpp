@@ -14,8 +14,8 @@ MainWindow::MainWindow(QString loggedInUser, bool isAdmin, QWidget *parent) :
     QString adminStatus = isAdmin ? "Admin" : "User";
     ui->statusLabel->setText(loggedInUser + " (" + adminStatus + ")");
 
-    connect(ui->UsersManBtn, &QPushButton::clicked, this, &MainWindow::onUsersManBtnClicked);
-    connect(ui->ProjManBtn,  &QPushButton::clicked, this, &MainWindow::onProjManBtnClicked);
+    connect(ui->UsersMan_btn, &QPushButton::clicked, this, &MainWindow::onUsersMan_btnClicked);
+    connect(ui->ProjMan_btn,  &QPushButton::clicked, this, &MainWindow::onProjMan_btnClicked);
 }
 
 MainWindow::~MainWindow()
@@ -31,26 +31,26 @@ MainWindow::~MainWindow()
 
 void MainWindow::onUsersManBtnClicked()
 {
-    UserManager* UserManager = nullptr;
+    UserManager* userManager = nullptr;
 
     if (isAdmin) {
-        UserManager = new UserManager(db, loggedInUser, UserManager::UserRole::Admin, this);
+        userManager = new UserManager(db, loggedInUser, UserManager::UserRole::Admin, this);
     } else {
-        UserManager = new UserManager(db, loggedInUser, UserManager::UserRole::User, this);
+        userManager = new UserManager(db, loggedInUser, UserManager::UserRole::User, this);
     }
 
-    UserManager->exec();  // Show the UserManager modally
+    userManager->exec();  // Show the UserManager modally
 
-    delete UserManager;  // Clean up the dialog after it is closed
+    delete userManager;  // Clean up the dialog after it is closed
 }
 
 void MainWindow::onProjManBtnClicked()
 {
-    ProjectManager* ProjectManager = nullptr;
+    ProjectManager* projectManager = nullptr;
 
-    ProjectManager = new ProjectManager(db, this);
+    projectManager = new ProjectManager(db, this);
 
-    ProjectManager->exec();  // Show the UserManager modally
+    projectManager->exec();
 
-    delete ProjectManager;  // Clean up the dialog after it is closed
+    delete projectManager;  // Clean up the dialog after it is closed
 }

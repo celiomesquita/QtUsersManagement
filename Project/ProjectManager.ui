@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>projectDialog</class>
- <widget class="QDialog" name="projectDialog">
+ <widget class="QDialog" name="project_dialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QTableWidget" name="projectTable">
+  <widget class="QTableWidget" name="project_table">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -23,7 +23,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="nameEdit">
+  <widget class="QLineEdit" name="name_edit">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -38,7 +38,7 @@
     </font>
    </property>
   </widget>
-  <widget class="QLineEdit" name="configEdit">
+  <widget class="QLineEdit" name="config_edit">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -53,7 +53,7 @@
     </font>
    </property>
   </widget>
-  <widget class="QPushButton" name="addOrUpdateBtn">
+  <widget class="QPushButton" name="add_update_btn">
    <property name="geometry">
     <rect>
      <x>240</x>
@@ -66,7 +66,7 @@
     <string>Incluir projeto</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="loadBtn">
+  <widget class="QPushButton" name="load_btn">
    <property name="geometry">
     <rect>
      <x>252</x>

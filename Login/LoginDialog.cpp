@@ -18,7 +18,7 @@ LoginDialog::LoginDialog(QWidget *parent)
     setModal(true);
 
     // Connect the login button click signal to the appropriate slot
-    connect(ui->LoginBtn, &QPushButton::clicked, this, &LoginDialog::onLoginBtnClicked);
+    connect(ui->Login_btn, &QPushButton::clicked, this, &LoginDialog::onLoginBtnClicked);
 }
 
 LoginDialog::~LoginDialog()
@@ -38,11 +38,11 @@ bool LoginDialog::isAdmin() const
 
 void LoginDialog::onLoginBtnClicked()
 {
-    QString username = ui->usernameEdit->text();
-    QString password = ui->passwordEdit->text();
+    QString username = ui->username_edit->text();
+    QString password = ui->password_edit->text();
 
     if (username.isEmpty() || password.isEmpty()) {
-        ui->statusLabel->setText("Entre com o usuário e a senha!");
+        ui->status_label->setText("Entre com o usuário e a senha!");
         return;
     }
 
@@ -51,7 +51,7 @@ void LoginDialog::onLoginBtnClicked()
     QSqlDatabase db = Database::getDatabase();
     if (!db.isOpen()) {
         qDebug() << "Database is not open!";
-        ui->statusLabel->setText("Erro ao tentar acessar o sistema.");
+        ui->status_label->setText("Erro ao tentar acessar o sistema.");
         return;
     }
 
@@ -64,7 +64,7 @@ void LoginDialog::onLoginBtnClicked()
 
     if (!query.exec()) {
         qDebug() << "Failed to execute query:" << query.lastError().text();
-        ui->statusLabel->setText("Erro ao tentar acessar o sistema.");
+        ui->status_label->setText("Erro ao tentar acessar o sistema.");
         return;
     }
 
@@ -84,5 +84,5 @@ void LoginDialog::onLoginBtnClicked()
     qDebug() << "Input Password (hashed):" << hashedPassword;
     qDebug() << "Stored Password:" << storedPassword;  // Use storedPassword for debugging
 
-    ui->statusLabel->setText("Senha ou usuário inválidos.");
+    ui->status_label->setText("Senha ou usuário inválidos.");
 }

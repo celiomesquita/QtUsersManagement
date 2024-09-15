@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>UserManagementDialog</class>
- <widget class="QDialog" name="UserManagementDialog">
+ <class>UserManagerDialog</class>
+ <widget class="QDialog" name="user_manager_dialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QLineEdit" name="usernameEdit">
+  <widget class="QLineEdit" name="username_edit">
    <property name="geometry">
     <rect>
      <x>132</x>
@@ -46,7 +46,7 @@
     <string>Senha</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="passwordEdit">
+  <widget class="QLineEdit" name="password_edit">
    <property name="geometry">
     <rect>
      <x>132</x>
@@ -79,7 +79,7 @@
     <string>Usuário</string>
    </property>
   </widget>
-  <widget class="QCheckBox" name="adminCheckBox">
+  <widget class="QCheckBox" name="admin_check">
    <property name="geometry">
     <rect>
      <x>130</x>
@@ -97,7 +97,7 @@
     <string>Admin</string>
    </property>
   </widget>
-  <widget class="QTableWidget" name="userTable">
+  <widget class="QTableWidget" name="user_table">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -107,7 +107,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QCheckBox" name="showPasswordHashCheckBox">
+  <widget class="QCheckBox" name="show_hash_check">
    <property name="geometry">
     <rect>
      <x>490</x>
@@ -125,7 +125,7 @@
     <string>Exibir o Hash</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="addOrUpdateBtn">
+  <widget class="QPushButton" name="add_update_btn">
    <property name="geometry">
     <rect>
      <x>390</x>
@@ -143,7 +143,7 @@
     <string>Adicionar / Atualizar</string>
    </property>
   </widget>
-  <widget class="QLabel" name="statusLabel">
+  <widget class="QLabel" name="status_label">
    <property name="geometry">
     <rect>
      <x>280</x>

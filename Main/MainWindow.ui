@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <widget class="QMainWindow" name="main_window">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -13,8 +13,8 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="UsersManBtn">
+  <widget class="QWidget" name="central_widget">
+   <widget class="QPushButton" name="users_man_btn">
     <property name="geometry">
      <rect>
       <x>280</x>
@@ -32,7 +32,7 @@
      <string>Controle de usuários</string>
     </property>
    </widget>
-   <widget class="QLabel" name="statusLabel">
+   <widget class="QLabel" name="status_label">
     <property name="geometry">
      <rect>
       <x>290</x>
@@ -73,7 +73,7 @@
      <string>Janela principal do Sirerc - Petrobrás</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="ProjManBtn">
+   <widget class="QPushButton" name="proj_man_btn">
     <property name="geometry">
      <rect>
       <x>280</x>

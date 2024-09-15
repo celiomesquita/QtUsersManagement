@@ -39,8 +39,8 @@ set(PROJECT_SOURCES
     Hash/HashUtils.cpp
     Hash/HashUtils.h
 
-    Project/ProjectManager.h
     Project/ProjectManager.cpp
+    Project/ProjectManager.h
     Project/ProjectManager.ui
 )
 

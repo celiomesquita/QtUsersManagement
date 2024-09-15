@@ -6,7 +6,7 @@
 class Database {
 public:
     static bool initialize(const std::string& db_name);
-    static QSqlDatabase& getDatabase();  // Add this method
+    static QSqlDatabase& getDatabase();
     ~Database();
 
 private:

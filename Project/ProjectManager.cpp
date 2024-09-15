@@ -21,12 +21,12 @@ ProjectManagerDialog::ProjectManagerDialog(QSqlDatabase& db, QString Name, QStri
     ui->setupUi(this);  // Set up the UI as defined in the .ui file
     initializeprojectTable(); // Initialize the table
 
-    ui->statusLabel->setText(Name);  // Example of setting some data on the UI
+    ui->status_label->setText(Name);  // Example of setting some data on the UI
 
     setWindowTitle(tr("Gestão de projetos"));
     setModal(true);  // Blocks interaction with other windows until the project manager is closed
 
-    connect(ui->addOrUpdateBtn, &QPushButton::clicked, this, &ProjectManagerDialog::onAddOrUpdateProject);    
+    connect(ui->addOrUpdate_btn, &QPushButton::clicked, this, &ProjectManagerDialog::onAddOrUpdateProject);    
 
     loadProjects();  // Load the initial list of projects
 }
@@ -37,14 +37,14 @@ ProjectManagerDialog::~ProjectManagerDialog()
 }
 
 void ProjectManagerDialog::initializeprojectTable() {
-    ui->projectTable->setColumnCount(projectTableColumns::ColumnCount);
-    ui->projectTable->setHorizontalHeaderLabels(QStringList() << tr("Projeto") << tr("Config") << tr("Editar") << tr("Excluir"));
+    ui->project_table->setColumnCount(projectTableColumns::ColumnCount);
+    ui->project_table->setHorizontalHeaderLabels(QStringList() << tr("Projeto") << tr("Config") << tr("Editar") << tr("Excluir"));
     
     // Set column widths (adjust values as needed)
-    ui->projectTable->setColumnWidth(projectTableColumns::NameColumn, 118);
-    ui->projectTable->setColumnWidth(projectTableColumns::ConfigColumn, 118);
-    ui->projectTable->setColumnWidth(projectTableColumns::EditColumn, 118);
-    ui->projectTable->setColumnWidth(projectTableColumns::DeleteColumn, 118);
+    ui->project_table->setColumnWidth(projectTableColumns::Name_col, 118);
+    ui->project_table->setColumnWidth(projectTableColumns::Config_col, 118);
+    ui->project_table->setColumnWidth(projectTableColumns::Edit_col, 118);
+    ui->project_table->setColumnWidth(projectTableColumns::Delete_col, 118);
 }
 
 void ProjectManagerDialog::onEditProject() {
@@ -52,21 +52,21 @@ void ProjectManagerDialog::onEditProject() {
     if (!button) return;
 
     int row = button->property("row").toInt();
-    int projectId = ui->projectTable->item(row, projectTableColumns::NameColumn)->data(Qt::UserRole).toInt();  // Retrieve the project ID
+    int projectId = ui->project_table->item(row, projectTableColumns::Name_col)->data(Qt::UserRole).toInt();  // Retrieve the project ID
 
-    QString projectName   = ui->projectTable->item(row, projectTableColumns::NameColumn)->text();
-    QString projectConfig = ui->projectTable->item(row, projectTableColumns::ConfigColumn)->text();
+    QString projectName   = ui->project_table->item(row, projectTableColumns::Name_col)->text();
+    QString projectConfig = ui->project_table->item(row, projectTableColumns::Config_col)->text();
 
-    ui->projectNameEdit->setText(projectName);
-    ui->projectConfigEdit->setText(projectConfig);
+    ui->projectName_edit->setText(projectName);
+    ui->projectConfig_edit->setText(projectConfig);
 
     ProjectIDBeingEdited = QString::number(projectId);  // Store the project ID as a string
 
-    ui->addOrUpdateBtn->setText(tr("Salvar"));
+    ui->addOrUpdate_btn->setText(tr("Salvar"));
 }
 
 void ProjectManagerDialog::loadProjects() {
-    ui->projectTable->setRowCount(0);  // Clear existing rows
+    ui->project_table->setRowCount(0);  // Clear existing rows
 
     QString queryString = "SELECT id, name, config FROM Projects";
     QSqlQuery query(db);
@@ -80,38 +80,38 @@ void ProjectManagerDialog::loadProjects() {
         QString projectName = query.value(1).toString();
         QString projectConfig = query.value(2).toString();
 
-        int row = ui->projectTable->rowCount();
-        ui->projectTable->insertRow(row);
+        int row = ui->project_table->rowCount();
+        ui->project_table->insertRow(row);
 
         QTableWidgetItem *projectNameItem = new QTableWidgetItem(projectName);
         projectNameItem->setData(Qt::UserRole, projectId);  // Store the project ID in the item
-        ui->projectTable->setItem(row, projectTableColumns::NameColumn, projectNameItem);
+        ui->project_table->setItem(row, projectTableColumns::name_col, projectNameItem);
 
         QTableWidgetItem *projectConfigItem = new QTableWidgetItem(projectConfig);
-        ui->projectTable->setItem(row, projectTableColumns::ConfigColumn, projectConfigItem);
+        ui->project_table->setItem(row, projectTableColumns::config_col, projectConfigItem);
 
         QPushButton* editButton = new QPushButton(tr("Editar"), this);
         editButton->setProperty("row", row);
-        connect(editButton, &QPushButton::clicked, this, &ProjectManagerDialog::onEditProject);
-        ui->projectTable->setCellWidget(row, projectTableColumns::EditColumn, editButton);
+        connect(edit_btn, &QPushButton::clicked, this, &ProjectManagerDialog::onEditProject);
+        ui->project_table->setCellWidget(row, projectTableColumns::edit_col, edit_btn);
 
         QPushButton* deleteButton = new QPushButton(tr("Excluir"), this);
         deleteButton->setProperty("row", row);
-        connect(deleteButton, &QPushButton::clicked, this, &ProjectManagerDialog::onDeleteProject);
-        ui->projectTable->setCellWidget(row, projectTableColumns::DeleteColumn, deleteButton);
+        connect(delete_btn, &QPushButton::clicked, this, &ProjectManagerDialog::onDeleteProject);
+        ui->project_table->setCellWidget(row, projectTableColumns::delete_col, delete_btn);
     }
 }
 
 void ProjectManagerDialog::resetFields() {
-    ui->projectNameEdit->clear();
-    ui->projectConfigEdit->clear();
+    ui->name_edit->clear();
+    ui->config_edit->clear();
     ProjectIDBeingEdited.clear();
-    ui->addOrUpdateBtn->setText(tr("Adicionar projeto"));
+    ui->add_update_btn->setText(tr("Adicionar projeto"));
 }
 
 void ProjectManagerDialog::onAddOrUpdateProject() {
-    QString projectName = ui->projectNameEdit->text();
-    QString projectConfig = ui->projectConfigEdit->text();
+    QString projectName = ui->name_edit->text();
+    QString projectConfig = ui->config_edit->text();
 
     if (!ProjectIDBeingEdited.isEmpty()) {  // Edit existing project
         int projectId = ProjectIDBeingEdited.toInt();  // Convert ID back to integer
@@ -134,7 +134,7 @@ void ProjectManagerDialog::onDeleteProject() {
     if (!button) return;
 
     int row = button->property("row").toInt();
-    int projectId = ui->projectTable->item(row, projectTableColumns::NameColumn)->data(Qt::UserRole).toInt();
+    int projectId = ui->project_table->item(row, projectTableColumns::name_col)->data(Qt::UserRole).toInt();
 
     if (DeleteProject(projectId)) {
         QMessageBox::information(this, tr("Success"), tr("Projeto excluído com sucesso."));

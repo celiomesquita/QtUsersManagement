@@ -1,18 +1,19 @@
-#include "UserManagementDialog.h"
-#include "../Database/UserDB.h"  // Include the existing service class
+#include "UserManager.h"
 #include "../Hash/HashUtils.h"
+#include "../build/ui_UserManagementDialog.h"  // Include the generated UI header
+
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QMessageBox>
 #include <QDebug>
-#include "../build/ui_UserManagementDialog.h"  // Include the generated UI header
 
+// interface objects in snake_case
 enum UserTableColumns {
-    UsernameColumn,
-    PasswordColumn,
-    AdminColumn,
-    EditColumn,
-    DeleteColumn,
+    username_col,
+    password_col,
+    admin_col,
+    edit_col,
+    delete_col,
     ColumnCount // Keep track of the total number of columns
 };
 
@@ -27,16 +28,16 @@ UserManagementDialog::UserManagementDialog(QSqlDatabase& db, QString loggedInUse
     initializeUserTable(); // Initialize the table
 
     QString adminStatus = (role == UserRole::Admin) ? "Admin" : "User";
-    ui->statusLabel->setText(loggedInUser + " (" + adminStatus + ")");   
+    ui->status_label->setText(loggedInUser + " (" + adminStatus + ")");   
 
     setWindowTitle(tr("Gestão de usuários"));
     setModal(true);  // Blocks interaction with other windows until the user closes it
 
     if (role == UserRole::Admin){
-        connect(ui->showPasswordHashCheckBox, &QCheckBox::toggled, this, &UserManagementDialog::onShowPasswordHashToggled);
+        connect(ui->showPasswordHash_checkbox, &QCheckBox::toggled, this, &UserManagementDialog::onShowPasswordHashToggled);
     }
 
-    connect(ui->addOrUpdateBtn, &QPushButton::clicked, this, &UserManagementDialog::onAddOrUpdateUser);    
+    connect(ui->add_update_btn, &QPushButton::clicked, this, &UserManagementDialog::onAddOrUpdateUser);    
 
     loadUsers();  // Load the initial list of users
 }
@@ -47,15 +48,15 @@ UserManagementDialog::~UserManagementDialog()
 }
 
 void UserManagementDialog::initializeUserTable() {
-    ui->userTable->setColumnCount(UserTableColumns::ColumnCount);
-    ui->userTable->setHorizontalHeaderLabels(QStringList() << tr("Usuário") << tr("Senha") << tr("Admin") << tr("Editar") << tr("Excluir"));
+    ui->user_table->setColumnCount(UserTableColumns::ColumnCount);
+    ui->user_table->setHorizontalHeaderLabels(QStringList() << tr("Usuário") << tr("Senha") << tr("Admin") << tr("Editar") << tr("Excluir"));
     
     // Set column widths (adjust values as needed)
-    ui->userTable->setColumnWidth(UserTableColumns::UsernameColumn, 118);
-    ui->userTable->setColumnWidth(UserTableColumns::PasswordColumn, 118);
-    ui->userTable->setColumnWidth(UserTableColumns::AdminColumn, 118);
-    ui->userTable->setColumnWidth(UserTableColumns::EditColumn, 118);
-    ui->userTable->setColumnWidth(UserTableColumns::DeleteColumn, 118);
+    ui->user_table->setColumnWidth(UserTableColumns::username_col, 118);
+    ui->user_table->setColumnWidth(UserTableColumns::password_col, 118);
+    ui->user_table->setColumnWidth(UserTableColumns::admin_col, 118);
+    ui->user_table->setColumnWidth(UserTableColumns::edit_col, 118);
+    ui->user_table->setColumnWidth(UserTableColumns::delete_col, 118);
 }
 
 void UserManagementDialog::onEditUser() {
@@ -63,27 +64,27 @@ void UserManagementDialog::onEditUser() {
     if (!button) return;
 
     int row = button->property("row").toInt();
-    int userId = ui->userTable->item(row, UserTableColumns::UsernameColumn)->data(Qt::UserRole).toInt();  // Retrieve the user ID
-    QString username = ui->userTable->item(row, UserTableColumns::UsernameColumn)->text();
+    int userId = ui->user_table->item(row, UserTableColumns::username_col)->data(Qt::UserRole).toInt();  // Retrieve the user ID
+    QString username = ui->user_table->item(row, UserTableColumns::username_col)->text();
     QString password = ""; // Do not load the password
-    bool userIsAdmin = (ui->userTable->item(row, UserTableColumns::AdminColumn)->text() == tr("Sim"));
+    bool userIsAdmin = (ui->user_table->item(row, UserTableColumns::admin_col)->text() == tr("Sim"));
 
-    ui->usernameEdit->setText(username);
-    ui->passwordEdit->setText(password);
-    ui->adminCheckBox->setChecked(userIsAdmin);
+    ui->username_edit->setText(username);
+    ui->password_edit->setText(password);
+    ui->admin_check->setChecked(userIsAdmin);
 
     // only Admin can modify usernames and admin status
-    ui->adminCheckBox->setEnabled(role == UserRole::Admin);
-    ui->usernameEdit->setEnabled(role == UserRole::Admin);
+    ui->admin_check->setEnabled(role == UserRole::Admin);
+    ui->username_edit->setEnabled(role == UserRole::Admin);
 
     userIDBeingEdited = QString::number(userId);  // Store the user ID as a string
 
-    ui->addOrUpdateBtn->setText(tr("Salvar"));
+    ui->add_update_btn->setText(tr("Salvar"));
 }
 
 void UserManagementDialog::loadUsers() {
 
-    ui->userTable->setRowCount(0); // Clear existing rows
+    ui->user_table->setRowCount(0); // Clear existing rows
 
     QString queryString = (role == UserRole::Admin) ? "SELECT id, username, password, admin FROM users" : "SELECT id, username, admin FROM users";
     QSqlQuery query(db); 
@@ -103,33 +104,33 @@ void UserManagementDialog::loadUsers() {
         QString dbPassword = (role == UserRole::Admin) ? query.value(2).toString() : QString();
         bool dbAdmin       = query.value(3).toBool();
 
-        int row = ui->userTable->rowCount();
-        ui->userTable->insertRow(row);
+        int row = ui->user_table->rowCount();
+        ui->user_table->insertRow(row);
 
         // Store the user ID in a custom property of the row
         QTableWidgetItem *usernameItem = new QTableWidgetItem(dbUsername);
         usernameItem->setData(Qt::UserRole, userId);  // Store user ID in the item
-        ui->userTable->setItem(row, UserTableColumns::UsernameColumn, usernameItem);
+        ui->user_table->setItem(row, UserTableColumns::username_col, usernameItem);
 
-        ui->userTable->setItem(row, UserTableColumns::PasswordColumn, new QTableWidgetItem(ui->showPasswordHashCheckBox->isChecked() ? dbPassword : "???"));
-        ui->userTable->setItem(row, UserTableColumns::AdminColumn, new QTableWidgetItem(dbAdmin ? tr("Sim") : tr("Não")));
+        ui->user_table->setItem(row, UserTableColumns::password_col, new QTableWidgetItem(ui->showPasswordHashCheckBox->isChecked() ? dbPassword : "???"));
+        ui->user_table->setItem(row, UserTableColumns::admin_col, new QTableWidgetItem(dbAdmin ? tr("Sim") : tr("Não")));
 
         if (role == UserRole::Admin){
             // Add Edit button
-            QPushButton* editButton = new QPushButton(tr("Editar"), this);
-            editButton->setProperty("row", row);
-            connect(editButton, &QPushButton::clicked, this, &UserManagementDialog::onEditUser);
-            ui->userTable->setCellWidget(row, UserTableColumns::EditColumn, editButton);
+            QPushButton* edit_btn = new QPushButton(tr("Editar"), this);
+            edit_btn->setProperty("row", row);
+            connect(edit_btn, &QPushButton::clicked, this, &UserManagementDialog::onEditUser);
+            ui->user_table->setCellWidget(row, UserTableColumns::edit_col, edit_btn);
         }else{
             if(dbUsername == loggedInUser){
-                QPushButton* editButton = new QPushButton(tr("Editar"), this);
-                editButton->setProperty("row", row);
-                connect(editButton, &QPushButton::clicked, this, &UserManagementDialog::onEditUser);
-                ui->userTable->setCellWidget(row, UserTableColumns::EditColumn, editButton);            
+                QPushButton* edit_btn = new QPushButton(tr("Editar"), this);
+                edit_btn->setProperty("row", row);
+                connect(edit_btn, &QPushButton::clicked, this, &UserManagementDialog::onEditUser);
+                ui->user_table->setCellWidget(row, UserTableColumns::edit_col, edit_btn);            
             }else{
                 QLabel* placeholderLabel = new QLabel("-", this);
                 placeholderLabel->setAlignment(Qt::AlignCenter);
-                ui->userTable->setCellWidget(row, UserTableColumns::EditColumn, placeholderLabel);                  
+                ui->user_table->setCellWidget(row, UserTableColumns::edit_col, placeholderLabel);                  
             }
         }
 
@@ -137,34 +138,34 @@ void UserManagementDialog::loadUsers() {
             if(dbUsername == loggedInUser){
                 QLabel* placeholderLabel = new QLabel("-", this);
                 placeholderLabel->setAlignment(Qt::AlignCenter);
-                ui->userTable->setCellWidget(row, UserTableColumns::DeleteColumn, placeholderLabel); 
+                ui->user_table->setCellWidget(row, UserTableColumns::Delete_col, placeholder_label); 
             }else{
                 // Add Delete button
                 QPushButton* deleteButton = new QPushButton(tr("Excluir"), this);
                 deleteButton->setProperty("row", row);
-                connect(deleteButton, &QPushButton::clicked, this, &UserManagementDialog::onDeleteUser);
-                ui->userTable->setCellWidget(row, UserTableColumns::DeleteColumn, deleteButton);                
+                connect(delete_btn, &QPushButton::clicked, this, &UserManagementDialog::onDeleteUser);
+                ui->user_table->setCellWidget(row, UserTableColumns::delete_col, delete_btn);                
             }
         }else{
             QLabel* placeholderLabel = new QLabel("-", this);
             placeholderLabel->setAlignment(Qt::AlignCenter);
-            ui->userTable->setCellWidget(row, UserTableColumns::DeleteColumn, placeholderLabel);
+            ui->user_table->setCellWidget(row, UserTableColumns::delete_col, placeholder_label);
         }
     }
 }
 
 void UserManagementDialog::resetFields() {
-    ui->usernameEdit->clear();
-    ui->passwordEdit->clear();
-    ui->adminCheckBox->setChecked(false);
+    ui->username_edit->clear();
+    ui->password_edit->clear();
+    ui->admin_check->setChecked(false);
     userIDBeingEdited.clear();
-    ui->addOrUpdateBtn->setText(tr("Adicionar usuário"));
+    ui->add_update_btn->setText(tr("Adicionar usuário"));
 }
 
 void UserManagementDialog::onAddOrUpdateUser() {
-    QString username = ui->usernameEdit->text();
-    QString password = ui->passwordEdit->text();
-    bool userIsAdmin = ui->adminCheckBox->isChecked();
+    QString username = ui->username_edit->text();
+    QString password = ui->password_edit->text();
+    bool userIsAdmin = ui->admin_check->isChecked();
 
     if (username.isEmpty() || (userIDBeingEdited.isEmpty() && password.isEmpty())) {
         QMessageBox::warning(this, tr("Erro na entrada"), tr("Usuário e senha não podem estar vazios!"));
@@ -195,7 +196,7 @@ void UserManagementDialog::onDeleteUser() {
     if (!button) return;
 
     int row = button->property("row").toInt();
-    int userId = ui->userTable->item(row, UserTableColumns::UsernameColumn)->data(Qt::UserRole).toInt();  // Retrieve the user ID
+    int userId = ui->user_table->item(row, UserTableColumns::username_col)->data(Qt::UserRole).toInt();  // Retrieve the user ID
 
     if (DeleteUser(userId)) {
         QMessageBox::information(this, tr("Success"), tr("Usuário excluído com sucesso."));

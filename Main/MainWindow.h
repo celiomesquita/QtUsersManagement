@@ -1,7 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-// #include "../Project/ProjectManager.h"
 #include <QMainWindow>
 #include <QSqlDatabase>
 
@@ -26,7 +25,6 @@ private:
     QString loggedInUser;
     bool isAdmin;
     QSqlDatabase& db; 
-    // ProjectManager *projectManager;
 };
 
 #endif // MAINWINDOW_H

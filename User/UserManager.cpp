@@ -1,6 +1,6 @@
 #include "UserManager.h"
 #include "../Hash/HashUtils.h"
-#include "../build/ui_UserManagementDialog.h"  // Include the generated UI header
+#include "../build/ui_UserManager.h"  // Include the generated UI header
 
 #include <QSqlQuery>
 #include <QSqlError>
@@ -17,9 +17,9 @@ enum UserTableColumns {
     ColumnCount // Keep track of the total number of columns
 };
 
-UserManagementDialog::UserManagementDialog(QSqlDatabase& db, QString loggedInUser, UserRole role, QWidget* parent) :
+UserManager::UserManager(QSqlDatabase& db, QString loggedInUser, UserRole role, QWidget* parent) :
     QDialog(parent),
-    ui(new Ui::UserManagementDialog),
+    ui(new Ui::UserManager),
     db(db),
     loggedInUser(loggedInUser),
     role(role)  // Initialize the role field
@@ -34,20 +34,20 @@ UserManagementDialog::UserManagementDialog(QSqlDatabase& db, QString loggedInUse
     setModal(true);  // Blocks interaction with other windows until the user closes it
 
     if (role == UserRole::Admin){
-        connect(ui->showPasswordHash_checkbox, &QCheckBox::toggled, this, &UserManagementDialog::onShowPasswordHashToggled);
+        connect(ui->showPasswordHash_checkbox, &QCheckBox::toggled, this, &UserManager::onShowPasswordHashToggled);
     }
 
-    connect(ui->add_update_btn, &QPushButton::clicked, this, &UserManagementDialog::onAddOrUpdateUser);    
+    connect(ui->add_update_btn, &QPushButton::clicked, this, &UserManager::onAddOrUpdateUser);    
 
     loadUsers();  // Load the initial list of users
 }
 
-UserManagementDialog::~UserManagementDialog()
+UserManager::~UserManager()
 {
     delete ui;  // Clean up the UI
 }
 
-void UserManagementDialog::initializeUserTable() {
+void UserManager::initializeUserTable() {
     ui->user_table->setColumnCount(UserTableColumns::ColumnCount);
     ui->user_table->setHorizontalHeaderLabels(QStringList() << tr("Usuário") << tr("Senha") << tr("Admin") << tr("Editar") << tr("Excluir"));
     
@@ -59,7 +59,7 @@ void UserManagementDialog::initializeUserTable() {
     ui->user_table->setColumnWidth(UserTableColumns::delete_col, 118);
 }
 
-void UserManagementDialog::onEditUser() {
+void UserManager::onEditUser() {
     QPushButton* button = qobject_cast<QPushButton*>(sender());
     if (!button) return;
 
@@ -82,7 +82,7 @@ void UserManagementDialog::onEditUser() {
     ui->add_update_btn->setText(tr("Salvar"));
 }
 
-void UserManagementDialog::loadUsers() {
+void UserManager::loadUsers() {
 
     ui->user_table->setRowCount(0); // Clear existing rows
 
@@ -119,13 +119,13 @@ void UserManagementDialog::loadUsers() {
             // Add Edit button
             QPushButton* edit_btn = new QPushButton(tr("Editar"), this);
             edit_btn->setProperty("row", row);
-            connect(edit_btn, &QPushButton::clicked, this, &UserManagementDialog::onEditUser);
+            connect(edit_btn, &QPushButton::clicked, this, &UserManager::onEditUser);
             ui->user_table->setCellWidget(row, UserTableColumns::edit_col, edit_btn);
         }else{
             if(dbUsername == loggedInUser){
                 QPushButton* edit_btn = new QPushButton(tr("Editar"), this);
                 edit_btn->setProperty("row", row);
-                connect(edit_btn, &QPushButton::clicked, this, &UserManagementDialog::onEditUser);
+                connect(edit_btn, &QPushButton::clicked, this, &UserManager::onEditUser);
                 ui->user_table->setCellWidget(row, UserTableColumns::edit_col, edit_btn);            
             }else{
                 QLabel* placeholderLabel = new QLabel("-", this);
@@ -143,7 +143,7 @@ void UserManagementDialog::loadUsers() {
                 // Add Delete button
                 QPushButton* deleteButton = new QPushButton(tr("Excluir"), this);
                 deleteButton->setProperty("row", row);
-                connect(delete_btn, &QPushButton::clicked, this, &UserManagementDialog::onDeleteUser);
+                connect(delete_btn, &QPushButton::clicked, this, &UserManager::onDeleteUser);
                 ui->user_table->setCellWidget(row, UserTableColumns::delete_col, delete_btn);                
             }
         }else{
@@ -154,7 +154,7 @@ void UserManagementDialog::loadUsers() {
     }
 }
 
-void UserManagementDialog::resetFields() {
+void UserManager::resetFields() {
     ui->username_edit->clear();
     ui->password_edit->clear();
     ui->admin_check->setChecked(false);
@@ -162,7 +162,7 @@ void UserManagementDialog::resetFields() {
     ui->add_update_btn->setText(tr("Adicionar usuário"));
 }
 
-void UserManagementDialog::onAddOrUpdateUser() {
+void UserManager::onAddOrUpdateUser() {
     QString username = ui->username_edit->text();
     QString password = ui->password_edit->text();
     bool userIsAdmin = ui->admin_check->isChecked();
@@ -191,7 +191,7 @@ void UserManagementDialog::onAddOrUpdateUser() {
     }
 }
 
-void UserManagementDialog::onDeleteUser() {
+void UserManager::onDeleteUser() {
     QPushButton* button = qobject_cast<QPushButton*>(sender());
     if (!button) return;
 
@@ -204,7 +204,7 @@ void UserManagementDialog::onDeleteUser() {
     }
 }
 
-void UserManagementDialog::onShowPasswordHashToggled(bool checked) {
+void UserManager::onShowPasswordHashToggled(bool checked) {
     Q_UNUSED(checked);  // Suppress the unused parameter warning
     loadUsers(); // Reload users with or without showing password hashes
 }

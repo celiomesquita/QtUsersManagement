@@ -18,7 +18,7 @@ LoginDialog::LoginDialog(QWidget *parent)
     setModal(true);
 
     // Connect the login button click signal to the appropriate slot
-    connect(ui->Login_btn, &QPushButton::clicked, this, &LoginDialog::onLoginBtnClicked);
+    connect(ui->login_btn, &QPushButton::clicked, this, &LoginDialog::onLoginBtnClicked);
 }
 
 LoginDialog::~LoginDialog()
@@ -39,7 +39,7 @@ bool LoginDialog::isAdmin() const
 void LoginDialog::onLoginBtnClicked()
 {
     QString username = ui->username_edit->text();
-    QString password = ui->password_edit->text();
+    QString password = ui->password_edit->text();    
 
     if (username.isEmpty() || password.isEmpty()) {
         ui->status_label->setText("Entre com o usuário e a senha!");

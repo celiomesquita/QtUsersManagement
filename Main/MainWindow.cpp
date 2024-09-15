@@ -3,54 +3,38 @@
 #include "../User/UserManager.h"
 #include "MainWindow.h"
 
-MainWindow::MainWindow(QString loggedInUser, bool isAdmin, QWidget *parent) :
+MainWindow::MainWindow(QString loggedInUser, bool isAdmin, QSqlDatabase& database, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
     loggedInUser(loggedInUser),
-    isAdmin(isAdmin)  
+    isAdmin(isAdmin),
+    db(database)  // Initialize the database reference
 {
     ui->setupUi(this);
 
     QString adminStatus = isAdmin ? "Admin" : "User";
-    ui->statusLabel->setText(loggedInUser + " (" + adminStatus + ")");
+    ui->status_label->setText(loggedInUser + " (" + adminStatus + ")");
 
-    connect(ui->UsersMan_btn, &QPushButton::clicked, this, &MainWindow::onUsersMan_btnClicked);
-    connect(ui->ProjMan_btn,  &QPushButton::clicked, this, &MainWindow::onProjMan_btnClicked);
+    // Connect button signals to their respective slots
+    connect(ui->users_man_btn, &QPushButton::clicked, this, &MainWindow::onUsersManBtnClicked);
+    connect(ui->proj_man_btn,  &QPushButton::clicked, this, &MainWindow::onProjManBtnClicked);
 }
 
 MainWindow::~MainWindow()
 {
-    delete ui;
-    if (projectManager) {
-        delete projectManager;
-    } 
-    if (userManager) {
-        delete userManager;
-    }   
+    delete ui;  // Clean up the UI
 }
 
 void MainWindow::onUsersManBtnClicked()
 {
-    UserManager* userManager = nullptr;
-
-    if (isAdmin) {
-        userManager = new UserManager(db, loggedInUser, UserManager::UserRole::Admin, this);
-    } else {
-        userManager = new UserManager(db, loggedInUser, UserManager::UserRole::User, this);
-    }
-
-    userManager->exec();  // Show the UserManager modally
-
-    delete userManager;  // Clean up the dialog after it is closed
+    // Create UserManager dialog and execute it modally
+    UserManager userManager(db, loggedInUser, isAdmin ? UserManager::UserRole::Admin : UserManager::UserRole::User, this);
+    userManager.exec();  // Show the UserManager dialog modally
 }
 
 void MainWindow::onProjManBtnClicked()
 {
-    ProjectManager* projectManager = nullptr;
-
-    projectManager = new ProjectManager(db, this);
-
-    projectManager->exec();
-
-    delete projectManager;  // Clean up the dialog after it is closed
+    // Create ProjectManager dialog and execute it modally
+    ProjectManager projectManager(db, projectName, projectConfig, this);
+    projectManager.exec();  // Show the ProjectManager dialog modally
 }

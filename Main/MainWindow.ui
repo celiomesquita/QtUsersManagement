@@ -70,7 +70,7 @@
      <enum>Qt::LeftToRight</enum>
     </property>
     <property name="text">
-     <string>Janela principal do Sirerc - Petrobrás</string>
+     <string>Janela principal do sistema em desenvolvimento</string>
     </property>
    </widget>
    <widget class="QPushButton" name="proj_man_btn">

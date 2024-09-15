@@ -27,14 +27,17 @@ private:
     QSqlDatabase& db;              // Reference to the SQLite database
     QString ProjectIDBeingEdited;  // Stores the ID of the project being edited
 
+    QString projectName;
+    QString projectConfig;
+
     void initializeprojectTable(); // Initialize the project table
     void loadProjects();           // Load projects from the database
     void resetFields();            // Reset input fields for adding/editing projects
 
     // Helper functions for database operations
-    bool AddProject(const std::string &ProjectName, const std::string &ProjectConfig);
-    bool UpdateProject(int id, const std::string &ProjectName, const std::string &ProjectConfig);
-    bool DeleteProject(int id);
+    bool addProject(const std::string &ProjectName, const std::string &ProjectConfig);
+    bool updateProject(int id, const std::string &ProjectName, const std::string &ProjectConfig);
+    bool deleteProject(int id);
 };
 
 #endif // PROJECTMANAGER_H

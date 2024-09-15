@@ -6,48 +6,50 @@
 #include "ui_ProjectManager.h"  // Include the generated UI header
 
 enum projectTableColumns {
-    NameColumn,
-    ConfigColumn,
-    EditColumn,
-    DeleteColumn,
+    name_col,
+    config_col,
+    edit_col,
+    delete_col,
     ColumnCount // Keep track of the total number of columns
 };
 
-ProjectManagerDialog::ProjectManagerDialog(QSqlDatabase& db, QString Name, QString Config, QWidget* parent) :
+ProjectManager::ProjectManager(QSqlDatabase& db, QString Name, QString Config, QWidget* parent) :
     QDialog(parent),
-    ui(new Ui::ProjectManagerDialog),
-    db(db)
+    ui(new Ui::ProjectManager),
+    db(db),
+    projectName(Name),
+    projectConfig(Config)
 {
     ui->setupUi(this);  // Set up the UI as defined in the .ui file
     initializeprojectTable(); // Initialize the table
 
-    ui->status_label->setText(Name);  // Example of setting some data on the UI
+    ui->status_label->setText(projectName);  // Example of setting some data on the UI
 
     setWindowTitle(tr("Gestão de projetos"));
     setModal(true);  // Blocks interaction with other windows until the project manager is closed
 
-    connect(ui->addOrUpdate_btn, &QPushButton::clicked, this, &ProjectManagerDialog::onAddOrUpdateProject);    
+    connect(ui->add_update_btn, &QPushButton::clicked, this, &ProjectManager::onAddOrupdateProject);    
 
     loadProjects();  // Load the initial list of projects
 }
 
-ProjectManagerDialog::~ProjectManagerDialog()
+ProjectManager::~ProjectManager()
 {
     delete ui;  // Clean up the UI
 }
 
-void ProjectManagerDialog::initializeprojectTable() {
+void ProjectManager::initializeprojectTable() {
     ui->project_table->setColumnCount(projectTableColumns::ColumnCount);
     ui->project_table->setHorizontalHeaderLabels(QStringList() << tr("Projeto") << tr("Config") << tr("Editar") << tr("Excluir"));
     
     // Set column widths (adjust values as needed)
-    ui->project_table->setColumnWidth(projectTableColumns::Name_col, 118);
-    ui->project_table->setColumnWidth(projectTableColumns::Config_col, 118);
-    ui->project_table->setColumnWidth(projectTableColumns::Edit_col, 118);
-    ui->project_table->setColumnWidth(projectTableColumns::Delete_col, 118);
+    ui->project_table->setColumnWidth(projectTableColumns::name_col, 118);
+    ui->project_table->setColumnWidth(projectTableColumns::config_col, 118);
+    ui->project_table->setColumnWidth(projectTableColumns::edit_col, 118);
+    ui->project_table->setColumnWidth(projectTableColumns::delete_col, 118);
 }
 
-void ProjectManagerDialog::onEditProject() {
+void ProjectManager::onEditProject() {
     QPushButton* button = qobject_cast<QPushButton*>(sender());
     if (!button) return;
 
@@ -57,15 +59,15 @@ void ProjectManagerDialog::onEditProject() {
     QString projectName   = ui->project_table->item(row, projectTableColumns::Name_col)->text();
     QString projectConfig = ui->project_table->item(row, projectTableColumns::Config_col)->text();
 
-    ui->projectName_edit->setText(projectName);
-    ui->projectConfig_edit->setText(projectConfig);
+    ui->name_edit->setText(projectName);
+    ui->config_edit->setText(projectConfig);
 
-    ProjectIDBeingEdited = QString::number(projectId);  // Store the project ID as a string
+    config_item = QString::number(projectId);  // Store the project ID as a string
 
-    ui->addOrUpdate_btn->setText(tr("Salvar"));
+    ui->add_update_btn->setText(tr("Salvar"));
 }
 
-void ProjectManagerDialog::loadProjects() {
+void ProjectManager::loadProjects() {
     ui->project_table->setRowCount(0);  // Clear existing rows
 
     QString queryString = "SELECT id, name, config FROM Projects";
@@ -83,45 +85,45 @@ void ProjectManagerDialog::loadProjects() {
         int row = ui->project_table->rowCount();
         ui->project_table->insertRow(row);
 
-        QTableWidgetItem *projectNameItem = new QTableWidgetItem(projectName);
-        projectNameItem->setData(Qt::UserRole, projectId);  // Store the project ID in the item
-        ui->project_table->setItem(row, projectTableColumns::name_col, projectNameItem);
+        QTableWidgetItem *name_item = new QTableWidgetItem(projectName);
+        name_item->setData(Qt::UserRole, projectId);  // Store the project ID in the item
+        ui->project_table->setItem(row, projectTableColumns::name_col, name_item);
 
-        QTableWidgetItem *projectConfigItem = new QTableWidgetItem(projectConfig);
-        ui->project_table->setItem(row, projectTableColumns::config_col, projectConfigItem);
+        QTableWidgetItem *config_item = new QTableWidgetItem(projectConfig);
+        ui->project_table->setItem(row, projectTableColumns::config_col, config_item);
 
         QPushButton* editButton = new QPushButton(tr("Editar"), this);
         editButton->setProperty("row", row);
-        connect(edit_btn, &QPushButton::clicked, this, &ProjectManagerDialog::onEditProject);
+        connect(edit_btn, &QPushButton::clicked, this, &ProjectManager::onEditProject);
         ui->project_table->setCellWidget(row, projectTableColumns::edit_col, edit_btn);
 
         QPushButton* deleteButton = new QPushButton(tr("Excluir"), this);
         deleteButton->setProperty("row", row);
-        connect(delete_btn, &QPushButton::clicked, this, &ProjectManagerDialog::onDeleteProject);
+        connect(delete_btn, &QPushButton::clicked, this, &ProjectManager::onDeleteProject);
         ui->project_table->setCellWidget(row, projectTableColumns::delete_col, delete_btn);
     }
 }
 
-void ProjectManagerDialog::resetFields() {
+void ProjectManager::resetFields() {
     ui->name_edit->clear();
     ui->config_edit->clear();
-    ProjectIDBeingEdited.clear();
+    projectIDBeingEdited.clear();
     ui->add_update_btn->setText(tr("Adicionar projeto"));
 }
 
-void ProjectManagerDialog::onAddOrUpdateProject() {
+void ProjectManager::onAddOrupdateProject() {
     QString projectName = ui->name_edit->text();
     QString projectConfig = ui->config_edit->text();
 
-    if (!ProjectIDBeingEdited.isEmpty()) {  // Edit existing project
-        int projectId = ProjectIDBeingEdited.toInt();  // Convert ID back to integer
-        if (UpdateProject(projectId, projectName.toStdString(), projectConfig.toStdString())) {
+    if (!projectIDBeingEdited.isEmpty()) {  // Edit existing project
+        int projectId = projectIDBeingEdited.toInt();  // Convert ID back to integer
+        if (updateProject(projectId, projectName.toStdString(), projectConfig.toStdString())) {
             QMessageBox::information(this, tr("Success"), tr("Projeto atualizado com sucesso."));
             resetFields();
             loadProjects();
         }
     } else {  // Add new project
-        if (AddProject(projectName.toStdString(), projectConfig.toStdString())) {
+        if (addProject(projectName.toStdString(), projectConfig.toStdString())) {
             QMessageBox::information(this, tr("Success"), tr("Projeto incluído com sucesso."));
             resetFields();
             loadProjects();
@@ -129,20 +131,20 @@ void ProjectManagerDialog::onAddOrUpdateProject() {
     }
 }
 
-void ProjectManagerDialog::onDeleteProject() {
+void ProjectManager::onDeleteProject() {
     QPushButton* button = qobject_cast<QPushButton*>(sender());
     if (!button) return;
 
     int row = button->property("row").toInt();
     int projectId = ui->project_table->item(row, projectTableColumns::name_col)->data(Qt::UserRole).toInt();
 
-    if (DeleteProject(projectId)) {
+    if (deleteProject(projectId)) {
         QMessageBox::information(this, tr("Success"), tr("Projeto excluído com sucesso."));
         loadProjects();
     }
 }
 
-bool ProjectManagerDialog::AddProject(const std::string& projectName, const std::string& projectConfig) {
+bool ProjectManager::addProject(const std::string& projectName, const std::string& projectConfig) {
     QSqlQuery query(db);
     query.prepare("INSERT INTO Projects (name, config) VALUES (:projectName, :projectConfig)");
     query.bindValue(":projectName", QString::fromStdString(projectName));
@@ -156,7 +158,7 @@ bool ProjectManagerDialog::AddProject(const std::string& projectName, const std:
     }
 }
 
-bool ProjectManagerDialog::UpdateProject(int id, const std::string& projectName, const std::string& projectConfig) {
+bool ProjectManager::updateProject(int id, const std::string& projectName, const std::string& projectConfig) {
     QSqlQuery query(db);
     query.prepare("UPDATE Projects SET name=:name, config=:config WHERE id = :id");
     query.bindValue(":id", id);
@@ -171,7 +173,7 @@ bool ProjectManagerDialog::UpdateProject(int id, const std::string& projectName,
     }
 }
 
-bool ProjectManagerDialog::DeleteProject(int id) {
+bool ProjectManager::deleteProject(int id) {
     QSqlQuery query(db);
     query.prepare("DELETE FROM Projects WHERE id = :id");
     query.bindValue(":id", id);

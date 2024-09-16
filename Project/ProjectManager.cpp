@@ -7,6 +7,9 @@
 #include <QDebug>
 #include "../build/ui_ProjectManager.h"
 
+#include <QJsonDocument>
+#include <QJsonParseError>
+
 enum ProjectTableColumns {
     idColumn,  // Column for project ID (will be hidden)
     nameColumn,
@@ -135,6 +138,16 @@ void ProjectManagementDialog::onAddOrUpdateProject() {
     if (projectName.isEmpty() || projectConfig.isEmpty()) {
         QMessageBox::warning(this, tr("Erro na entrada"), tr("Nome ou config não podem estar vazios!"));
         return;
+    }
+
+    // Validate the JSON format in projectConfig
+    QJsonParseError jsonError;
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(projectConfig.toUtf8(), &jsonError);
+
+    if (jsonError.error != QJsonParseError::NoError) {
+        // JSON is invalid, show error message
+        QMessageBox::warning(this, tr("Erro no JSON"), tr("A configuração de JSON fornecida não é válida:\n%1").arg(jsonError.errorString()));
+        return;  // Stop further execution if JSON is invalid
     }
 
     if (!projectIDBeingEdited.isEmpty()) {  // Edit existing Project

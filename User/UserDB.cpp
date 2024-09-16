@@ -1,5 +1,6 @@
 #include "UserDB.h"
-#include "Database.h"
+#include "../Database/Database.h"
+
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QVariant>

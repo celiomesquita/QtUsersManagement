@@ -1,6 +1,6 @@
-#include "LoginDialog.h"
+#include "Login/LoginDialog.h"
 #include "MainWindow.h"
-#include "Database.h"
+#include "Database/Database.h"
 #include <QApplication>
 #include <QDebug>
 #include <QSqlDatabase>

@@ -16,8 +16,8 @@
   <widget class="QLineEdit" name="nameEdit">
    <property name="geometry">
     <rect>
-     <x>132</x>
-     <y>90</y>
+     <x>182</x>
+     <y>30</y>
      <width>191</width>
      <height>30</height>
     </rect>
@@ -31,8 +31,8 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>120</y>
+     <x>60</x>
+     <y>60</y>
      <width>101</width>
      <height>41</height>
     </rect>
@@ -49,8 +49,8 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>90</y>
+     <x>60</x>
+     <y>30</y>
      <width>101</width>
      <height>22</height>
     </rect>
@@ -68,19 +68,19 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>170</y>
+     <y>250</y>
      <width>821</width>
-     <height>431</height>
+     <height>351</height>
     </rect>
    </property>
   </widget>
   <widget class="QPushButton" name="addOrUpdateButton">
    <property name="geometry">
     <rect>
-     <x>440</x>
-     <y>50</y>
+     <x>610</x>
+     <y>10</y>
      <width>241</width>
-     <height>31</height>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
@@ -110,19 +110,14 @@
     <string/>
    </property>
   </widget>
-  <widget class="QLineEdit" name="configEdit">
+  <widget class="QPlainTextEdit" name="configEdit">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>130</y>
-     <width>711</width>
-     <height>30</height>
+     <x>180</x>
+     <y>70</y>
+     <width>531</width>
+     <height>161</height>
     </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>15</pointsize>
-    </font>
    </property>
   </widget>
  </widget>

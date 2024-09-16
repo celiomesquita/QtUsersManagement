@@ -1,12 +1,12 @@
 #include "LoginDialog.h"
-#include "UserDB.h"
-#include "HashUtils.h"     // Include the file where sha256 is declared
+#include "../Database/Database.h"
+#include "../HashUtils.h"     // Include the file where sha256 is declared
 #include <QSqlDatabase>    // Include for QSqlDatabase
 #include <QSqlQuery>       // Include for QSqlQuery
 #include <QSqlError>       // Include for QSqlError
 #include <QMessageBox>
 #include <QDebug>
-#include "build/ui_LoginDialog.h"  // Include the generated header
+#include "../build/ui_LoginDialog.h"  // Include the generated header
 
 LoginDialog::LoginDialog(QWidget *parent)
     : QDialog(parent), ui(new Ui::LoginDialog), m_isAdmin(false)

@@ -5,7 +5,7 @@
 #include <QSqlError>
 #include <QMessageBox>
 #include <QDebug>
-#include "build/ui_ProjectManager.h"
+#include "../build/ui_ProjectManager.h"
 
 enum ProjectTableColumns {
     idColumn,  // Column for project ID (will be hidden)
@@ -68,7 +68,7 @@ void ProjectManagementDialog::onEditProject() {
 
     // Pre-fill the input fields for editing
     ui->nameEdit->setText(projectName);
-    ui->configEdit->setText(projectConfig);
+    ui->configEdit->setPlainText(projectConfig);
 
     // Store the project ID for later use
     projectIDBeingEdited = QString::number(projectId);
@@ -130,7 +130,7 @@ void ProjectManagementDialog::resetFields() {
 
 void ProjectManagementDialog::onAddOrUpdateProject() {
     QString projectName   = ui->nameEdit->text();
-    QString projectConfig = ui->configEdit->text();
+    QString projectConfig = ui->configEdit->toPlainText();
 
     if (projectName.isEmpty() || projectConfig.isEmpty()) {
         QMessageBox::warning(this, tr("Erro na entrada"), tr("Nome ou config não podem estar vazios!"));

@@ -1,11 +1,11 @@
 #include "UserManager.h"
 #include "UserDB.h"  // Include the existing service class
-#include "HashUtils.h"
+#include "../HashUtils.h"
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QMessageBox>
 #include <QDebug>
-#include "build/ui_UserManager.h"  // Include the generated UI header
+#include "../build/ui_UserManager.h"  // Include the generated UI header
 
 enum UserTableColumns {
     UsernameColumn,

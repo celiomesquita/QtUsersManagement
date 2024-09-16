@@ -1,7 +1,7 @@
 #include "MainWindow.h"
 #include "build/ui_MainWindow.h"
-#include "UserManager.h"
-#include "ProjectManager.h"
+#include "User/UserManager.h"
+#include "Project/ProjectManager.h"
 
 MainWindow::MainWindow(QString loggedInUser, bool isAdmin, QWidget *parent) :
     QMainWindow(parent),

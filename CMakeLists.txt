@@ -18,37 +18,37 @@ set(CMAKE_PREFIX_PATH "C:/Qt/5.15.2/msvc2019_64/lib/cmake")
 find_package(Qt5 REQUIRED COMPONENTS Widgets Sql)
 
 # Add a definition for the database path
-add_definitions(-DDB_PATH=\"${CMAKE_SOURCE_DIR}/Database.db\")
+add_definitions(-DDB_PATH=\"${CMAKE_SOURCE_DIR}/Database/Database.db\")
 
 # List the source files for the project
 set(PROJECT_SOURCES
 
-    Database.cpp
-    Database.h
+    Database/Database.cpp
+    Database/Database.h
 
     HashUtils.cpp
     HashUtils.h
 
-    LoginDialog.cpp
-    LoginDialog.h
-    LoginDialog.ui
+    Login/LoginDialog.cpp
+    Login/LoginDialog.h
+    Login/LoginDialog.ui
 
     main.cpp
     MainWindow.cpp
     MainWindow.h
     MainWindow.ui
 
-    UserDB.cpp
-    UserDB.h
-    UserManager.cpp
-    UserManager.h
-    UserManager.ui
+    User/UserDB.cpp
+    User/UserDB.h
+    User/UserManager.cpp
+    User/UserManager.h
+    User/UserManager.ui
 
-    ProjectDB.cpp
-    ProjectDB.h
-    ProjectManager.cpp
-    ProjectManager.h
-    ProjectManager.ui
+    Project/ProjectDB.cpp
+    Project/ProjectDB.h
+    Project/ProjectManager.cpp
+    Project/ProjectManager.h
+    Project/ProjectManager.ui
 )
 
 # Add the executable

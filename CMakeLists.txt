@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10) # Recommended to upgrade CMake version
+cmake_minimum_required(VERSION 3.10)
 
 project(Sirerc VERSION 0.1 LANGUAGES CXX)
 
@@ -11,62 +11,53 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Set the prefix path for Qt5 installation
 set(CMAKE_PREFIX_PATH "C:/Qt/5.15.2/msvc2019_64/lib/cmake")
 
-# Find Qt5 components
-find_package(QT NAMES Qt5 REQUIRED COMPONENTS Widgets Sql)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql)
+# Find required Qt5 components
+find_package(Qt5 REQUIRED COMPONENTS Widgets Sql)
 
 # Add a definition for the database path
-add_definitions(-DDB_PATH=\"${CMAKE_SOURCE_DIR}/Database/Database.db\")
+add_definitions(-DDB_PATH=\"${CMAKE_SOURCE_DIR}/Database.db\")
 
-# Source files for the project
+# List the source files for the project
 set(PROJECT_SOURCES
-    Main/main.cpp
-    Main/MainWindow.cpp
-    Main/MainWindow.h
-    Main/MainWindow.ui
 
-    Database/Database.cpp
-    Database/Database.h
+    Database.cpp
+    Database.h
 
-    Login/LoginDialog.cpp
-    Login/LoginDialog.h
-    Login/LoginDialog.ui
+    HashUtils.cpp
+    HashUtils.h
 
-    User/UserManager.cpp
-    User/UserManager.h
-    User/UserManager.ui
+    LoginDialog.cpp
+    LoginDialog.h
+    LoginDialog.ui
 
-    Hash/HashUtils.cpp
-    Hash/HashUtils.h
+    main.cpp
+    MainWindow.cpp
+    MainWindow.h
+    MainWindow.ui
 
-    Project/ProjectManager.cpp
-    Project/ProjectManager.h
-    Project/ProjectManager.ui
+    UserDB.cpp
+    UserDB.h
+    UserManager.cpp
+    UserManager.h
+    UserManager.ui
+
+    ProjectDB.cpp
+    ProjectDB.h
+    ProjectManager.cpp
+    ProjectManager.h
+    ProjectManager.ui
 )
 
-# Handle different Qt versions
-if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(Sirerc
-        MANUAL_FINALIZATION
-        ${PROJECT_SOURCES}
-    )
-else()
-    if(ANDROID)
-        add_library(Sirerc SHARED
-            ${PROJECT_SOURCES}
-        )
-    else()
-        add_executable(Sirerc
-            ${PROJECT_SOURCES}
-        )
-    endif()
-endif()
+# Add the executable
+add_executable(Sirerc ${PROJECT_SOURCES})
 
-target_link_libraries(Sirerc PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql)
+# Link the necessary Qt5 libraries
+target_link_libraries(Sirerc PRIVATE Qt5::Widgets Qt5::Sql)
 
-# Set executable properties (Windows)
+# Set executable properties for Windows
 set_target_properties(Sirerc PROPERTIES
     WIN32_EXECUTABLE TRUE
 )
@@ -76,8 +67,3 @@ install(TARGETS Sirerc
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
-
-# Finalize executable for Qt6
-if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(Sirerc)
-endif()

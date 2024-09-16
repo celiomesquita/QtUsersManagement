@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>UserManagerDialog</class>
- <widget class="QDialog" name="user_manager_dialog">
+ <class>ProjectManagementDialog</class>
+ <widget class="QDialog" name="ProjectManagementDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>697</width>
+    <width>874</width>
     <height>721</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QLineEdit" name="username_edit">
+  <widget class="QLineEdit" name="nameEdit">
    <property name="geometry">
     <rect>
      <x>132</x>
@@ -32,9 +32,9 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>140</y>
+     <y>120</y>
      <width>101</width>
-     <height>22</height>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
@@ -43,22 +43,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Senha</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="password_edit">
-   <property name="geometry">
-    <rect>
-     <x>132</x>
-     <y>140</y>
-     <width>191</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>15</pointsize>
-    </font>
+    <string>Config</string>
    </property>
   </widget>
   <widget class="QLabel" name="label">
@@ -76,62 +61,26 @@
     </font>
    </property>
    <property name="text">
-    <string>Usuário</string>
+    <string>Projeto</string>
    </property>
   </widget>
-  <widget class="QCheckBox" name="admin_check">
-   <property name="geometry">
-    <rect>
-     <x>130</x>
-     <y>190</y>
-     <width>109</width>
-     <height>28</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>15</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>Admin</string>
-   </property>
-  </widget>
-  <widget class="QTableWidget" name="user_table">
+  <widget class="QTableWidget" name="projectTable">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>270</y>
-     <width>651</width>
+     <y>170</y>
+     <width>821</width>
      <height>431</height>
     </rect>
    </property>
   </widget>
-  <widget class="QCheckBox" name="show_hash_check">
+  <widget class="QPushButton" name="addOrUpdateButton">
    <property name="geometry">
     <rect>
-     <x>490</x>
-     <y>80</y>
-     <width>181</width>
-     <height>28</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>15</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>Exibir o Hash</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="add_update_btn">
-   <property name="geometry">
-    <rect>
-     <x>390</x>
-     <y>150</y>
-     <width>281</width>
-     <height>71</height>
+     <x>440</x>
+     <y>50</y>
+     <width>241</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
@@ -143,7 +92,7 @@
     <string>Adicionar / Atualizar</string>
    </property>
   </widget>
-  <widget class="QLabel" name="status_label">
+  <widget class="QLabel" name="statusLabel">
    <property name="geometry">
     <rect>
      <x>280</x>
@@ -159,6 +108,21 @@
    </property>
    <property name="text">
     <string/>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="configEdit">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>130</y>
+     <width>711</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+    </font>
    </property>
   </widget>
  </widget>

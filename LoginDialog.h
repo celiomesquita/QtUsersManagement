@@ -19,7 +19,7 @@ public:
     bool isAdmin() const;
 
 private slots:
-    void onLoginBtnClicked();
+    void onLoginButtonClicked();
 
 private:
     Ui::LoginDialog *ui;  // UI elements managed by the Ui::LoginDialog class

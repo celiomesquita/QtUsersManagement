@@ -1,5 +1,6 @@
-#include "../Login/LoginDialog.h"
+#include "LoginDialog.h"
 #include "MainWindow.h"
+#include "Database.h"
 #include <QApplication>
 #include <QDebug>
 #include <QSqlDatabase>
@@ -7,11 +8,7 @@
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
 
-    // Initialize SQLite for local database (Assuming DB_PATH is already defined in CMake)
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(DB_PATH);
-
-    if (!db.open()) {
+    if (!Database::initialize(DB_PATH)) {
         qDebug() << "Failed to initialize the local SQLite database.";
         return -1;
     }
@@ -23,8 +20,7 @@ int main(int argc, char *argv[]) {
         QString loggedInUser = loginDialog.getUsername();
         bool isAdmin = loginDialog.isAdmin();
 
-        // Pass the database, user info, and admin status into the main window
-        MainWindow mainWindow(loggedInUser, isAdmin, db, nullptr);  // Pass db to MainWindow constructor
+        MainWindow mainWindow(loggedInUser, isAdmin, nullptr);
 
         mainWindow.show();  // Show the main window
         return app.exec();   // Enter the event loop

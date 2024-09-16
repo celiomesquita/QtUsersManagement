@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>MainWindow</class>
- <widget class="QMainWindow" name="main_window">
+ <widget class="QMainWindow" name="MainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>910</width>
+    <width>688</width>
     <height>475</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="central_widget">
-   <widget class="QPushButton" name="users_man_btn">
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="users_btn">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>150</y>
+      <x>180</x>
+      <y>140</y>
       <width>301</width>
       <height>81</height>
      </rect>
@@ -32,7 +32,7 @@
      <string>Controle de usuários</string>
     </property>
    </widget>
-   <widget class="QLabel" name="status_label">
+   <widget class="QLabel" name="statusLabel">
     <property name="geometry">
      <rect>
       <x>290</x>
@@ -55,29 +55,31 @@
      <rect>
       <x>20</x>
       <y>50</y>
-      <width>851</width>
+      <width>621</width>
       <height>51</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <pointsize>22</pointsize>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
     <property name="layoutDirection">
-     <enum>Qt::LeftToRight</enum>
+     <enum>Qt::LayoutDirection::RightToLeft</enum>
     </property>
     <property name="text">
-     <string>Janela principal do sistema em desenvolvimento</string>
+     <string>Janela principal do Sistema</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QPushButton" name="proj_man_btn">
+   <widget class="QPushButton" name="projects_btn">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>270</y>
+      <x>180</x>
+      <y>280</y>
       <width>301</width>
       <height>81</height>
      </rect>
@@ -88,7 +90,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Projetos</string>
+     <string>Configurações de projetos</string>
     </property>
    </widget>
   </widget>
@@ -97,8 +99,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>910</width>
-     <height>26</height>
+     <width>688</width>
+     <height>22</height>
     </rect>
    </property>
   </widget>

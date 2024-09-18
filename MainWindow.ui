@@ -66,7 +66,7 @@
      </font>
     </property>
     <property name="layoutDirection">
-     <enum>Qt::LeftToRight</enum>
+     <enum>Qt::LayoutDirection::LeftToRight</enum>
     </property>
     <property name="text">
      <string>Janela principal do Sistema</string>
@@ -137,7 +137,7 @@
      <x>0</x>
      <y>0</y>
      <width>688</width>
-     <height>23</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

@@ -38,7 +38,7 @@
     </message>
     <message>
         <location filename="../MainWindow.ui" line="72"/>
-        <source>tr(Janela principal do Sistema)</source>
+        <source>Janela principal do Sistema</source>
         <translation>System main window</translation>
     </message>
     <message>

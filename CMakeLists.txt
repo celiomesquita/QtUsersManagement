@@ -61,6 +61,8 @@ set(TS_FILES
 
 file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/translations)
 
+# set(QT_LRELEASE_EXECUTABLE "C:/Qt/5.15.2/msvc2019_64/bin")
+
 # Find the lrelease tool
 find_program(LRELEASE_EXECUTABLE lrelease)
 

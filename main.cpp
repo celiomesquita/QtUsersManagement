@@ -1,12 +1,26 @@
 #include "Login/LoginDialog.h"
 #include "MainWindow.h"
 #include "Database/Database.h"
-#include <QApplication>
-#include <QDebug>
+
 #include <QSqlDatabase>
+#include <QApplication>
+#include <QTranslator>
+#include <QLocale>
+#include <QDebug>
 
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
+
+    // Load the translation file
+    QTranslator translator;
+    QString locale = QLocale::system().name(); // Get system locale, e.g., "en_US" or "pt_BR"
+
+    if (locale.startsWith("pt")) {
+        translator.load(":/translations/translation_pt.qm"); // Portuguese translation
+    } else {
+        translator.load(":/translations/translation_en.qm"); // Default to English
+    }
+    app.installTranslator(&translator);
 
     if (!Database::initialize(DB_PATH)) {
         qDebug() << "Failed to initialize the local SQLite database.";
@@ -28,4 +42,5 @@ int main(int argc, char *argv[]) {
         qDebug() << "Login canceled or failed.";
         return 0;
     }
+
 }

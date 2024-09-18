@@ -3,6 +3,10 @@
 #include "User/UserManager.h"
 #include "Project/ProjectManager.h"
 
+#include <QTranslator>
+#include <QLocale>
+#include <QApplication>
+
 MainWindow::MainWindow(QString loggedInUser, bool isAdmin, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
@@ -16,6 +20,25 @@ MainWindow::MainWindow(QString loggedInUser, bool isAdmin, QWidget *parent) :
 
     connect(ui->users_btn,    &QPushButton::clicked, this, &MainWindow::onusers_btnClicked);
     connect(ui->projects_btn, &QPushButton::clicked, this, &MainWindow::onprojects_btnClicked);
+    connect(ui->btn_br,       &QPushButton::clicked, this, &MainWindow::switchToPortuguese);
+    connect(ui->btn_uk,       &QPushButton::clicked, this, &MainWindow::switchToEnglish);
+}
+
+// Slot to switch to Portuguese
+void MainWindow::switchToPortuguese() {
+    changeLanguage(":/translations/translation_pt.qm");
+}
+
+// Slot to switch to English
+void MainWindow::switchToEnglish() {
+    changeLanguage(":/translations/translation_en.qm");
+}
+
+// Helper function to change language
+void MainWindow::changeLanguage(const QString &language) {
+    translator.load(language);
+    qApp->installTranslator(&translator);
+    ui->retranslateUi(this);  // Update the UI with the new language
 }
 
 MainWindow::~MainWindow()

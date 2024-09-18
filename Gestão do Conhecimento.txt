@@ -17,3 +17,10 @@ Interfaces:
 
 Vinícius Guilherme
 Evandro Rennó
+
+cd ..
+rm -rf build
+mkdir build
+cd build
+cmake ..
+cmake --build . --verbose

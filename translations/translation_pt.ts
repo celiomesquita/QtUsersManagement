@@ -4,268 +4,205 @@
 <context>
     <name>LoginDialog</name>
     <message>
-        <location filename="../Login/LoginDialog.ui" line="14"/>
         <source>Janela</source>
-        <translation>Dialog</translation>
+        <translation type="vanished">Dialog</translation>
     </message>
     <message>
-        <location filename="../Login/LoginDialog.ui" line="64"/>
         <source>Login</source>
-        <translation>Entrar</translation>
+        <translation type="vanished">Entrar</translation>
     </message>
     <message>
-        <location filename="../Login/LoginDialog.ui" line="82"/>
         <source>User</source>
-        <translation>Usuário</translation>
+        <translation type="vanished">Usuário</translation>
     </message>
     <message>
-        <location filename="../Login/LoginDialog.ui" line="100"/>
         <source>Password</source>
-        <translation>Senha</translation>
+        <translation type="vanished">Senha</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../MainWindow.ui" line="14"/>
         <source>Janela principal</source>
-        <translation>Main window</translation>
+        <translation type="vanished">Main window</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="32"/>
         <source>User management</source>
-        <translation>Controle de usuários</translation>
+        <translation type="vanished">Controle de usuários</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="72"/>
         <source>System main window</source>
-        <translation>Janela principal do Sistema</translation>
+        <translation type="vanished">Janela principal do Sistema</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="90"/>
         <source>Project configuration</source>
-        <translation>Configurações de projetos</translation>
+        <translation type="vanished">Configurações de projetos</translation>
     </message>
 </context>
 <context>
     <name>ProjectManagementDialog</name>
     <message>
-        <location filename="../Project/ProjectManager.ui" line="14"/>
         <source>Dialog</source>
-        <translation>Janela</translation>
+        <translation type="vanished">Janela</translation>
     </message>
     <message>
-        <location filename="../Project/ProjectManager.ui" line="46"/>
-        <location filename="../Project/ProjectManager.cpp" line="47"/>
         <source>Config</source>
-        <translation>Config</translation>
+        <translation type="vanished">Config</translation>
     </message>
     <message>
-        <location filename="../Project/ProjectManager.ui" line="64"/>
-        <location filename="../Project/ProjectManager.cpp" line="47"/>
         <source>Project</source>
-        <translation>Projeto</translation>
+        <translation type="vanished">Projeto</translation>
     </message>
     <message>
-        <location filename="../Project/ProjectManager.ui" line="92"/>
         <source>Add / Update</source>
-        <translation>Adicionar / Atualizar</translation>
+        <translation type="vanished">Adicionar / Atualizar</translation>
     </message>
     <message>
-        <location filename="../Project/ProjectManager.cpp" line="32"/>
         <source>Project configuration</source>
-        <translation>Configurações de projetos</translation>
+        <translation type="vanished">Configurações de projetos</translation>
     </message>
     <message>
-        <location filename="../Project/ProjectManager.cpp" line="47"/>
         <source>ID</source>
-        <translation>ID</translation>
+        <translation type="vanished">ID</translation>
     </message>
     <message>
-        <location filename="../Project/ProjectManager.cpp" line="47"/>
-        <location filename="../Project/ProjectManager.cpp" line="113"/>
         <source>Edit</source>
-        <translation>Editar</translation>
+        <translation type="vanished">Editar</translation>
     </message>
     <message>
-        <location filename="../Project/ProjectManager.cpp" line="47"/>
-        <location filename="../Project/ProjectManager.cpp" line="119"/>
         <source>Delete</source>
-        <translation>Excluir</translation>
+        <translation type="vanished">Excluir</translation>
     </message>
     <message>
-        <location filename="../Project/ProjectManager.cpp" line="79"/>
         <source>Save</source>
-        <translation>Salvar</translation>
+        <translation type="vanished">Salvar</translation>
     </message>
     <message>
-        <location filename="../Project/ProjectManager.cpp" line="89"/>
         <source>Failure on loading projects</source>
-        <translation>Falha ao carregar projetos</translation>
+        <translation type="vanished">Falha ao carregar projetos</translation>
     </message>
     <message>
-        <location filename="../Project/ProjectManager.cpp" line="131"/>
         <source>Add project</source>
-        <translation>Adicionar projeto</translation>
+        <translation type="vanished">Adicionar projeto</translation>
     </message>
     <message>
-        <location filename="../Project/ProjectManager.cpp" line="139"/>
         <source>Error on loading</source>
-        <translation>Erro na entrada</translation>
+        <translation type="vanished">Erro na entrada</translation>
     </message>
     <message>
-        <location filename="../Project/ProjectManager.cpp" line="139"/>
         <source>Project name or Config can not be empty!</source>
-        <translation>Nome ou config não podem estar vazios!</translation>
+        <translation type="vanished">Nome ou config não podem estar vazios!</translation>
     </message>
     <message>
-        <location filename="../Project/ProjectManager.cpp" line="149"/>
         <source>JSON error</source>
-        <translation>Erro no JSON</translation>
+        <translation type="vanished">Erro no JSON</translation>
     </message>
     <message>
-        <location filename="../Project/ProjectManager.cpp" line="149"/>
         <source>The JSON configuration is not valid:%1</source>
-        <translation>A configuração de JSON fornecida não é válida:%1</translation>
+        <translation type="vanished">A configuração de JSON fornecida não é válida:%1</translation>
     </message>
     <message>
-        <location filename="../Project/ProjectManager.cpp" line="156"/>
-        <location filename="../Project/ProjectManager.cpp" line="162"/>
-        <location filename="../Project/ProjectManager.cpp" line="179"/>
         <source>Success</source>
-        <translation>Sucesso</translation>
+        <translation type="vanished">Sucesso</translation>
     </message>
     <message>
-        <location filename="../Project/ProjectManager.cpp" line="156"/>
         <source>Project successfully updated.</source>
-        <translation>Projeto atualizado com sucesso.</translation>
+        <translation type="vanished">Projeto atualizado com sucesso.</translation>
     </message>
     <message>
-        <location filename="../Project/ProjectManager.cpp" line="162"/>
         <source>Project successfully added.</source>
-        <translation>Projeto incluído com sucesso.</translation>
+        <translation type="vanished">Projeto incluído com sucesso.</translation>
     </message>
     <message>
-        <location filename="../Project/ProjectManager.cpp" line="179"/>
         <source>Project successfully deleted.</source>
-        <translation>Projeto excluído com sucesso.</translation>
+        <translation type="vanished">Projeto excluído com sucesso.</translation>
     </message>
 </context>
 <context>
     <name>UserManagementDialog</name>
     <message>
-        <location filename="../User/UserManager.ui" line="14"/>
         <source>Dialog</source>
-        <translation>Janela</translation>
+        <translation type="vanished">Janela</translation>
     </message>
     <message>
-        <location filename="../User/UserManager.ui" line="46"/>
-        <location filename="../User/UserManager.cpp" line="51"/>
         <source>Password</source>
-        <translation>Senha</translation>
+        <translation type="vanished">Senha</translation>
     </message>
     <message>
-        <location filename="../User/UserManager.ui" line="79"/>
-        <location filename="../User/UserManager.cpp" line="51"/>
         <source>User</source>
-        <translation>Usuário</translation>
+        <translation type="vanished">Usuário</translation>
     </message>
     <message>
-        <location filename="../User/UserManager.ui" line="97"/>
-        <location filename="../User/UserManager.cpp" line="51"/>
         <source>Admin</source>
-        <translation>Admin</translation>
+        <translation type="vanished">Admin</translation>
     </message>
     <message>
-        <location filename="../User/UserManager.ui" line="125"/>
         <source>Show the Hash</source>
-        <translation>Exibir o Hash</translation>
+        <translation type="vanished">Exibir o Hash</translation>
     </message>
     <message>
-        <location filename="../User/UserManager.ui" line="143"/>
         <source>Add / Update</source>
-        <translation>Adicionar / Atualizar</translation>
+        <translation type="vanished">Adicionar / Atualizar</translation>
     </message>
     <message>
-        <location filename="../User/UserManager.cpp" line="32"/>
         <source>User management</source>
-        <translation>Gestão de usuários</translation>
+        <translation type="vanished">Gestão de usuários</translation>
     </message>
     <message>
-        <location filename="../User/UserManager.cpp" line="51"/>
-        <location filename="../User/UserManager.cpp" line="119"/>
-        <location filename="../User/UserManager.cpp" line="125"/>
         <source>Edit</source>
-        <translation>Editar</translation>
+        <translation type="vanished">Editar</translation>
     </message>
     <message>
-        <location filename="../User/UserManager.cpp" line="51"/>
-        <location filename="../User/UserManager.cpp" line="143"/>
         <source>Delete</source>
-        <translation>Excluir</translation>
+        <translation type="vanished">Excluir</translation>
     </message>
     <message>
-        <location filename="../User/UserManager.cpp" line="69"/>
-        <location filename="../User/UserManager.cpp" line="115"/>
         <source>Yes</source>
-        <translation>Sim'</translation>
+        <translation type="vanished">Sim&apos;</translation>
     </message>
     <message>
-        <location filename="../User/UserManager.cpp" line="81"/>
         <source>Save</source>
-        <translation>Salvar</translation>
+        <translation type="vanished">Salvar</translation>
     </message>
     <message>
-        <location filename="../User/UserManager.cpp" line="91"/>
         <source>Fail to load users.</source>
-        <translation>Falha ao carregar usuários.</translation>
+        <translation type="vanished">Falha ao carregar usuários.</translation>
     </message>
     <message>
-        <location filename="../User/UserManager.cpp" line="96"/>
         <source>No user found in the database.</source>
-        <translation>Nenhum usuário encontrado no banco de dados.</translation>
+        <translation type="vanished">Nenhum usuário encontrado no banco de dados.</translation>
     </message>
     <message>
-        <location filename="../User/UserManager.cpp" line="115"/>
         <source>No</source>
-        <translation>Não</translation>
+        <translation type="vanished">Não</translation>
     </message>
     <message>
-        <location filename="../User/UserManager.cpp" line="161"/>
         <source>Add user</source>
-        <translation>Adicionar usuário</translation>
+        <translation type="vanished">Adicionar usuário</translation>
     </message>
     <message>
-        <location filename="../User/UserManager.cpp" line="170"/>
         <source>Load error</source>
-        <translation>Erro na entrada</translation>
+        <translation type="vanished">Erro na entrada</translation>
     </message>
     <message>
-        <location filename="../User/UserManager.cpp" line="170"/>
         <source>Name and password can not be empty!</source>
-        <translation>Usuário e senha não podem estar vazios!</translation>
+        <translation type="vanished">Usuário e senha não podem estar vazios!</translation>
     </message>
     <message>
-        <location filename="../User/UserManager.cpp" line="180"/>
-        <location filename="../User/UserManager.cpp" line="186"/>
-        <location filename="../User/UserManager.cpp" line="201"/>
         <source>Success</source>
-        <translation>Sucesso</translation>
+        <translation type="vanished">Sucesso</translation>
     </message>
     <message>
-        <location filename="../User/UserManager.cpp" line="180"/>
         <source>User successfully updated.</source>
-        <translation>Usuário atualizado com sucesso.</translation>
+        <translation type="vanished">Usuário atualizado com sucesso.</translation>
     </message>
     <message>
-        <location filename="../User/UserManager.cpp" line="186"/>
         <source>User successfully added.</source>
-        <translation>Usuário incluído com sucesso.</translation>
+        <translation type="vanished">Usuário incluído com sucesso.</translation>
     </message>
     <message>
-        <location filename="../User/UserManager.cpp" line="201"/>
         <source>User successfully deleted.</source>
-        <translation>Usuário excluído com sucesso.</translation>
+        <translation type="vanished">Usuário excluído com sucesso.</translation>
     </message>
 </context>
 </TS>

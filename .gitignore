@@ -1,9 +1,11 @@
 build/
 .py
 .aux
+.user.*
 .user
 .hst
 .out
 .syntex
 .toc
 .ver
+*.txt.user*
